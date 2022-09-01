@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <None Remove="Pages\" />
+    <None Remove="Pages\Shared\" />
+    <None Remove="Areas\DS\" />
+    <None Remove="Areas\DS\Pages\" />
+    <None Remove="Areas\Visit\" />
+    <None Remove="Areas\Visit\Pages\" />
+    <None Remove="Models\" />
+    <None Remove="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="Views\Shared\" />
+    <Folder Include="Areas\DS\" />
+    <Folder Include="Areas\DS\Pages\" />
+    <Folder Include="Areas\Visit\" />
+    <Folder Include="Areas\Visit\Pages\" />
+    <Folder Include="Models\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UDS.Net.Services\UDS.Net.Services.csproj" />
+  </ItemGroup>
+</Project>
