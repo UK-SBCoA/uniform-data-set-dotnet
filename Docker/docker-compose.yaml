@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  uds-api:
+    build:
+      context: ../
+      dockerfile: ./Docker/Dockerfile.API
+    ports:
+      - 444:443
+      - 81:80
+    volumes:
+      - ${CERT_DIRECTORY}:/https/
+      - ${SQLLITE_DIRECTORY}:/sqllite
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${DOTNET_ENVIRONMENT}
+      - ASPNETCORE_URLS=https://+;http://+
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${CERT_PASSWORD}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/${CERT_FILE_NAME}
+      - FLAVOR=focal
+      - VERSION=6.0
+  uds-mvc:
+    build:
+      context: ../
+      dockerfile: ./Docker/Dockerfile.MVC
+    ports:
+      - 5110:443
+      - 5109:80
+    depends_on: [uds-api]
+    volumes:
+      - ${CERT_DIRECTORY}:/https/
+    environment:
+      - ASPNETCORE_URLS=https://+;http://+
+      - ASPNETCORE_ENVIRONMENT=${DOTNET_ENVIRONMENT}
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${CERT_PASSWORD}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/${CERT_FILE_NAME}
+      - FLAVOR=focal
+      - VERSION=6.0
