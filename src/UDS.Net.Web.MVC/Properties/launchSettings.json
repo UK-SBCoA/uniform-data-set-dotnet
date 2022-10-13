@@ -1,4 +1,4 @@
-﻿{
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -10,7 +10,6 @@
   "profiles": {
     "UDS.Net.Web.MVC": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7294;http://localhost:5264",
       "environmentVariables": {
@@ -26,5 +25,3 @@
     }
   }
 }
-
-
