@@ -1,0 +1,21 @@
+@model IEnumerable<Visit>;
+
+<table>
+    <thead>
+        <tr>
+            <th>Visit Number</th>
+            <th>
+                Start Date Time 
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Visit visit in Model)
+        {
+            <tr>
+                <td>@visit.Number</td>
+                <td>@visit.StartDateTime</td>
+            </tr>
+        }
+    </tbody>
+</table>
