@@ -6,11 +6,29 @@ services:
     build:
       context: .
       dockerfile: UDS.Net.API/Dockerfile
-
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    volumes:
+      - sqllite:/sqllite:rw
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    ports:
+      - "4801:443"
   uds.net.web.mvc:
     image: ${DOCKER_REGISTRY-}udsnetweb
     build:
       context: .
       dockerfile: UDS.Net.Web.MVC/Dockerfile
+    ports:
+      - "4811:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    volumes:
+      - sqllite:/sqllite:rw
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
     depends_on: ['uds.net.api']
-
+volumes:
+    sqllite:
