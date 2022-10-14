@@ -9,7 +9,6 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<ApiDbContext>(options =>
     options.UseSqlite(connectionString));
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -20,7 +19,7 @@ builder.Services.AddHealthChecks()
         "DatabaseCheck",
         new SqlConnectionHealthCheck(connectionString),
         Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy,
-        new string[] { "Database"}
+        new string[] { "Database" }
     );
 
 var app = builder.Build();
@@ -30,9 +29,17 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    using (var scope = app.Services.CreateScope())
+    {
+        var db = scope.ServiceProvider.GetRequiredService<ApiDbContext>();
+        db.Database.Migrate();
+    }
 }
-
-app.UseHttpsRedirection();
+else
+{
+    // Docker containers must communicate over TLS, this only enabling this on non-dev environements
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 
