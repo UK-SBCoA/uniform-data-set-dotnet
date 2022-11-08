@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDS.Net.Dto", "UDS.Net.Dto\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDS.Net.Forms.Tests", "UDS.Net.Forms.Tests\UDS.Net.Forms.Tests.csproj", "{7A359BF3-B7F2-4962-A948-DAB0A996DA0F}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{261077B6-39A6-4AC2-9ADF-4E083BA1E400}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{7A359BF3-B7F2-4962-A948-DAB0A996DA0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A359BF3-B7F2-4962-A948-DAB0A996DA0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A359BF3-B7F2-4962-A948-DAB0A996DA0F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{261077B6-39A6-4AC2-9ADF-4E083BA1E400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{261077B6-39A6-4AC2-9ADF-4E083BA1E400}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{261077B6-39A6-4AC2-9ADF-4E083BA1E400}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{261077B6-39A6-4AC2-9ADF-4E083BA1E400}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
