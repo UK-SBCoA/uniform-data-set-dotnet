@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace UDS.Net.Forms.Areas.Visit.Pages
+namespace UDS.Net.Forms.Areas.Visits.Pages
 {
     public class EditModel : PageModel
     {

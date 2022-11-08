@@ -10,7 +10,7 @@ using UDS.Net.Forms.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
-namespace UDS.Net.Forms.Areas.Visit.Pages
+namespace UDS.Net.Forms.Areas.Visits.Pages
 {
     public class IndexModel : PageModel
     {

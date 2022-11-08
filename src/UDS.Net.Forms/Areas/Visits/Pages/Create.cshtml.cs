@@ -8,7 +8,7 @@ using UDS.Net.Forms.Extensions;
 using UDS.Net.Forms.Models;
 using UDS.Net.Services;
 
-namespace UDS.Net.Forms.Areas.Visit.Pages
+namespace UDS.Net.Forms.Areas.Visits.Pages
 {
     public class CreateModel : PageModel
     {
