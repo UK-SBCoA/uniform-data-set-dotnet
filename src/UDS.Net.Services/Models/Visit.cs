@@ -5,9 +5,13 @@ namespace UDS.Net.Services.Models
     {
         public int Id { get; set; }
 
+        public int ParticipationId { get; set; }
+
         public int Number { get; set; }
 
-        public DateTime StartDateTime { get; set; }
+        public string Version { get; set; }
+
+        public Participation Participation { get; set; }
     }
 }
 

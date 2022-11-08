@@ -11,8 +11,7 @@ namespace UDS.Net.Forms.Extensions
         {
             return new VisitViewModel()
             {
-                Id = visit.Id,
-                StartDateTime = visit.StartDateTime
+                Id = visit.Id
             };
         }
     }

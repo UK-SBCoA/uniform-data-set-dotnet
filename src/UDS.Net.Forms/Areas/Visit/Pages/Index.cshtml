@@ -6,5 +6,23 @@
 <h2>Visits</h2>
 @if (Model.Visits != null)
 {
-
+        <table>
+            <thead>
+                <tr>
+                    <th>Participation Id</th>
+                    <th>Visit Id</th>
+                    <th>Visit kind</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var visit in Model.Visits)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@visit.Id</td>
+                        <td>@visit.Kind</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 }
