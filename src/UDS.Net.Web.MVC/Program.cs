@@ -22,9 +22,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 
 // Replace API and implemented services with your own if you don't want to use the included API here
-
 builder.Services.AddApiClient();
-builder.Services.AddSingleton<IVisitService, VisitService>(); // service which uses Api clients
+builder.Services.AddSingleton<IParticipationService, ParticipationService>();
+builder.Services.AddSingleton<IVisitService, VisitService>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

@@ -23,7 +23,7 @@ namespace UDS.Net.Forms.Areas.Visits.Pages
             _visitService = visitService;
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int? participationId)
         {
             var visits = await _visitService.List("");
 

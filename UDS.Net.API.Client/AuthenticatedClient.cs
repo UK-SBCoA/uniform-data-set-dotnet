@@ -24,6 +24,8 @@ namespace UDS.Net.API.Client
 
         public AuthenticatedClient()
         {
+            // HttpClient is intended to be instantiated once and reused throughout the life of an application.
+            // TODO Need to figure out dependency injection
             _httpClient = new HttpClient();
             _baseUrl = "http://uds.net.api:80/api";// configuration["DownstreamApis:UDSNetApi:BaseUrl"];
         }

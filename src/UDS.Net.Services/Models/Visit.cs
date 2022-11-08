@@ -1,6 +1,9 @@
 ﻿using System;
 namespace UDS.Net.Services.Models
 {
+    /// <summary>
+    /// Visit domain model
+    /// </summary>
     public class Visit
     {
         public int Id { get; set; }
@@ -10,6 +13,8 @@ namespace UDS.Net.Services.Models
         public int Number { get; set; }
 
         public string Version { get; set; }
+
+        public string Kind { get; set; }
 
         public Participation Participation { get; set; }
     }

@@ -9,7 +9,7 @@ namespace UDS.Net.Services.Models
 
         public string LegacyId { get; set; }
 
-        public List<Visit> Visits { get; set; }
+        public List<Visit> Visits { get; set; } = new List<Visit>();
     }
 }
 
