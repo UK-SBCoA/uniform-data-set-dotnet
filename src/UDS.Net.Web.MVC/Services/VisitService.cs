@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Text.Json;
+using UDS.Net.API.Client;
 using UDS.Net.Dto;
 using UDS.Net.Services;
 using UDS.Net.Services.Extensions;
@@ -8,15 +9,17 @@ using UDS.Net.Services.Models;
 
 namespace UDS.Net.Web.MVC.Services
 {
+    /// <summary>
+    /// This service uses this API client and maps to domain model used in
+    /// the component librar
+    /// </summary>
     public class VisitService : IVisitService
     {
-        private readonly HttpClient _httpClient;
-        private readonly string _baseUrl;
+        private readonly IApiClient _apiClient;
 
-        public VisitService(HttpClient httpClient, IConfiguration configuration)
+        public VisitService(IApiClient apiClient)
         {
-            _httpClient = httpClient;
-            _baseUrl = configuration["DownstreamApis:UDSNetApi:BaseUrl"];
+            _apiClient = apiClient;
         }
 
         public Task<Visit> Add(string username, Visit entity)
@@ -36,21 +39,11 @@ namespace UDS.Net.Web.MVC.Services
 
         public async Task<IEnumerable<Visit>> List(string username, int pageSize = 10, int pageIndex = 1)
         {
-            // https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#implement-your-typed-client-classes-that-use-the-injected-and-configured-httpclient
-            var response = await _httpClient.GetAsync($"{_baseUrl}/Visits");
-            if (response.StatusCode == HttpStatusCode.OK)
+            var visitDtos = await _apiClient.VisitClient.Get();
+
+            if (visitDtos != null)
             {
-                if (response.Content != null)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-
-                    if (content != null && !content.Equals("[]"))
-                    {
-                        List<VisitDto> dto = JsonSerializer.Deserialize<List<VisitDto>>(content)!;
-
-                        return dto.Select(d => d.ToDomain()).ToList();
-                    }
-                }
+                return visitDtos.Select(d => d.ToDomain()).ToList();
             }
 
             return new List<Visit>();

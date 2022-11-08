@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using UDS.Net.API.Client;
 using UDS.Net.Services;
 using UDS.Net.Web.MVC.Data;
 using UDS.Net.Web.MVC.Services;
@@ -20,9 +21,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
-// Replace services code with your own if you don't want to use the included API here
+// Replace API and implemented services with your own if you don't want to use the included API here
 
-builder.Services.AddHttpClient<IVisitService, VisitService>();
+builder.Services.AddApiClient();
+builder.Services.AddSingleton<IVisitService, VisitService>(); // service which uses Api clients
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
