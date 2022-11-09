@@ -10,33 +10,6 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-
-
-
-  <ItemGroup>
-    <None Remove="Pages\" />
-    <None Remove="Pages\Shared\" />
-    <None Remove="Areas\DS\" />
-    <None Remove="Areas\DS\Pages\" />
-    <None Remove="Areas\Visit\" />
-    <None Remove="Areas\Visit\Pages\" />
-    <None Remove="Models\" />
-    <None Remove="Extensions\" />
-    <None Remove="Areas\Participation\" />
-    <None Remove="Areas\Participation\Pages\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-    <Folder Include="Views\Shared\" />
-    <Folder Include="Areas\DS\" />
-    <Folder Include="Areas\DS\Pages\" />
-    <Folder Include="Areas\Visits\" />
-    <Folder Include="Areas\Visits\Pages\" />
-    <Folder Include="Models\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Areas\Participation\" />
-    <Folder Include="Areas\Participation\Pages\" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UDS.Net.Services\UDS.Net.Services.csproj" />
   </ItemGroup>

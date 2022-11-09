@@ -1,0 +1,12 @@
+﻿@page
+@model UDS.Net.Forms.Areas.Participation.Pages.EditModel
+
+@{
+    ViewData["Title"] = "Edit participation";
+}
+
+<a asp-page="Index">All participation</a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

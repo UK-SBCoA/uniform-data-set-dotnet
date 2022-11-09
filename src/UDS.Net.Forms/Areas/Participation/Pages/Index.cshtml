@@ -1,6 +1,8 @@
 ﻿@page
 @model UDS.Net.Forms.Areas.Participation.Pages.IndexModel
+
 @{
+    ViewData["Title"] = "Participation";
 }
 
 <h2>Participation</h2>
@@ -22,7 +24,7 @@
                     <td>@participation.Id</td>
                     <td>@participation.LegacyId</td>
                     <td>@participation.VisitCount</td>
-                    <td><a asp-page="./Visits/Index">View visits</a></td>
+                    <td><a asp-page="Details" asp-route-id="@participation.Id">View</a></td>
                 </tr>
             }
         </tbody>

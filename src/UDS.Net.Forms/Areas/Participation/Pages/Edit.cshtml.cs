@@ -7,11 +7,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace UDS.Net.Forms.Areas.Participation.Pages
 {
-    public class DetailsModel : PageModel
+    public class EditModel : PageModel
     {
-        public IActionResult OnGet(int? id)
+        public void OnGet()
         {
-            return Page();
         }
     }
 }
