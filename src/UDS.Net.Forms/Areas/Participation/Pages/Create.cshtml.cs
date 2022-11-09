@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UDS.Net.Forms.Models;
+using UDS.Net.Services;
 
 namespace UDS.Net.Forms.Areas.Participation.Pages
 {
@@ -15,8 +16,15 @@ namespace UDS.Net.Forms.Areas.Participation.Pages
     /// </summary>
     public class CreateModel : PageModel
     {
+        private readonly IParticipationService _participationService;
+
         [BindProperty]
         public ParticipationViewModel? Participation { get; set; }
+
+        public CreateModel(IParticipationService participationService)
+        {
+            _participationService = participationService;
+        }
 
         public IActionResult OnGet()
         {

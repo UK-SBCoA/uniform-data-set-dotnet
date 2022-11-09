@@ -7,10 +7,20 @@ namespace UDS.Net.Forms.Extensions
 {
     public static class ViewModelToEntityMapper
     {
+        public static Participation ToEntity(this ParticipationViewModel vm)
+        {
+            return new Participation
+            {
+                Id = vm.Id,
+                LegacyId = vm.LegacyId
+            };
+        }
+
         public static Visit ToEntity(this VisitViewModel vm)
         {
             return new Visit();
         }
+
     }
 }
 

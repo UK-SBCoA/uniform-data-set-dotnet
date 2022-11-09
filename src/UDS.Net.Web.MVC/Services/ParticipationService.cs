@@ -26,9 +26,17 @@ namespace UDS.Net.Web.MVC.Services
             throw new NotImplementedException();
         }
 
-        public Task<Participation> GetById(string username, int id)
+        public async Task<Participation> GetById(string username, int id)
         {
-            throw new NotImplementedException();
+            return new Participation
+            {
+                Id = 1,
+                LegacyId = "1",
+                Visits = new List<Visit>
+                {
+                    new Visit { Id = 1, Number = 1, Version = "UDS3" }
+                }
+            };
         }
 
         public async Task<IEnumerable<Participation>> List(string username, int pageSize = 10, int pageIndex = 1)
@@ -54,9 +62,17 @@ namespace UDS.Net.Web.MVC.Services
             throw new NotImplementedException();
         }
 
-        public Task<Participation> Update(string username, Participation entity)
+        public async Task<Participation> Update(string username, Participation entity)
         {
-            throw new NotImplementedException();
+            return new Participation
+            {
+                Id = 1,
+                LegacyId = "1",
+                Visits = new List<Visit>
+                {
+                    new Visit { Id = 1, Number = 1, Version = "UDS3" }
+                }
+            };
         }
     }
 }
