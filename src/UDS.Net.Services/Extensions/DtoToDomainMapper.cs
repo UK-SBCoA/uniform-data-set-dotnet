@@ -8,7 +8,7 @@ namespace UDS.Net.Services.Extensions
     {
         public static Visit ToDomain(this VisitDto dto)
         {
-            return new Visit()
+            return new Visit("UDS3", "IVP")
             {
                 Id = dto.Id
             };

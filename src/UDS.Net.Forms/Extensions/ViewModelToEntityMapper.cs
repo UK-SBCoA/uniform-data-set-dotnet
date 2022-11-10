@@ -18,7 +18,7 @@ namespace UDS.Net.Forms.Extensions
 
         public static Visit ToEntity(this VisitViewModel vm)
         {
-            return new Visit();
+            return new Visit(vm.Version, vm.Kind);
         }
 
     }

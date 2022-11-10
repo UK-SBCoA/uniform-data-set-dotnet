@@ -4,16 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using UDS.Net.Services;
 
-namespace UDS.Net.Forms.Areas.UDS.Pages
+namespace UDS.Net.Forms.Areas.UDS3.Pages
 {
-    public class A1Model : PageModel
+    public class A2Model : PageModel
     {
-        public A1Model()
-        {
-        }
-
         public void OnGet()
         {
         }

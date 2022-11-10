@@ -16,14 +16,22 @@ namespace UDS.Net.Web.MVC.Services
             _apiClient = apiClient;
         }
 
-        public Task<Participation> Add(string username, Participation entity)
+        public async Task<Participation> Add(string username, Participation entity)
         {
-            throw new NotImplementedException();
+            return new Participation
+            {
+                Id = 1,
+                LegacyId = "1",
+                Visits = new List<Visit>
+                {
+                    new Visit("UDS3", "IVP") { Id = 1, Number = 1 }
+                }
+            };
         }
 
-        public Task<int> Count(string username)
+        public async Task<int> Count(string username)
         {
-            throw new NotImplementedException();
+            return 6;
         }
 
         public async Task<Participation> GetById(string username, int id)
@@ -34,7 +42,7 @@ namespace UDS.Net.Web.MVC.Services
                 LegacyId = "1",
                 Visits = new List<Visit>
                 {
-                    new Visit { Id = 1, Number = 1, Version = "UDS3" }
+                    new Visit("UDS3", "IVP") { Id = 1, Number = 1 }
                 }
             };
         }
@@ -43,23 +51,30 @@ namespace UDS.Net.Web.MVC.Services
         {
             return new List<Participation>()
             {
-                new Participation{ Id = 1, LegacyId = "1", Visits = new List<Visit> { new Visit { Id = 1, Number = 1, Version = "UDS3" } }},
-                new Participation{ Id = 2, LegacyId = "2", Visits = new List<Visit> { new Visit { Id = 2, Number = 1, Version = "UDS3" } }},
-                new Participation{ Id = 3, LegacyId = "3", Visits = new List<Visit> { new Visit { Id = 3, Number = 1, Version = "UDS3" } }},
-                new Participation{ Id = 4, LegacyId = "4", Visits = new List<Visit> { new Visit { Id = 4, Number = 1, Version = "UDS3" } }},
-                new Participation{ Id = 5, LegacyId = "5", Visits = new List<Visit> { new Visit { Id = 5, Number = 1, Version = "UDS3" } }},
-                new Participation{ Id = 6, LegacyId = "6", Visits = new List<Visit> { new Visit { Id = 6, Number = 1, Version = "UDS3" } }},
+                new Participation{ Id = 1, LegacyId = "1", Visits = new List<Visit> { new Visit("UDS3", "IVP") { Id = 1, Number = 1} }},
+                new Participation{ Id = 2, LegacyId = "2", Visits = new List<Visit> { new Visit("UDS3", "IVP") { Id = 2, Number = 1 } }},
+                new Participation{ Id = 3, LegacyId = "3", Visits = new List<Visit> { new Visit("UDS3", "IVP") { Id = 3, Number = 1 } }},
+                new Participation{ Id = 4, LegacyId = "4", Visits = new List<Visit> { new Visit("UDS3", "IVP") { Id = 4, Number = 1 } }},
+                new Participation{ Id = 5, LegacyId = "5", Visits = new List<Visit> { new Visit("UDS3", "IVP") { Id = 5, Number = 1 } }},
+                new Participation{ Id = 6, LegacyId = "6", Visits = new List<Visit> { new Visit("UDS3", "IVP") { Id = 6, Number = 1 } }},
             };
         }
 
-        public Task<Participation> Patch(string username, Participation entity)
+        public async Task<Participation> Patch(string username, Participation entity)
         {
-            throw new NotImplementedException();
+            return new Participation
+            {
+                Id = 1,
+                LegacyId = "1",
+                Visits = new List<Visit>
+                {
+                    new Visit("UDS3", "IVP") { Id = 1, Number = 1 }
+                }
+            };
         }
 
-        public Task Remove(string username, Participation entity)
+        public async Task Remove(string username, Participation entity)
         {
-            throw new NotImplementedException();
         }
 
         public async Task<Participation> Update(string username, Participation entity)
@@ -70,7 +85,7 @@ namespace UDS.Net.Web.MVC.Services
                 LegacyId = "1",
                 Visits = new List<Visit>
                 {
-                    new Visit { Id = 1, Number = 1, Version = "UDS3" }
+                    new Visit("UDS3", "IVP") { Id = 1, Number = 1 }
                 }
             };
         }

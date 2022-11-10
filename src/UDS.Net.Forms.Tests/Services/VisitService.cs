@@ -53,11 +53,11 @@ namespace UDS.Net.Forms.Tests.Services
         {
             return new List<Visit>()
             {
-                new Visit() { Id = 1, Number = 1 },
-                new Visit() { Id = 2, Number = 2 },
-                new Visit() { Id = 3, Number = 3 },
-                new Visit() { Id = 4, Number = 4 },
-                new Visit() { Id = 5, Number = 5 }
+                new Visit("UDS3", "IVP") { Id = 1, Number = 1 },
+                new Visit("UDS3", "FVP") { Id = 2, Number = 2 },
+                new Visit("UDS3", "FVP") { Id = 3, Number = 3 },
+                new Visit("UDS3", "FVP") { Id = 4, Number = 4 },
+                new Visit("UDS3", "FVP") { Id = 5, Number = 5 }
             };
         }
     }

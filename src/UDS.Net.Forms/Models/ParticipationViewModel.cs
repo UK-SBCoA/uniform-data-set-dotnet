@@ -9,7 +9,7 @@ namespace UDS.Net.Forms.Models
 
         [StringLength(100)]
         [Display(Name = "Legacy Id")]
-        public string LegacyId { get; set; }
+        public string LegacyId { get; set; } = "";
 
         public int VisitCount { get; set; }
 

@@ -18,7 +18,7 @@ namespace UDS.Net.Forms.Extensions
             };
         }
 
-        public static List<VisitViewModel> ToVM(this List<Visit> visits)
+        public static List<VisitViewModel> ToVM(this IList<Visit> visits)
         {
             List<VisitViewModel> vm = new List<VisitViewModel>();
 
@@ -38,14 +38,36 @@ namespace UDS.Net.Forms.Extensions
                 ParticipationId = visit.ParticipationId,
                 Number = visit.Number,
                 Version = visit.Version,
-                Kind = visit.Kind
+                Kind = visit.Kind,
+                Forms = visit.Forms.ToVM()
             };
         }
 
-        //public static List<FormViewModel> ToVM(this List<Form> forms)
-        //{
+        public static List<FormViewModel> ToVM(this IList<Form> forms)
+        {
+            List<FormViewModel> vm = new List<FormViewModel>();
 
-        //}
+            foreach (var form in forms)
+            {
+                vm.Add(form.ToVM());
+            }
+
+            return vm;
+        }
+
+        public static FormViewModel ToVM(this Form form)
+        {
+            return new FormViewModel()
+            {
+                VisitId = form.VisitId,
+                Version = form.Version,
+                Status = "",
+                Title = form.Title,
+                Description = form.Description,
+                IsRequiredForVisitKind = false,
+                IncludeInPacketSubmission = false
+            };
+        }
     }
 }
 

@@ -22,19 +22,19 @@ namespace UDS.Net.Web.MVC.Services
             _apiClient = apiClient;
         }
 
-        public Task<Visit> Add(string username, Visit entity)
+        public async Task<Visit> Add(string username, Visit entity)
         {
-            throw new NotImplementedException();
+            return new Visit("UDS3", "IVP") { Id = 1, Number = 1 };
         }
 
-        public Task<int> Count(string username)
+        public async Task<int> Count(string username)
         {
-            throw new NotImplementedException();
+            return 1;
         }
 
-        public Task<Visit> GetById(string username, int id)
+        public async Task<Visit> GetById(string username, int id)
         {
-            throw new NotImplementedException();
+            return new Visit("UDS3", "IVP") { Id = 1, Number = 1 };
         }
 
         public async Task<IEnumerable<Visit>> List(string username, int pageSize = 10, int pageIndex = 1)
@@ -49,19 +49,18 @@ namespace UDS.Net.Web.MVC.Services
             return new List<Visit>();
         }
 
-        public Task<Visit> Patch(string username, Visit entity)
+        public async Task<Visit> Patch(string username, Visit entity)
         {
-            throw new NotImplementedException();
+            return new Visit("UDS3", "IVP") { Id = 1, Number = 1 };
         }
 
-        public Task Remove(string username, Visit entity)
+        public async Task Remove(string username, Visit entity)
         {
-            throw new NotImplementedException();
         }
 
-        public Task<Visit> Update(string username, Visit entity)
+        public async Task<Visit> Update(string username, Visit entity)
         {
-            throw new NotImplementedException();
+            return new Visit("UDS3", "IVP") { Id = 1, Number = 1 };
         }
     }
 }
