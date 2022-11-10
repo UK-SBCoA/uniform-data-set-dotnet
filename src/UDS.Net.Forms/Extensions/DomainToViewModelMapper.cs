@@ -1,11 +1,11 @@
 ﻿using System;
 using UDS.Net.Dto;
 using UDS.Net.Forms.Models;
-using UDS.Net.Services.Models;
+using UDS.Net.Services.DomainModels;
 
 namespace UDS.Net.Forms.Extensions
 {
-    public static class EntityToViewModelMapper
+    public static class DomainToViewModelMapper
     {
         public static ParticipationViewModel ToVM(this Participation participation)
         {
@@ -13,8 +13,21 @@ namespace UDS.Net.Forms.Extensions
             {
                 Id = participation.Id,
                 LegacyId = participation.LegacyId,
-                VisitCount = participation.Visits.Count()
+                VisitCount = participation.Visits.Count(),
+                Visits = participation.Visits.ToVM()
             };
+        }
+
+        public static List<VisitViewModel> ToVM(this List<Visit> visits)
+        {
+            List<VisitViewModel> vm = new List<VisitViewModel>();
+
+            foreach (var visit in visits)
+            {
+                vm.Add(visit.ToVM());
+            }
+
+            return vm;
         }
 
         public static VisitViewModel ToVM(this Visit visit)
@@ -28,6 +41,11 @@ namespace UDS.Net.Forms.Extensions
                 Kind = visit.Kind
             };
         }
+
+        //public static List<FormViewModel> ToVM(this List<Form> forms)
+        //{
+
+        //}
     }
 }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UDS.Net.Services.Models
+namespace UDS.Net.Services.DomainModels
 {
     public class Participation
     {

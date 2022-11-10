@@ -3,7 +3,7 @@ using UDS.Net.API.Client;
 using UDS.Net.Dto;
 using UDS.Net.Services;
 using UDS.Net.Services.Extensions;
-using UDS.Net.Services.Models;
+using UDS.Net.Services.DomainModels;
 
 namespace UDS.Net.Web.MVC.Services
 {

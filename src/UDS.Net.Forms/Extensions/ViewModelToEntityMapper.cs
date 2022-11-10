@@ -1,11 +1,11 @@
 ﻿using System;
 using UDS.Net.Dto;
 using UDS.Net.Forms.Models;
-using UDS.Net.Services.Models;
+using UDS.Net.Services.DomainModels;
 
 namespace UDS.Net.Forms.Extensions
 {
-    public static class ViewModelToEntityMapper
+    public static class ViewModelToDomainMapper
     {
         public static Participation ToEntity(this ParticipationViewModel vm)
         {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using UDS.Net.Forms.Extensions;
 using UDS.Net.Forms.Models;
 using UDS.Net.Services;
 
@@ -26,8 +27,18 @@ namespace UDS.Net.Forms.Areas.Participation.Pages
             _participationService = participationService;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet(int? id)
         {
+            if (id == null)
+                return NotFound();
+
+            var participation = await _participationService.GetById("", id.Value);
+
+            if (participation == null)
+                return NotFound();
+
+            Participation = participation.ToVM();
+
             return Page();
         }
 

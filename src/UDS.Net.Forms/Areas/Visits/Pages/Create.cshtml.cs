@@ -10,23 +10,11 @@ using UDS.Net.Services;
 
 namespace UDS.Net.Forms.Areas.Visits.Pages
 {
-    public class CreateModel : PageModel
+    public class CreateModel : VisitPageModel
     {
-        private readonly IVisitService _visitService;
-
-        [BindProperty]
-        public VisitViewModel? Visit { get; set; }
-
-        public CreateModel(IVisitService visitService)
+        public CreateModel(IVisitService visitService) : base(visitService)
         {
-            _visitService = visitService;
         }
-
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
-
 
         public async Task<IActionResult> OnPostAsync()
         {

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace UDS.Net.Services.Models
+namespace UDS.Net.Services.DomainModels
 {
     /// <summary>
     /// Visit domain model

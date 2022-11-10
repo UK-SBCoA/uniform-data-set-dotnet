@@ -12,6 +12,8 @@ namespace UDS.Net.Forms.Models
         public string LegacyId { get; set; }
 
         public int VisitCount { get; set; }
+
+        public IList<VisitViewModel> Visits { get; set; } = new List<VisitViewModel>();
     }
 }
 
