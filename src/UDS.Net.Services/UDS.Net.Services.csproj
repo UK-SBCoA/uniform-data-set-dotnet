@@ -7,10 +7,4 @@
   <ItemGroup>
     <ProjectReference Include="..\UDS.Net.Dto\UDS.Net.Dto.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="DomainModels\Forms\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DomainModels\Forms\" />
-  </ItemGroup>
 </Project>

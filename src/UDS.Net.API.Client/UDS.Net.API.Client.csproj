@@ -9,6 +9,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\UDS.Net.Dto\UDS.Net.Dto.csproj" />
+    <ProjectReference Include="..\UDS.Net.Dto\UDS.Net.Dto.csproj" />
   </ItemGroup>
 </Project>

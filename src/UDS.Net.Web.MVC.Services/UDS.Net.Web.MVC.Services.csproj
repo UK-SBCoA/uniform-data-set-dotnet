@@ -13,8 +13,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UDS.Net.API.Client\UDS.Net.API.Client.csproj" />
-    <ProjectReference Include="..\src\UDS.Net.Dto\UDS.Net.Dto.csproj" />
-    <ProjectReference Include="..\src\UDS.Net.Services\UDS.Net.Services.csproj" />
+    <ProjectReference Include="..\UDS.Net.Dto\UDS.Net.Dto.csproj" />
+    <ProjectReference Include="..\UDS.Net.Services\UDS.Net.Services.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="7.0.0" />
