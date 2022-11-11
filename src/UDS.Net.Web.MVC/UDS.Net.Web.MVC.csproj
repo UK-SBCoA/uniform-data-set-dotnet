@@ -36,6 +36,9 @@
     <ProjectReference Include="..\..\UDS.Net.API.Client\UDS.Net.API.Client.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\..\UDS.Net.Web.MVC.Services\UDS.Net.Web.MVC.Services.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />

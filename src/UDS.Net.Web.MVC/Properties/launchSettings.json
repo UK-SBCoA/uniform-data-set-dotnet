@@ -11,7 +11,7 @@
     "UDS.Net.Web.MVC": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7294;http://localhost:5264",
+      "applicationUrl": "http://localhost:33793",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
