@@ -13,7 +13,7 @@
             <li>
                 @Model.Visit.Version <br />
                 @Model.Visit.Kind <br />
-                <a asp-area="@Model.Visit.Version" asp-page="@form.Title" asp-route-visitId="@Model.Visit.Id" asp-route-visitKind="@Model.Visit.Kind">@form.Title - @form.Description</a>
+                <a asp-area="@Model.Visit.Version" asp-page="@form.Title" asp-route-id="@Model.Visit.Id" asp-route-visitKind="@Model.Visit.Kind">@form.Title - @form.Description</a>
             </li>
         }
     </ul>

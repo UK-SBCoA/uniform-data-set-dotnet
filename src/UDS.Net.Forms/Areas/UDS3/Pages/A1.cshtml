@@ -1,6 +1,23 @@
-﻿@page
+﻿@page  "{id:int?}"
 @model UDS.Net.Forms.Areas.UDS3.Pages.A1Model
 @{
 }
 
-A1
+<h2>A1</h2>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.A1.REASON)
+    <input asp-for="A1.REASON" />
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.A1.REFERSC)
+    <input asp-for="A1.REFERSC" />
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.A1.LEARNED)
+    <input asp-for="A1.LEARNED" />
+</div>

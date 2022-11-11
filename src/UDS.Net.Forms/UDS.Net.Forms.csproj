@@ -13,4 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\UDS.Net.Services\UDS.Net.Services.csproj" />
   </ItemGroup>
+  <ItemGroup>
+      <SupportedPlatform Include="browser" />
+  </ItemGroup>
 </Project>
