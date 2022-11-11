@@ -1,0 +1,14 @@
+{
+  "threshold": 15,
+  "reporters": [
+    "consoleFull"
+  ],
+  "ignore": [
+    "**/__snapshots__/**",
+    "**/Properties/**",
+    "**/UDS.Net.Forms.Tests/**",
+    "**/UDS.Net.API/Data/**",
+    "**/UDS.Net.MVC/Data/**"
+  ],
+  "absolute": true
+}
