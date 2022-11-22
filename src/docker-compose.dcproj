@@ -7,6 +7,7 @@
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>uds.net.web.mvc</DockerServiceName>
+    <DockerfileRunEnvironmentFiles>.env</DockerfileRunEnvironmentFiles>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
