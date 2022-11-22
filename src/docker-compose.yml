@@ -1,6 +1,16 @@
 version: '3.4'
 
 services:
+  uds.mssql:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    user: root
+    environment:
+        SA_PASSWORD: ${MSSQLSAPASSWORD}
+        ACCEPT_EULA: "Y"
+    volumes:
+      - uds_mssql_data:/var/opt/mssql/data
+      - uds_mssql_log:/var/opt/mssql/log
+      - uds_mssql_backup:/var/opt/mssql/backup
   uds.net.api:
     image: ${DOCKER_REGISTRY-}udsnet
     build:
@@ -12,9 +22,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
     volumes:
-      - sqllite:/sqllite:rw
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    depends_on:
+     ['uds.mssql']
   uds.net.web.mvc:
     image: ${DOCKER_REGISTRY-}udsnetweb
     build:
@@ -26,9 +37,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
     volumes:
-      - sqllite:/sqllite:rw
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
-    depends_on: ['uds.net.api']
+    depends_on: ['uds.net.api', 'uds.mssql']
 volumes:
-    sqllite:
+    uds_mssql_data:
+    uds_mssql_log:
+    uds_mssql_backup:
