@@ -4,7 +4,7 @@ using UDS.Net.Services.DomainModels;
 
 namespace UDS.Net.Services
 {
-    public interface IVisitService : IService<Visit>
+    public interface IParticipationService : IService<Participation>
     {
     }
 }

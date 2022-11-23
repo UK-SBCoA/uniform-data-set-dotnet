@@ -2,7 +2,7 @@
 
 This repository includes all necessary tools to electronically collect data for UDS including
 
-* UDS instruments as HTML forms
+* UDS instruments as HTML forms (additionally, packaged with Nuget)
 * QC rules
 * Data persistence
 * Development container

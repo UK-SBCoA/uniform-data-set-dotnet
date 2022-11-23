@@ -1,7 +1,7 @@
 ﻿using System;
 using UDS.Net.Dto;
 using UDS.Net.Services;
-using UDS.Net.Services.Models;
+using UDS.Net.Services.DomainModels;
 
 namespace UDS.Net.Forms.Tests.Services
 {
@@ -53,11 +53,11 @@ namespace UDS.Net.Forms.Tests.Services
         {
             return new List<Visit>()
             {
-                new Visit() { Id = 1, Number = 1, StartDateTime = DateTime.Now.AddYears(-4) },
-                new Visit() { Id = 2, Number = 2, StartDateTime = DateTime.Now.AddYears(-3) },
-                new Visit() { Id = 3, Number = 3, StartDateTime = DateTime.Now.AddYears(-2) },
-                new Visit() { Id = 4, Number = 4, StartDateTime = DateTime.Now.AddYears(-1) },
-                new Visit() { Id = 5, Number = 5, StartDateTime = DateTime.Now }
+                new Visit("UDS3", "IVP") { Id = 1, Number = 1 },
+                new Visit("UDS3", "FVP") { Id = 2, Number = 2 },
+                new Visit("UDS3", "FVP") { Id = 3, Number = 3 },
+                new Visit("UDS3", "FVP") { Id = 4, Number = 4 },
+                new Visit("UDS3", "FVP") { Id = 5, Number = 5 }
             };
         }
     }

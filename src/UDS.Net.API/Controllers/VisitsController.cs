@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UDS.Net.API.Data;
+using UDS.Net.API.Entities;
 using UDS.Net.API.Extensions;
 using UDS.Net.Dto;
 
@@ -15,38 +16,71 @@ namespace UDS.Net.API.Controllers
     [Route("api/[controller]")]
     public class VisitsController : Controller
     {
-        private readonly ApiDbContext _Context;
+        private readonly ApiDbContext _context;
 
         public VisitsController(ApiDbContext context)
         {
-            _Context = context;
+            _context = context;
         }
 
         [HttpGet]
         public async Task<IEnumerable<VisitDto>> Get()
         {
-            return await _Context.Visits.Select(v => v.ToDto()).ToListAsync();
+            return await _context.Visits.Select(v => v.ToDto()).ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<VisitDto> Get(int id)
         {
-            return "value";
+            var dto = await _context.Visits.Select(v => v.ToDto()).Where(v => v.Id == id).FirstOrDefaultAsync();
+
+            return dto;
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task Post([FromBody] VisitDto dto)
         {
+            var visit = new Visit
+            {
+                CreatedBy = dto.CreatedBy,
+                CreatedAt = dto.CreatedAt,
+                ModifiedBy = dto.ModifiedBy,
+                IsDeleted = dto.IsDeleted,
+                DeletedBy = dto.DeletedBy,
+                ParticipationId = dto.ParticipationId
+            };
+            _context.Visits.Add(visit);
+            await _context.SaveChangesAsync();
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task Put(int id, [FromBody] VisitDto dto)
         {
+            var visit = await _context.Visits.FindAsync(id);
+
+            if (visit != null)
+            {
+                visit.CreatedBy = dto.CreatedBy;
+                visit.CreatedAt = dto.CreatedAt;
+                visit.ModifiedBy = dto.ModifiedBy;
+                visit.IsDeleted = dto.IsDeleted;
+                visit.DeletedBy = dto.DeletedBy;
+                visit.ParticipationId = dto.ParticipationId;
+
+                _context.Visits.Update(visit);
+                await _context.SaveChangesAsync();
+            }
+
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
+            var visit = await _context.Visits.FindAsync(id);
+
+            _context.Visits.Remove(visit);
+
+            await _context.SaveChangesAsync();
         }
     }
 }
