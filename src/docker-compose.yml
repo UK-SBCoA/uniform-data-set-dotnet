@@ -1,3 +1,4 @@
+---
 version: '3.4'
 
 services:
@@ -5,8 +6,8 @@ services:
     image: "mcr.microsoft.com/mssql/server:2019-latest"
     user: root
     environment:
-        SA_PASSWORD: ${MSSQLSAPASSWORD}
-        ACCEPT_EULA: "Y"
+      SA_PASSWORD: ${MSSQLSAPASSWORD:?database password not set}
+      ACCEPT_EULA: "Y"
     volumes:
       - uds_mssql_data:/var/opt/mssql/data
       - uds_mssql_log:/var/opt/mssql/log
@@ -24,8 +25,7 @@ services:
     volumes:
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
-    depends_on:
-     ['uds.mssql']
+    depends_on: ['uds.mssql']
   uds.net.web.mvc:
     image: ${DOCKER_REGISTRY-}udsnetweb
     build:
@@ -41,6 +41,6 @@ services:
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
     depends_on: ['uds.net.api', 'uds.mssql']
 volumes:
-    uds_mssql_data:
-    uds_mssql_log:
-    uds_mssql_backup:
+  uds_mssql_data:
+  uds_mssql_log:
+  uds_mssql_backup:
