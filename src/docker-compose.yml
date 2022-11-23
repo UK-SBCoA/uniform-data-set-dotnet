@@ -5,6 +5,8 @@ services:
   uds.mssql:
     image: "mcr.microsoft.com/mssql/server:2019-latest"
     user: root
+    ports:
+      - "1187:1433"
     environment:
       SA_PASSWORD: ${MSSQLSAPASSWORD:?database password not set}
       ACCEPT_EULA: "Y"
