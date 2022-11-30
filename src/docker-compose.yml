@@ -1,6 +1,17 @@
+---
 version: '3.4'
 
 services:
+  uds.mssql:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    user: root
+    ports:
+      - "1187:1433"
+    environment:
+      SA_PASSWORD: ${MSSQLSAPASSWORD:?database password not set}
+      ACCEPT_EULA: "Y"
+    volumes:
+      - uds_mssql_data:/var/opt/mssql/data
   uds.net.api:
     image: ${DOCKER_REGISTRY-}udsnet
     build:
@@ -11,10 +22,11 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ConnectionStrings__DefaultConnection=server=uds.mssql,1433;user id=sa;password=${MSSQLSAPASSWORD:?api needs database password};database=UDS_API;TrustServerCertificate=True
     volumes:
-      - sqllite:/sqllite:rw
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    depends_on: ['uds.mssql']
   uds.net.web.mvc:
     image: ${DOCKER_REGISTRY-}udsnetweb
     build:
@@ -25,10 +37,11 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
+      - DownstreamApis__UDSNetApi__BaseUrl=http://uds.net.api:80/api
+      - ConnectionStrings__AuthServiceConnection=server=uds.mssql,1433;user id=sa;password=${MSSQLSAPASSWORD:?app needs database password};database=UDS_APP;TrustServerCertificate=True
     volumes:
-      - sqllite:/sqllite:rw
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
-    depends_on: ['uds.net.api']
+    depends_on: ['uds.net.api', 'uds.mssql']
 volumes:
-    sqllite:
+  uds_mssql_data:
