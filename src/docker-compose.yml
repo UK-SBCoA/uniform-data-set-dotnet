@@ -4,6 +4,7 @@ version: '3.4'
 services:
   uds.mssql:
     image: "mcr.microsoft.com/mssql/server:2019-latest"
+    container_name: uds.mssql
     user: root
     ports:
       - "1187:1433"
