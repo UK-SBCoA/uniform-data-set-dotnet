@@ -353,4 +353,4 @@ MigrationBackup/
 .ionide/
 
 Docker/.env.dev
-src/.env
+.env

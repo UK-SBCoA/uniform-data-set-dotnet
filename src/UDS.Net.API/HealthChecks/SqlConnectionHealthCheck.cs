@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.Common;
-using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace UDS.Net.API.HealthChecks
@@ -27,25 +26,25 @@ namespace UDS.Net.API.HealthChecks
 
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default(CancellationToken))
         {
-            using (var connection = new SqliteConnection(ConnectionString))
-            {
-                try
-                {
-                    await connection.OpenAsync(cancellationToken);
+            // using (var connection = new SqliteConnection(ConnectionString))
+            // {
+            //     try
+            //     {
+            //         await connection.OpenAsync(cancellationToken);
 
-                    if (TestQuery != null)
-                    {
-                        var command = connection.CreateCommand();
-                        command.CommandText = TestQuery;
+            //         if (TestQuery != null)
+            //         {
+            //             var command = connection.CreateCommand();
+            //             command.CommandText = TestQuery;
 
-                        await command.ExecuteNonQueryAsync(cancellationToken);
-                    }
-                }
-                catch (DbException ex)
-                {
-                    return new HealthCheckResult(status: context.Registration.FailureStatus, exception: ex);
-                }
-            }
+            //             await command.ExecuteNonQueryAsync(cancellationToken);
+            //         }
+            //     }
+            //     catch (DbException ex)
+            //     {
+            //         return new HealthCheckResult(status: context.Registration.FailureStatus, exception: ex);
+            //     }
+            // }
 
             return HealthCheckResult.Healthy();
         }

@@ -1,24 +1,27 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+# get the official .NET SDK image that has all the tools and packages needed to build a .NET application
+FROM mcr.microsoft.com/dotnet/sdk:6.0 as build-env
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+# create a working directory for our source files in the image
+# instructs Docker to use this path as the default location for all subsequent commands
+# so, we can use relative paths based on the working directory
+WORKDIR /src
+
+# Project files don't change often, so take advantage of caching and copy files and run restore
+COPY src/UDS.Net.Web.MVC/UDS.Net.Web.MVC.csproj UDS.Net.Web.MVC/
+COPY src/UDS.Net.Forms/UDS.Net.Forms.csproj UDS.Net.Forms/
+COPY src/UDS.Net.Web.MVC.Services/UDS.Net.Web.MVC.Services.csproj UDS.Net.Web.MVC.Services/
+RUN dotnet restore "UDS.Net.Web.MVC/UDS.Net.Web.MVC.csproj"
+
+# Copy all source files into image and build the project
+COPY src/ .
+RUN dotnet publish "UDS.Net.Web.MVC/UDS.Net.Web.MVC.csproj" -c Release -o /publish/app /p:UseAppHost=false
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
+
 WORKDIR /app
+COPY --from=build-env /publish/app .
+
 EXPOSE 80
 EXPOSE 443
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ["UDS.Net.Web.MVC/UDS.Net.Web.MVC.csproj", "UDS.Net.Web.MVC/"]
-COPY ["UDS.Net.Forms/UDS.Net.Forms.csproj", "UDS.Net.Forms/"]
-COPY ["UDS.Net.Services/UDS.Net.Services.csproj", "UDS.Net.Services/"]
-COPY ["UDS.Net.Dto/UDS.Net.Dto.csproj", "UDS.Net.Dto/"]
-RUN dotnet restore "UDS.Net.Web.MVC/UDS.Net.Web.MVC.csproj"
-COPY . .
-WORKDIR "/src/UDS.Net.Web.MVC"
-RUN dotnet build "UDS.Net.Web.MVC.csproj" -c Release -o /app/build
 
-FROM build AS publish
-RUN dotnet publish "UDS.Net.Web.MVC.csproj" -c Release -o /app/publish /p:UseAppHost=false
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "UDS.Net.Web.MVC.dll"]

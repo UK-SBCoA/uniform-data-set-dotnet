@@ -7,7 +7,7 @@
     "UDS.Net.API": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:47240",
+      "applicationUrl": "http://localhost:4800",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

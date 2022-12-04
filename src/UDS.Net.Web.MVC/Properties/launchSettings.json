@@ -1,17 +1,13 @@
 {
   "iisSettings": {
     "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:50167",
-      "sslPort": 44357
-    }
+    "anonymousAuthentication": true
   },
   "profiles": {
     "UDS.Net.Web.MVC": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:33793",
+      "applicationUrl": "http://localhost:4810",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

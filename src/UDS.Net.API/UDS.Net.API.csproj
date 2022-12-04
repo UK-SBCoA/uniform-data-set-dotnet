@@ -4,7 +4,6 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
     <UserSecretsId>eb6ce38a-dcfc-4558-8b53-b43bc8c55e3f</UserSecretsId>
   </PropertyGroup>
 
@@ -14,7 +13,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -22,22 +20,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Microsoft.EntityFrameworkCore.Tools" />
-    <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
-    <None Remove="Data\" />
-    <None Remove="Models\" />
-    <None Remove="Extensions\" />
-    <None Remove="HealthChecks\" />
-    <None Remove="Microsoft.EntityFrameworkCore.Design" />
-    <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Entities\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="HealthChecks\" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UDS.Net.Dto\UDS.Net.Dto.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
