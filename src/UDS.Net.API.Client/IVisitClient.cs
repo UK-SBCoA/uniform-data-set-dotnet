@@ -8,6 +8,7 @@ namespace UDS.Net.API.Client
     public interface IVisitClient
     {
         Task<IEnumerable<VisitDto>> Get();
+        Task<int> Count();
         Task<VisitDto> Get(int id);
         Task Post(VisitDto dto);
         Task Put(int id, VisitDto dto);

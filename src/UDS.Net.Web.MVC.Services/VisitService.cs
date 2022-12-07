@@ -32,11 +32,17 @@ namespace UDS.Net.Web.MVC.Services
 
         public async Task<int> Count(string username)
         {
-            return 1;
+            return await _apiClient.VisitClient.Count();
         }
 
         public async Task<Visit> GetById(string username, int id)
         {
+            var visitDto = await _apiClient.VisitClient.Get(id);
+
+            if (visitDto != null)
+            {
+                return visitDto.ToDomain();
+            }
             return new Visit("UDS3", "IVP") { Id = 1, Number = 1 };
         }
 

@@ -10,9 +10,22 @@ namespace UDS.Net.API.Client
 {
     public class VisitClient : AuthenticatedClient, IVisitClient
     {
+        public VisitClient(HttpClient httpClient) : base(httpClient)
+        {
+        }
+
         public Task Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<int> Count()
+        {
+            string response = await GetRequest("Visits/Count");
+
+            int visitCount = JsonConvert.DeserializeObject<int>(response);
+
+            return visitCount;
         }
 
         public async Task<IEnumerable<VisitDto>> Get()
@@ -33,9 +46,13 @@ namespace UDS.Net.API.Client
             return visit;
         }
 
-        public Task Post(VisitDto dto)
+        public async Task Post(VisitDto dto)
         {
-            throw new NotImplementedException();
+            var json = JsonConvert.SerializeObject(dto);
+
+            string response = await PostRequest("Visits", json);
+
+            /// TODO how to handle failures?
         }
 
         public Task Put(int id, VisitDto dto)

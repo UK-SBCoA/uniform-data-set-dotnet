@@ -29,6 +29,12 @@ namespace UDS.Net.API.Controllers
             return await _context.Visits.Select(v => v.ToDto()).ToListAsync();
         }
 
+        [HttpGet("/Count")]
+        public async Task<int> GetCount()
+        {
+            return await _context.Visits.CountAsync();
+        }
+
         [HttpGet("{id}")]
         public async Task<VisitDto> Get(int id)
         {

@@ -7,9 +7,16 @@ namespace UDS.Net.API.Client
 {
     public static class UDSApiExtensions
     {
-        public static void AddApiClient(this IServiceCollection services)
+        public static void AddUDSApiClient(this IServiceCollection services, string baseAddress)
         {
-            services.AddSingleton<IVisitClient, VisitClient>();
+            if (!baseAddress.EndsWith("/"))
+                baseAddress += "/"; // you MUST place a slash at the end of the baseaddress
+
+            // Register all clients
+            services.AddHttpClient<IVisitClient, VisitClient>(options =>
+            {
+                options.BaseAddress = new Uri(baseAddress); 
+            });
 
             // API client registered last
             services.AddSingleton<IApiClient, ApiClient>();
