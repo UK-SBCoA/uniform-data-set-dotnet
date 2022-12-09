@@ -16,13 +16,17 @@ namespace UDS.Net.API.Client
             services.AddHttpClient<IVisitClient, VisitClient>(options =>
             {
                 options.BaseAddress = new Uri(baseAddress); 
-            });
+            }); // can be configured for retry and transient-fault-handling
 
             // API client registered last
             services.AddSingleton<IApiClient, ApiClient>();
         }
     }
 
+    /// <summary>
+    /// Typed Client
+    /// https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests
+    /// </summary>
     public class ApiClient : IApiClient
     {
         public IVisitClient VisitClient { get; }

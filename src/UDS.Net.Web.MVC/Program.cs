@@ -5,14 +5,15 @@ using UDS.Net.API.Client;
 using UDS.Net.Services;
 using UDS.Net.Web.MVC.Data;
 using UDS.Net.Web.MVC.Services;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var configuration = builder.Configuration;
 // Replace identity service with your preferred provider rather than using this one. Roles required:
 // Administrator
 // SuperUser
-// Examiner
-var connectionString = builder.Configuration.GetConnectionString("AuthServiceConnection");
+// Examiner\
+var connectionString = configuration.GetConnectionString("AuthServiceConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -20,16 +21,23 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-
+////*************************************************************************************************
 // Replace API and implemented services with your own if you don't want to use the included API here
-builder.Services.AddApiClient();
+// 
+builder.Services.AddUDSApiClient(configuration.GetValue<string>("DownStreamApis:UDSNetApi:BaseUrl"));
+
 builder.Services.AddSingleton<IParticipationService, ParticipationService>();
 builder.Services.AddSingleton<IVisitService, VisitService>();
+////*************************************************************************************************
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddControllersWithViews();
+var mvcBuilder = builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+#if DEBUG
+    mvcBuilder.AddRazorRuntimeCompilation();
+#endif
 
 // Uncomment to enforce authentication
 //builder.Services.AddAuthorization(options =>

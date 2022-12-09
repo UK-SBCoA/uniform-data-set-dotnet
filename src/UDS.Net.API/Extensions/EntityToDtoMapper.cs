@@ -19,6 +19,20 @@ namespace UDS.Net.API.Extensions
                 IsDeleted = visit.IsDeleted
             };
         }
+
+        public static ParticipationDto ToDto(this Participation participation)
+        {
+            return new ParticipationDto()
+            {
+                Id = participation.Id,
+                LegacyId = participation.LegacyId,
+                CreatedAt = participation.CreatedAt,
+                CreatedBy = participation.CreatedBy,
+                ModifiedBy = participation.ModifiedBy,
+                DeletedBy = participation.DeletedBy,
+                IsDeleted = participation.IsDeleted
+            };
+        }
     }
 }
 

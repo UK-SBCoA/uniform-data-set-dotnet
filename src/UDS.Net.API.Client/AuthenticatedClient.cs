@@ -5,11 +5,13 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using UDS.Net.Dto;
 
 namespace UDS.Net.API.Client
 {
     // https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#implement-your-typed-client-classes-that-use-the-injected-and-configured-httpclient
-    public class AuthenticatedClient
+    public class AuthenticatedClient<T> : IBaseClient<T>
     {
         //private readonly IHttpContextAccessor _contextAccessor;
 
@@ -17,13 +19,16 @@ namespace UDS.Net.API.Client
 
         private readonly string _ApiScope = "UDS.ReadWrite.All";
 
+        private readonly string _BasePath = "";
+
         //private readonly ITokenAcquisition _tokenAcquisition;
 
 
-        public AuthenticatedClient(HttpClient httpClient)
+        public AuthenticatedClient(HttpClient httpClient, string basePath)
         {
             // HttpClient is intended to be instantiated once and reused throughout the life of an application.
             _httpClient = httpClient;
+            _BasePath = basePath;
         }
 
         //public AuthenticatedClient(ITokenAcquisition tokenAcquisition, HttpClient httpClient, IConfiguration configuration, IHttpContextAccessor contextAccessor)
@@ -72,7 +77,52 @@ namespace UDS.Net.API.Client
 
             throw new HttpRequestException($"Invalid status code in the HttpResponseMessage: {response.StatusCode}.");
         }
- 
+
+        public async Task<IEnumerable<T>> Get()
+        {
+            string response = await GetRequest(_BasePath);
+
+            List<T> values = JsonConvert.DeserializeObject<List<T>>(response);
+
+            return values;
+        }
+
+        public async Task<int> Count()
+        {
+            string response = await GetRequest($"{_BasePath}/Count");
+
+            int count = JsonConvert.DeserializeObject<int>(response);
+
+            return count;
+        }
+
+        public async Task<T> Get(int id)
+        {
+            string response = await GetRequest($"{_BasePath}/{id}");
+
+            T value = JsonConvert.DeserializeObject<T>(response);
+
+            return value;
+        }
+
+        public async Task Post(T dto)
+        {
+            var json = JsonConvert.SerializeObject(dto);
+
+            string response = await PostRequest(_BasePath, json);
+
+            /// TODO how to handle failures?
+        }
+
+        public Task Put(int id, T dto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

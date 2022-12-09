@@ -4,17 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using UDS.Net.API.Client;
 using UDS.Net.API.Data;
 using UDS.Net.API.Entities;
 using UDS.Net.API.Extensions;
 using UDS.Net.Dto;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace UDS.Net.API.Controllers
 {
+    /// <summary>
+    /// Agrees to VisitClient interface to always ensure client and api endpoints are in-sync. 
+    /// </summary>
     [Route("api/[controller]")]
-    public class VisitsController : Controller
+    public class VisitsController : Controller, IVisitClient
     {
         private readonly ApiDbContext _context;
 
@@ -29,8 +31,8 @@ namespace UDS.Net.API.Controllers
             return await _context.Visits.Select(v => v.ToDto()).ToListAsync();
         }
 
-        [HttpGet("/Count")]
-        public async Task<int> GetCount()
+        [HttpGet("Count", Name = "VisitsCount")]
+        public async Task<int> Count()
         {
             return await _context.Visits.CountAsync();
         }
@@ -38,7 +40,7 @@ namespace UDS.Net.API.Controllers
         [HttpGet("{id}")]
         public async Task<VisitDto> Get(int id)
         {
-            var dto = await _context.Visits.Select(v => v.ToDto()).Where(v => v.Id == id).FirstOrDefaultAsync();
+            var dto = await _context.Visits.Where(v => v.Id == id).Select(v => v.ToDto()).FirstOrDefaultAsync();
 
             return dto;
         }

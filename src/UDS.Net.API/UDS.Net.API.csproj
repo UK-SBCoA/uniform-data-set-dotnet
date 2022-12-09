@@ -24,5 +24,8 @@
     <ProjectReference Include="..\UDS.Net.Dto\UDS.Net.Dto.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\UDS.Net.API.Client\UDS.Net.API.Client.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>
