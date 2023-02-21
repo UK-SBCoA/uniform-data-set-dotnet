@@ -8,21 +8,19 @@ using UDS.Net.Forms.Extensions;
 using UDS.Net.Forms.Models;
 using UDS.Net.Services;
 
-namespace UDS.Net.Forms.Areas.Participation.Pages
+namespace UDS.Net.Forms.Pages.Participations
 {
-    /// <summary>
-    /// TODO Continue tutorial here https://learn.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-7.0&tabs=visual-studio-mac
-    ///
-    /// The PageModel class allows separation of the logic of a page from its presentation. It defines page handlers for requests sent to the page and the data used to render the page.
-    /// </summary>
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly IParticipationService _participationService;
+
+        [ViewData]
+        public string Title { get; } = "Edit participation";
 
         [BindProperty]
         public ParticipationViewModel? Participation { get; set; }
 
-        public CreateModel(IParticipationService participationService)
+        public EditModel(IParticipationService participationService)
         {
             _participationService = participationService;
         }
@@ -47,7 +45,17 @@ namespace UDS.Net.Forms.Areas.Participation.Pages
             if (!ModelState.IsValid)
                 return Page();
 
-            return RedirectToPage("./Details");
+            if (Participation != null)
+            {
+                var participation = Participation.ToEntity();
+
+                var updatedParticipation = _participationService.Update("", participation);
+
+                if (updatedParticipation != null)
+                    return RedirectToPage("Details", new { Id = participation.Id });
+            }
+
+            return Page();
         }
     }
 }

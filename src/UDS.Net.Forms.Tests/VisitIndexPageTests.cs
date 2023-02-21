@@ -1,4 +1,4 @@
-﻿using UDS.Net.Forms.Areas.Visits.Pages;
+﻿using UDS.Net.Forms.Pages.Visits;
 using UDS.Net.Forms.Tests.Services;
 using UDS.Net.Services;
 

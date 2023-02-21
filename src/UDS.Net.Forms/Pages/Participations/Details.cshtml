@@ -1,5 +1,5 @@
 ﻿@page "{id:int}"
-@model UDS.Net.Forms.Areas.Participation.Pages.DetailsModel
+@model UDS.Net.Forms.Pages.Participations.DetailsModel
 
 @{
     ViewData["Title"] = "Participation details";
@@ -27,7 +27,7 @@
                     <td>@visit.Kind</td>
                     <td>@visit.Version</td>
                     <td>@visit.StartDateTime</td>
-                    <td><a asp-area="Visits" asp-page="Details" asp-route-id="@visit.Id">View</a></td>
+                    <td><a asp-page="/Visits/Details" asp-route-id="@visit.Id">View</a></td>
                 </tr>
             }
         </tbody>

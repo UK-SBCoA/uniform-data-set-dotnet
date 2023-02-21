@@ -8,19 +8,15 @@ using UDS.Net.Forms.Extensions;
 using UDS.Net.Forms.Models;
 using UDS.Net.Services;
 
-namespace UDS.Net.Forms.Areas.Participation.Pages
+namespace UDS.Net.Forms.Pages.Participations
 {
-    public class EditModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly IParticipationService _participationService;
 
-        [ViewData]
-        public string Title { get; } = "Edit participation";
-
-        [BindProperty]
         public ParticipationViewModel? Participation { get; set; }
 
-        public EditModel(IParticipationService participationService)
+        public DetailsModel(IParticipationService participationService)
         {
             _participationService = participationService;
         }
@@ -36,24 +32,6 @@ namespace UDS.Net.Forms.Areas.Participation.Pages
                 return NotFound();
 
             Participation = participation.ToVM();
-
-            return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-                return Page();
-
-            if (Participation != null)
-            {
-                var participation = Participation.ToEntity();
-
-                var updatedParticipation = _participationService.Update("", participation);
-
-                if (updatedParticipation != null)
-                    return RedirectToPage("Details", new { Id = participation.Id });
-            }
 
             return Page();
         }

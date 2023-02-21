@@ -1,9 +1,9 @@
 ﻿@page
-@model UDS.Net.Forms.Areas.Visits.Pages.IndexModel
+@model UDS.Net.Forms.Pages.Visits.IndexModel
 @{
 }
 
-<h2>Visits</h2>
+<h2>Visits runtime compilation</h2>
 @if (Model.Visits != null)
 {
         <table>
@@ -12,15 +12,17 @@
                     <th>Participation Id</th>
                     <th>Visit Id</th>
                     <th>Visit kind</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var visit in Model.Visits)
                 {
                     <tr>
-                        <td></td>
+                        <td><a asp-area="Participations" asp-page="Details" asp-route-id="@visit.ParticipationId">@visit.ParticipationId</a></td>
                         <td>@visit.Id</td>
                         <td>@visit.Kind</td>
+                        <th><a asp-page="Details" asp-route-id="@visit.Id">View</a></th>
                     </tr>
                 }
             </tbody>

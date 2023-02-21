@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace UDS.Net.Forms.Areas.UDS3.Pages
+namespace UDS.Net.Forms.Pages.UDS3
 {
     public class A2Model : PageModel
     {

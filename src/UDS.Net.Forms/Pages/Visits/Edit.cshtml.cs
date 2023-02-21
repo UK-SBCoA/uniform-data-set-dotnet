@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using UDS.Net.Forms.Models;
 using UDS.Net.Services;
 
-namespace UDS.Net.Forms.Areas.Visits.Pages
+namespace UDS.Net.Forms.Pages.Visits
 {
     public class EditModel : VisitPageModel
     {

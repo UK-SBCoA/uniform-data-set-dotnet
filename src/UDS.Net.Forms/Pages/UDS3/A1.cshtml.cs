@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using UDS.Net.Forms.Models.UDS3;
 using UDS.Net.Services;
 
-namespace UDS.Net.Forms.Areas.UDS3.Pages
+namespace UDS.Net.Forms.Pages.UDS3
 {
     public class A1Model : PageModel
     {
