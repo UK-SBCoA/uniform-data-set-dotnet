@@ -6,13 +6,14 @@ using UDS.Net.Services;
 using UDS.Net.Web.MVC.Data;
 using UDS.Net.Web.MVC.Services;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 // Replace identity service with your preferred provider rather than using this one. Roles required:
 // Administrator
 // SuperUser
-// Examiner\
+// Examiner
 var connectionString = configuration.GetConnectionString("AuthServiceConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -23,21 +24,40 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 ////*************************************************************************************************
 // Replace API and implemented services with your own if you don't want to use the included API here
-// 
+
 builder.Services.AddUDSApiClient(configuration.GetValue<string>("DownStreamApis:UDSNetApi:BaseUrl"));
 
 builder.Services.AddSingleton<IParticipationService, ParticipationService>();
 builder.Services.AddSingleton<IVisitService, VisitService>();
+
 ////*************************************************************************************************
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddRazorPages(); // Enables UDS.Net.Forms razor class library. More here: https://learn.microsoft.com/en-us/aspnet/core/razor-pages/
+
 var mvcBuilder = builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
+
+////*************************************************************************************************
+// Only used during development
+// Runtime compilation of razor assets. Read more here: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/view-compilation?view=aspnetcore-7.0&tabs=visual-studio#enable-runtime-compilation-conditionally
 
 #if DEBUG
-    mvcBuilder.AddRazorRuntimeCompilation();
+
+mvcBuilder.AddRazorRuntimeCompilation(); // this can't be configured in startup assembly for RCL runtime compilation, it must be here
+
+// Is also required for runtime compilation of Razor Class Library UDS.Net.Forms
+builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
+{
+    var libraryPath = Path.GetFullPath(
+        Path.Combine(builder.Environment.ContentRootPath, "..", "UDS.Net.Forms"));
+
+    options.FileProviders.Add(new PhysicalFileProvider(libraryPath));
+});
+
 #endif
+
+////*************************************************************************************************
 
 // Uncomment to enforce authentication
 //builder.Services.AddAuthorization(options =>
@@ -67,18 +87,23 @@ else
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles(); // A must for using content from referenced UDS.Net.Forms RCL
 
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages(); // enables UDS.Net.Forms endpoints
 
-app.MapRazorPages();
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
+
 
 app.Run();
 

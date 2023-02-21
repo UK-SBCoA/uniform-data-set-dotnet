@@ -24,17 +24,7 @@
       <SupportedPlatform Include="browser" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Pages\" />
-    <None Remove="Pages\Visits\" />
-    <None Remove="Pages\Shared\" />
-    <None Remove="Pages\Participations\" />
-    <None Remove="Pages\UDS3\" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
-    <Folder Include="Pages\Visits\" />
-    <Folder Include="Pages\Shared\" />
-    <Folder Include="Pages\Participations\" />
-    <Folder Include="Pages\UDS3\" />
-  </ItemGroup>
+
 </Project>
