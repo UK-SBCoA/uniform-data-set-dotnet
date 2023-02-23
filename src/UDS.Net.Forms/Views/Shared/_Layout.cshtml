@@ -1,22 +1,10 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - UDS.Net.Forms</title>
-</head>
-<body>
+﻿@{
+    Layout = "_LayoutBase";
+}
 
-    <partial name="_Header">
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>t
-
-    <partial name="_Footer">
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
-
+<div class="mx-auto px-4 pb-12 sm:px-6 lg:px-8">
+    <div class="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
+        @RenderBody()
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿@model MenuItemViewModel
+@{
+    string menuItemStyle = "block py-2 px-4 text-sm text-gray-700";
+
+    if (Model.IsMobile)
+        menuItemStyle = "block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75";
+}
+
+
+<a href="#" class="@menuItemStyle" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+
+<a href="#" class="@menuItemStyle" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+
+<a href="#" class="@menuItemStyle" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>

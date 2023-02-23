@@ -42,20 +42,20 @@ var mvcBuilder = builder.Services.AddControllersWithViews();
 // Only used during development
 // Runtime compilation of razor assets. Read more here: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/view-compilation?view=aspnetcore-7.0&tabs=visual-studio#enable-runtime-compilation-conditionally
 
-#if DEBUG
-
-mvcBuilder.AddRazorRuntimeCompilation(); // this can't be configured in startup assembly for RCL runtime compilation, it must be here
-
-// Is also required for runtime compilation of Razor Class Library UDS.Net.Forms
-builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
+if (builder.Environment.IsDevelopment())
 {
-    var libraryPath = Path.GetFullPath(
-        Path.Combine(builder.Environment.ContentRootPath, "..", "UDS.Net.Forms"));
+    mvcBuilder.AddRazorRuntimeCompilation(); // this can't be configured in startup assembly for RCL runtime compilation, it must be here. The fix is available soon in .NET 7 https://github.com/dotnet/aspnetcore/issues/38465
 
-    options.FileProviders.Add(new PhysicalFileProvider(libraryPath));
-});
+    // Is also required for runtime compilation of Razor Class Library UDS.Net.Forms
+    builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
+    {
+        var libraryPath = Path.GetFullPath(
+            Path.Combine(builder.Environment.ContentRootPath, "..", "UDS.Net.Forms"));
 
-#endif
+        options.FileProviders.Add(new PhysicalFileProvider(libraryPath));
+    });
+
+}
 
 ////*************************************************************************************************
 
