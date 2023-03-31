@@ -40,9 +40,51 @@ namespace UDS.Net.API.Controllers
         [HttpGet("{id}")]
         public async Task<VisitDto> Get(int id)
         {
-            var dto = await _context.Visits.Where(v => v.Id == id).Select(v => v.ToDto()).FirstOrDefaultAsync();
+            var dto = await _context.Visits
+                .Where(v => v.Id == id)
+                .Select(v => v.ToDto())
+                .FirstOrDefaultAsync();
 
             return dto;
+        }
+
+        [HttpGet("{id}/Forms/{formKind}", Name = "GetWithForm")]
+        public async Task<VisitDto> GetWithForm(int id, string formKind)
+        {
+            if (!String.IsNullOrWhiteSpace(formKind))
+            {
+
+                var visit = await _context.Visits
+                    .Where(v => v.Id == id)
+                    .FirstOrDefaultAsync();
+
+                //var form = await _context.Forms
+                //    .Where(f => f.VisitId == id && f.Kind == formKind)
+                //    .FirstOrDefaultAsync();
+
+                //visit.Forms.Add(form);
+
+                if (visit != null)
+                {
+                    if (formKind == "A1")
+                    {
+                        var a1 = await _context.A1s
+                            .Where(a => a.VisitId == id)
+                            .FirstOrDefaultAsync();
+                    }
+                    //else if (formKind == "A2")
+                    //{
+                    //    var a2 = await _context.A2s
+                    //        .Where(a => a.VisitId == id)
+                    //        .FirstOrDefaultAsync();
+                    //}
+                }
+
+                var dto = visit.ToDto(formKind);
+
+                return dto;
+            }
+            throw new Exception("Must include a form id.");
         }
 
         [HttpPost]
@@ -50,6 +92,7 @@ namespace UDS.Net.API.Controllers
         {
             var visit = new Visit
             {
+                Kind = dto.Kind,
                 CreatedBy = dto.CreatedBy,
                 CreatedAt = dto.CreatedAt,
                 ModifiedBy = dto.ModifiedBy,
@@ -90,6 +133,7 @@ namespace UDS.Net.API.Controllers
 
             await _context.SaveChangesAsync();
         }
+
     }
 }
 
