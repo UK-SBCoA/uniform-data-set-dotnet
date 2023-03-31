@@ -9,9 +9,9 @@ namespace UDS.Net.API.Entities
 	/// SQL View
 	/// </summary>
 	public class FormStatus : Form
-	{
-		[MaxLength(2)]
-		public string Kind { get; set; } = ""; // A1, A2, T1
+    {
+        [MaxLength(2)]
+        public string Kind { get; set; } = ""; // A1, A2, T1
     }
 }
 

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UDS.Net.API.Entities
 {
-	public abstract class Form : BaseEntity
+    public abstract class Form : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -6,7 +6,7 @@ namespace UDS.Net.API.Extensions
 {
     public static class EntityToDtoMapper
     {
-        public static VisitDto ToDto(this Visit visit)
+        private static VisitDto ConvertVisitToDto(Visit visit)
         {
             var dto = new VisitDto()
             {
@@ -26,22 +26,16 @@ namespace UDS.Net.API.Extensions
             return dto;
         }
 
+        public static VisitDto ToDto(this Visit visit)
+        {
+            return ConvertVisitToDto(visit);
+        }
+
         public static VisitDto ToDto(this Visit visit, string formKind)
         {
-            var dto = new VisitDto()
-            {
-                Id = visit.Id,
-                ParticipationId = visit.ParticipationId,
-                CreatedAt = visit.CreatedAt,
-                CreatedBy = visit.CreatedBy,
-                ModifiedBy = visit.ModifiedBy,
-                DeletedBy = visit.DeletedBy,
-                IsDeleted = visit.IsDeleted,
-                Number = visit.Number,
-                Kind = visit.Kind,
-                Version = visit.Version,
-                StartDateTime = visit.StartDateTime
-            };
+            var dto = ConvertVisitToDto(visit);
+
+            // Attach form based on kind
 
             return dto;
         }

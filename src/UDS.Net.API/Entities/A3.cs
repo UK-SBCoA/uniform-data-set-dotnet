@@ -9,7 +9,7 @@ namespace UDS.Net.API.Entities
     /// </summary>
     [Table("tbl_A3s")]
     public class A3 : Form
-	{
+    {
         public int? AFFFAMM { get; set; } // initial visits
 
         public int? NWINFMUT { get; set; } // follow-up visits
