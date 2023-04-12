@@ -25,7 +25,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 ////*************************************************************************************************
 // Replace API and implemented services with your own if you don't want to use the included API here
 
-builder.Services.AddUDSApiClient(configuration.GetValue<string>("DownStreamApis:UDSNetApi:BaseUrl"));
+builder.Services.AddUDSApiClient(configuration.GetValue<string>("DownstreamApis:UDSNetApi:BaseUrl"));
 
 builder.Services.AddSingleton<IParticipationService, ParticipationService>();
 builder.Services.AddSingleton<IVisitService, VisitService>();
