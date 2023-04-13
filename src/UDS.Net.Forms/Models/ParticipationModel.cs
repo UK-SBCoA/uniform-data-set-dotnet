@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace UDS.Net.Forms.Models
 {
-    public class ParticipationViewModel
+    public class ParticipationModel
     {
         public int Id { get; set; }
 
@@ -13,7 +13,7 @@ namespace UDS.Net.Forms.Models
 
         public int VisitCount { get; set; }
 
-        public IList<VisitViewModel> Visits { get; set; } = new List<VisitViewModel>();
+        public IList<VisitModel> Visits { get; set; } = new List<VisitModel>();
     }
 }
 

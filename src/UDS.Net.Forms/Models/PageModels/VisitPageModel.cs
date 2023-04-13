@@ -15,7 +15,7 @@ namespace UDS.Net.Forms.Models
         protected readonly IVisitService _visitService;
 
         [BindProperty]
-        public VisitViewModel? Visit { get; set; }
+        public VisitModel? Visit { get; set; }
 
         public VisitPageModel(IVisitService visitService) : base ()
         {
@@ -24,7 +24,7 @@ namespace UDS.Net.Forms.Models
 
         public async Task<IActionResult> OnGet(int? id)
         {
-            if (id == 0)
+            if (id == null || id == 0)
                 return NotFound();
 
             var visit = await _visitService.GetById("", id.Value);

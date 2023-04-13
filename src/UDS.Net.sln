@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDS.Net.API.Client", "UDS.N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDS.Net.Web.MVC.Services", "UDS.Net.Web.MVC.Services\UDS.Net.Web.MVC.Services.csproj", "{10B4A194-D9E4-491B-AF11-FF14F6108F5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDS.Net.Dto.Tests", "UDS.Net.Dto.Tests\UDS.Net.Dto.Tests.csproj", "{2FD411C3-6747-46DB-B87B-4951B71B23D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{10B4A194-D9E4-491B-AF11-FF14F6108F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10B4A194-D9E4-491B-AF11-FF14F6108F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10B4A194-D9E4-491B-AF11-FF14F6108F5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FD411C3-6747-46DB-B87B-4951B71B23D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD411C3-6747-46DB-B87B-4951B71B23D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FD411C3-6747-46DB-B87B-4951B71B23D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FD411C3-6747-46DB-B87B-4951B71B23D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

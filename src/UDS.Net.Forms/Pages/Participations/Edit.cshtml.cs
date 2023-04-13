@@ -18,7 +18,7 @@ namespace UDS.Net.Forms.Pages.Participations
         public string Title { get; } = "Edit participation";
 
         [BindProperty]
-        public ParticipationViewModel? Participation { get; set; }
+        public ParticipationModel? Participation { get; set; }
 
         public EditModel(IParticipationService participationService)
         {

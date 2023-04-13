@@ -16,7 +16,7 @@ namespace UDS.Net.Forms.Pages.Visits
     {
         private readonly IVisitService _visitService;
 
-        public IList<VisitViewModel>? Visits { get; set; }
+        public IList<VisitModel>? Visits { get; set; }
 
         public IndexModel(IVisitService visitService)
         {

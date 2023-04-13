@@ -4,7 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UDS.Net.Forms.Models.UDS3
 {
-    public class A1_IVP
+    /// <summary>
+    /// https://files.alz.washington.edu/documentation/uds3-ivp-a1.pdf
+    /// </summary>
+    public class A1_IVP : FormModel
     {
         [Display(Name = "Primary reason for coming to ADC")]
         [Range(1, 9)]
@@ -30,17 +33,8 @@ namespace UDS.Net.Forms.Models.UDS3
         [Range(1, 2)]
         public int? SOURCENW { get; set; }
 
-        [Display(Name = "Participant’s month of birth")]
-        [Range(1, 12)]
-        public int? BIRTHMO { get; set; }
 
-        [Display(Name = "Participant’s year of birth")]
-        [Range(1875, 2006)]
-        public int? BIRTHYR { get; set; }
 
-        [Display(Name = "Participant’s sex")]
-        [Range(1, 2)]
-        public int? SEX { get; set; }
 
         [Display(Name = "Does the participant report being of Hispanic/Latino ethnicity (i.e., having origins from a mainly Spanish-speaking Latin American country), regardless of race?")]
         [Range(0, 9)]
@@ -90,22 +84,6 @@ namespace UDS.Net.Forms.Models.UDS3
         [Display(Name = "Participant’s years of education, use the codes below to report the level achieved; if an attempted level is not completed, enter the number of years completed")]
         [Range(0, 99)]
         public int? EDUC { get; set; }
-
-        [Display(Name = "Participant’s current marital status")]
-        [Range(0, 9)]
-        public int? MARISTAT { get; set; }
-
-        [Display(Name = "What is the participant’s living situation?")]
-        [Range(0, 9)]
-        public int? LIVSITUA { get; set; }
-
-        [Display(Name = "What is the participant’s level of independence?")]
-        [Range(0, 9)]
-        public int? INDEPEND { get; set; }
-
-        [Display(Name = "What is the participant’s primary type of residence?")]
-        [Range(0, 9)]
-        public int? RESIDENC { get; set; }
 
         [Display(Name = "ZIP Code (first three digits) of participant’s primary residence")]
         [Range(006, 999)]

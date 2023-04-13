@@ -29,6 +29,11 @@ namespace UDS.Net.Forms.Tests.Services
             throw new NotImplementedException();
         }
 
+        public Task<Visit> GetByIdWithForm(string username, int id, string formId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<Visit>> List(string username, int pageSize = 10, int pageIndex = 1)
         {
             return Visits;
@@ -60,6 +65,7 @@ namespace UDS.Net.Forms.Tests.Services
                 new Visit("UDS3", "FVP") { Id = 5, Number = 5 }
             };
         }
+
     }
 }
 

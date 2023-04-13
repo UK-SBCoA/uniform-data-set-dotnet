@@ -22,10 +22,13 @@ namespace UDS.Net.Services.DomainModels
             Title = title;
             VisitId = visit.Id;
             Visit = visit;
-            Kind = visit.Kind;
             Fields = fields;
+            Version = fields.GetVersion();
             Description = fields.GetDescription();
+
+            Kind = fields.GetType().ToString();
         }
+
     }
 }
 

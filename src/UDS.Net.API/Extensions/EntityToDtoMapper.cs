@@ -20,7 +20,8 @@ namespace UDS.Net.API.Extensions
                 Number = visit.Number,
                 Kind = visit.Kind,
                 Version = visit.Version,
-                StartDateTime = visit.StartDateTime
+                StartDateTime = visit.StartDateTime,
+                Forms = new List<FormDto>()
             };
 
             return dto;
@@ -36,6 +37,18 @@ namespace UDS.Net.API.Extensions
             var dto = ConvertVisitToDto(visit);
 
             // Attach form based on kind
+            if (!String.IsNullOrWhiteSpace(formKind))
+            {
+                FormDto formDto = new FormDto();
+
+                if (formKind == "A1")
+                    formDto = visit.A1.ToFullDto();
+
+                if (formKind == "A2")
+                    formDto = visit.A2.ToFullDto();
+
+                dto.Forms.Add(formDto);
+            }
 
             return dto;
         }

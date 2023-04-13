@@ -7,7 +7,7 @@ namespace UDS.Net.Forms.Extensions
 {
     public static class ViewModelToDomainMapper
     {
-        public static Participation ToEntity(this ParticipationViewModel vm)
+        public static Participation ToEntity(this ParticipationModel vm)
         {
             return new Participation
             {
@@ -16,7 +16,7 @@ namespace UDS.Net.Forms.Extensions
             };
         }
 
-        public static Visit ToEntity(this VisitViewModel vm)
+        public static Visit ToEntity(this VisitModel vm)
         {
             return new Visit(vm.Version, vm.Kind);
         }

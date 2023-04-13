@@ -40,6 +40,7 @@ namespace UDS.Net.API.Controllers
         [HttpGet("{id}")]
         public async Task<VisitDto> Get(int id)
         {
+            // TODO include form summaries
             var dto = await _context.Visits
                 .Where(v => v.Id == id)
                 .Select(v => v.ToDto())
@@ -71,13 +72,19 @@ namespace UDS.Net.API.Controllers
                         var a1 = await _context.A1s
                             .Where(a => a.VisitId == id)
                             .FirstOrDefaultAsync();
+
+                        if (a1 != null)
+                            visit.A1 = a1;
                     }
-                    //else if (formKind == "A2")
-                    //{
-                    //    var a2 = await _context.A2s
-                    //        .Where(a => a.VisitId == id)
-                    //        .FirstOrDefaultAsync();
-                    //}
+                    else if (formKind == "A2")
+                    {
+                        var a2 = await _context.A2s
+                            .Where(a => a.VisitId == id)
+                            .FirstOrDefaultAsync();
+
+                        if (a2 != null)
+                            visit.A2 = a2;
+                    }
                 }
 
                 var dto = visit.ToDto(formKind);

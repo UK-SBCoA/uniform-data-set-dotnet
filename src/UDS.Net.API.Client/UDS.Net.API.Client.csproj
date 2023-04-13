@@ -1,23 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <OutputType>Library</OutputType>
-    <PackageId>UDS.Net.API.Client</PackageId>
-    <Version>1.0.0</Version>
-    <Authors>Sanders-Brown Center on Aging</Authors>
-    <Description>UDS client library for using UDS.Net.API</Description>
-    <Owners>UK-SBCoA</Owners>
-    <PackageDescription>Client library for API</PackageDescription>
-    <RepositoryUrl>https://github.com/UK-SBCoA/uniform-data-set-dotnet</RepositoryUrl>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UDS.Net.Dto\UDS.Net.Dto.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<OutputType>Library</OutputType>
+		<PackageId>UDS.Net.API.Client</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Sanders-Brown Center on Aging</Authors>
+		<Description>UDS client library for using UDS.Net.API</Description>
+		<Owners>UK-SBCoA</Owners>
+		<PackageDescription>Client library for API</PackageDescription>
+		<RepositoryUrl>https://github.com/UK-SBCoA/uniform-data-set-dotnet</RepositoryUrl>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="System.Text.Json" Version="7.0.2" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\UDS.Net.Dto\UDS.Net.Dto.csproj" />
+	</ItemGroup>
 </Project>

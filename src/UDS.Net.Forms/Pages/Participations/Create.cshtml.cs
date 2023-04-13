@@ -20,7 +20,7 @@ namespace UDS.Net.Forms.Pages.Participations
         private readonly IParticipationService _participationService;
 
         [BindProperty]
-        public ParticipationViewModel? Participation { get; set; }
+        public ParticipationModel? Participation { get; set; }
 
         public CreateModel(IParticipationService participationService)
         {

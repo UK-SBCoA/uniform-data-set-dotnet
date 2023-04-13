@@ -1,9 +1,15 @@
 ﻿using System;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
 namespace UDS.Net.Forms.Models
 {
-    public class FormViewModel
+    public class FormModel
     {
+        public int Id { get; set; }
+
         public int VisitId { get; set; }
+
+        public string Kind { get; set; } = "";
 
         public string Version { get; set; } = "";
 
@@ -16,6 +22,11 @@ namespace UDS.Net.Forms.Models
         public bool IsRequiredForVisitKind { get; set; }
 
         public bool IncludeInPacketSubmission { get; set; }
+
+        public int? ReasonCodeNotIncluded { get; set; }
+
+        public string ReasonNotIncluded { get; set; } = "";
+
     }
 }
 

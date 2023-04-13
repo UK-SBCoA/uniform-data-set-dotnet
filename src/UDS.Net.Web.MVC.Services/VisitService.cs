@@ -43,7 +43,21 @@ namespace UDS.Net.Web.MVC.Services
             {
                 return visitDto.ToDomain();
             }
-            return new Visit("UDS3", "IVP") { Id = 1, Number = 1 };
+            throw new Exception("Visit not found");
+        }
+
+        public async Task<Visit> GetByIdWithForm(string username, int id, string formId)
+        {
+            var visitDto = await _apiClient.VisitClient.GetWithForm(id, formId);
+
+            if (visitDto != null)
+            {
+                var visit = visitDto.ToDomain();
+
+                return visit;
+            }
+
+            throw new Exception("Visit with form not found");
         }
 
         public async Task<IEnumerable<Visit>> List(string username, int pageSize = 10, int pageIndex = 1)

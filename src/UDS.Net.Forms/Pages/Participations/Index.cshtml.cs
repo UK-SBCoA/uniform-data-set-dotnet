@@ -14,7 +14,7 @@ namespace UDS.Net.Forms.Pages.Participations
     {
         private readonly IParticipationService _participationService;
 
-        public IList<ParticipationViewModel>? Participations { get; set; }
+        public IList<ParticipationModel>? Participations { get; set; }
 
         public IndexModel(IParticipationService participationService)
         {

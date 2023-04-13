@@ -19,6 +19,8 @@ namespace UDS.Net.Services.DomainModels
 
         public string Kind { get; set; } = "";
 
+        public DateTime StartDateTime { get; set; }
+
         public Participation Participation { get; set; } = new Participation();
 
         public IList<Form> Forms { get; set; } = new List<Form>();
@@ -28,29 +30,29 @@ namespace UDS.Net.Services.DomainModels
             Version = version;
             Kind = kind;
 
-            if (!String.IsNullOrWhiteSpace(version) && !String.IsNullOrWhiteSpace(kind))
-            {
-                // Configure forms based on UDS version and visit kind
-                if (version == "UDS3")
-                {
-                    if (kind == "IVP")
-                    {
-                        Forms.Add(new Form(this, "A1", new UDS3_A1_IVP()));
-                    }
-                    else if (kind == "FVP")
-                    {
+            //if (!String.IsNullOrWhiteSpace(version) && !String.IsNullOrWhiteSpace(kind))
+            //{
+            //    // Configure forms based on UDS version and visit kind
+            //    if (version == "UDS3")
+            //    {
+            //        if (kind == "IVP")
+            //        {
+            //            Forms.Add(new Form(this, "A1", new UDS3_A1_IVP()));
+            //        }
+            //        else if (kind == "FVP")
+            //        {
 
-                    }
-                    else if (kind == "TIP")
-                    {
+            //        }
+            //        else if (kind == "TIP")
+            //        {
 
-                    }
-                    else if (kind == "TFP")
-                    {
+            //        }
+            //        else if (kind == "TFP")
+            //        {
 
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
         }
     }
 }

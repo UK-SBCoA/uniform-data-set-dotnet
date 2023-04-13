@@ -1,7 +1,7 @@
 ﻿using System;
 namespace UDS.Net.Forms.Models
 {
-    public class VisitViewModel
+    public class VisitModel
     {
         public int Id { get; set; }
 
@@ -15,7 +15,9 @@ namespace UDS.Net.Forms.Models
 
         public DateTime StartDateTime { get; set; }
 
-        public IList<FormViewModel> Forms { get; set; } = new List<FormViewModel>();
+        public virtual ParticipationModel Participation { get; set; } = default!;
+
+        public virtual IList<FormModel> Forms { get; set; } = new List<FormModel>();
     }
 }
 

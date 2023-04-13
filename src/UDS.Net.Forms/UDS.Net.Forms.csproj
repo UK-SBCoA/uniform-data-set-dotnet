@@ -38,5 +38,9 @@
     <Folder Include="wwwroot\lib\" />
     <Folder Include="wwwroot\lib\tailwindcss\" />
     <Folder Include="wwwroot\css\" />
+    <Folder Include="Models\PageModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Models\PageModels\" />
   </ItemGroup>
 </Project>

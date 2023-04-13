@@ -2,24 +2,55 @@
 @model UDS.Net.Forms.Pages.UDS3.A1Model
 @{
     Layout = "_LayoutForm";
-    ViewData["Title"] = "A1: Participant Demographics";
+    ViewData["Title"] = "Participant 100 Visit 1";
 }
 
-<h2>A1</h2>
+<form method="post" class="space-y-8 divide-y divide-gray-200">
+    <div>
+        <h2 class="text-lg font-medium leading-6 text-gray-900">A1: Participant Demographics</h2>
+        <p class="mt-1 text-sm text-gray-500">This information will be displayed publicly so be careful what you share.</p>
 
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<div class="form-group">
-    @Html.LabelFor(model => model.A1.REASON)
-    <input asp-for="A1.REASON" />
-</div>
+        <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:pt-5">
 
-<div class="form-group">
-    @Html.LabelFor(model => model.A1.REFERSC)
-    <input asp-for="A1.REFERSC" />
-</div>
 
-<div class="form-group">
-    @Html.LabelFor(model => model.A1.LEARNED)
-    <input asp-for="A1.LEARNED" />
-</div>
+            @if (Model.Visit != null && Model.Visit.Kind == "IVP")
+            {
+                <span>@Model.Visit.Kind</span>
+                <label asp-for="A1.IVP.REASON" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Primary reason for coming to ADC</label>
+                <div class="mt-1 sm:col-span-2 sm:mt-0">
+                    <input asp-for="A1.IVP.REASON" class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <label asp-for="A1.IVP.REFERSC" class="block text-sm font-medium text-gray-700"></label>
+                    <div class="mt-1">
+                        <input asp-for="A1.IVP.REFERSC" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                    </div>
+                </div>
+            }
+
+            <label asp-for="A1.BIRTHMO" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"></label>
+            <div class="mt-1 sm:col-span-2 sm:mt-0">
+                <input asp-for="A1.BIRTHMO" class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <label asp-for="A1.BIRTHYR" class="block text-sm font-medium text-gray-700"></label>
+                <div class="mt-1">
+                    <input asp-for="A1.BIRTHYR" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="divide-y divide-gray-200 pt-6">
+        <div>
+            <p asp-validation-summary="ModelOnly" class="mt-1 text-sm text-red-700"></p>
+        </div>
+        <input type="submit" value="Save" />
+    </div>
+</form>
+

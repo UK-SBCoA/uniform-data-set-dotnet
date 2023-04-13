@@ -13,11 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Extensions\" />
     <None Remove="System.Text.Json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UDS.Net.API.Client\UDS.Net.API.Client.csproj" />
@@ -25,6 +21,6 @@
     <ProjectReference Include="..\UDS.Net.Services\UDS.Net.Services.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="7.0.0" />
+    <PackageReference Include="System.Text.Json" Version="7.0.2" />
   </ItemGroup>
 </Project>

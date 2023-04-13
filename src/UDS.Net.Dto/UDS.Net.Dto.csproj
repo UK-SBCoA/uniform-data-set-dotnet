@@ -12,4 +12,7 @@
     <RepositoryUrl>https://github.com/UK-SBCoA/uniform-data-set-dotnet</RepositoryUrl>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="7.0.2" />
+  </ItemGroup>
 </Project>

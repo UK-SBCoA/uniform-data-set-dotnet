@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using UDS.Net.Dto;
 
 namespace UDS.Net.API.Client
 {
@@ -15,14 +14,18 @@ namespace UDS.Net.API.Client
     {
         //private readonly IHttpContextAccessor _contextAccessor;
 
-        private readonly HttpClient _httpClient;
+        protected readonly HttpClient _httpClient;
 
-        private readonly string _ApiScope = "UDS.ReadWrite.All";
+        protected readonly string _ApiScope = "UDS.ReadWrite.All";
 
-        private readonly string _BasePath = "";
+        protected readonly string _BasePath = "";
 
         //private readonly ITokenAcquisition _tokenAcquisition;
 
+        protected JsonSerializerOptions options = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
 
         public AuthenticatedClient(HttpClient httpClient, string basePath)
         {
@@ -40,14 +43,14 @@ namespace UDS.Net.API.Client
         //    _StudiesBaseAddress = configuration["DownstreamApis:StudiesApi:Url"];
         //}
 
-        private async Task PrepareAuthenticatedClient()
+        protected async Task PrepareAuthenticatedClient()
         {
             //var accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { _ApiScope });
             //_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<string> GetRequest(string url)
+        protected async Task<string> GetRequest(string url)
         {
             await PrepareAuthenticatedClient();
 
@@ -60,7 +63,7 @@ namespace UDS.Net.API.Client
             throw new HttpRequestException($"The path {url} returns the following status code: {response.StatusCode}");
         }
 
-        public async Task<string> PostRequest(string url, string jsonObject)
+        protected async Task<string> PostRequest(string url, string jsonObject)
         {
             await PrepareAuthenticatedClient();
 
@@ -82,7 +85,7 @@ namespace UDS.Net.API.Client
         {
             string response = await GetRequest(_BasePath);
 
-            List<T> values = JsonConvert.DeserializeObject<List<T>>(response);
+            List<T> values = JsonSerializer.Deserialize<List<T>>(response, options); //Newtonsoft JsonConvert.DeserializeObject<List<T>>(response);
 
             return values;
         }
@@ -91,7 +94,7 @@ namespace UDS.Net.API.Client
         {
             string response = await GetRequest($"{_BasePath}/Count");
 
-            int count = JsonConvert.DeserializeObject<int>(response);
+            int count = JsonSerializer.Deserialize<int>(response, options);//JsonConvert.DeserializeObject<int>(response);
 
             return count;
         }
@@ -100,14 +103,14 @@ namespace UDS.Net.API.Client
         {
             string response = await GetRequest($"{_BasePath}/{id}");
 
-            T value = JsonConvert.DeserializeObject<T>(response);
+            T value = JsonSerializer.Deserialize<T>(response, options);// JsonConvert.DeserializeObject<T>(response);
 
             return value;
         }
 
         public async Task Post(T dto)
         {
-            var json = JsonConvert.SerializeObject(dto);
+            var json = JsonSerializer.Serialize(dto);//JsonConvert.SerializeObject(dto);
 
             string response = await PostRequest(_BasePath, json);
 

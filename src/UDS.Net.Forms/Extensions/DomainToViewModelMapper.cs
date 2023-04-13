@@ -1,15 +1,16 @@
 ﻿using System;
-using UDS.Net.Dto;
 using UDS.Net.Forms.Models;
+using UDS.Net.Forms.Models.UDS3;
 using UDS.Net.Services.DomainModels;
+using UDS.Net.Services.DomainModels.Forms;
 
 namespace UDS.Net.Forms.Extensions
 {
     public static class DomainToViewModelMapper
     {
-        public static ParticipationViewModel ToVM(this Participation participation)
+        public static ParticipationModel ToVM(this Participation participation)
         {
-            return new ParticipationViewModel()
+            return new ParticipationModel()
             {
                 Id = participation.Id,
                 LegacyId = participation.LegacyId,
@@ -18,9 +19,9 @@ namespace UDS.Net.Forms.Extensions
             };
         }
 
-        public static List<VisitViewModel> ToVM(this IList<Visit> visits)
+        public static List<VisitModel> ToVM(this IList<Visit> visits)
         {
-            List<VisitViewModel> vm = new List<VisitViewModel>();
+            List<VisitModel> vm = new List<VisitModel>();
 
             foreach (var visit in visits)
             {
@@ -30,22 +31,23 @@ namespace UDS.Net.Forms.Extensions
             return vm;
         }
 
-        public static VisitViewModel ToVM(this Visit visit)
+        public static VisitModel ToVM(this Visit visit)
         {
-            return new VisitViewModel()
+            return new VisitModel()
             {
                 Id = visit.Id,
                 ParticipationId = visit.ParticipationId,
                 Number = visit.Number,
                 Version = visit.Version,
                 Kind = visit.Kind,
+                StartDateTime = visit.StartDateTime,
                 Forms = visit.Forms.ToVM()
             };
         }
 
-        public static List<FormViewModel> ToVM(this IList<Form> forms)
+        public static List<FormModel> ToVM(this IList<Form> forms)
         {
-            List<FormViewModel> vm = new List<FormViewModel>();
+            List<FormModel> vm = new List<FormModel>();
 
             foreach (var form in forms)
             {
@@ -55,9 +57,9 @@ namespace UDS.Net.Forms.Extensions
             return vm;
         }
 
-        public static FormViewModel ToVM(this Form form)
+        public static FormModel ToVM(this Form form)
         {
-            return new FormViewModel()
+            var formModel = new FormModel()
             {
                 VisitId = form.VisitId,
                 Version = form.Version,
@@ -67,7 +69,28 @@ namespace UDS.Net.Forms.Extensions
                 IsRequiredForVisitKind = false,
                 IncludeInPacketSubmission = false
             };
+
+            if (form.Fields is UDS3_IVP_A1)
+            {
+                var fields = (UDS3_IVP_A1)form.Fields;
+
+                return new A1()
+                {
+                    VisitId = form.VisitId,
+                    Version = form.Version,
+                    Status = "", // TODO
+                    Title = form.Title,
+                    Description = form.Description,
+                    IsRequiredForVisitKind = false, // TODO
+                    IncludeInPacketSubmission = false, // TODO
+                    BIRTHMO = fields.BIRTHMO,
+                    BIRTHYR = fields.BIRTHYR
+                };
+            }
+
+            return formModel;
         }
+
     }
 }
 

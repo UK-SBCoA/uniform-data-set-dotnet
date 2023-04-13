@@ -33,6 +33,7 @@ namespace UDS.Net.API.Entities
 
         public virtual A1 A1 { get; set; } = default!; // A1 required for all visit kinds
 
+        public virtual A2 A2 { get; set; } = default!;
 
         public virtual IEnumerable<A4D> A4Ds { get; set; } = new List<A4D>();
 
