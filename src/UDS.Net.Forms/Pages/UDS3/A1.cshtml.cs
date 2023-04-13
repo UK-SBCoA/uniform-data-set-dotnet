@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ namespace UDS.Net.Forms.Pages.UDS3
 {
     public class A1Model : FormPageModel
     {
-        [BindProperty]
+        [BindProperty, Required]
         public A1 A1 { get; set; } = default!;
 
         public A1Model(IVisitService visitService) : base(visitService)
@@ -77,6 +78,9 @@ namespace UDS.Net.Forms.Pages.UDS3
 
         public async Task<IActionResult> OnPost(int id)
         {
+            // if model is attempting to be completed, validation against domain form rules and visit rules
+            // if not validates, return with errors
+
             var boundProperty = A1;
 
             return Page();

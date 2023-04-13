@@ -39,15 +39,15 @@ namespace UDS.Net.Services.Extensions
             {
                 if (dto is A1Dto)
                 {
-                    return new Form(visit, dto.Kind, new UDS3_IVP_A1(dto));
+                    return new Form(visit, dto.Id, "A1", dto.Kind, dto.Status, dto.Language, dto.IsIncluded, dto.ReasonCode, new UDS3_IVP_A1(dto));
                 }
                 else if (dto is A2Dto)
                 {
-                    return new Form(visit, dto.Kind, new UDS3_IVP_A1()); // TODO map to A2
+                    return new Form(visit, dto.Id, "A2", dto.Kind, dto.Status, dto.Language, dto.IsIncluded, dto.ReasonCode, new UDS3_IVP_A1()); // TODO map to A2
                 }
                 else if (dto is FormDto)
                 {
-                    return new Form(visit, dto.Kind, new UDS3_IVP_A1()); // TODO map to generic form
+                    return new Form(visit, dto.Id, "", dto.Kind, dto.Status, dto.Language, dto.IsIncluded, dto.ReasonCode, new UDS3_IVP_A1()); // TODO map to generic form
                 }
             }
 

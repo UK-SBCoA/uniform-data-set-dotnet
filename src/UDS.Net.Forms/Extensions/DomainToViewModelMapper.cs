@@ -78,13 +78,42 @@ namespace UDS.Net.Forms.Extensions
                 {
                     VisitId = form.VisitId,
                     Version = form.Version,
-                    Status = "", // TODO
+                    Status = form.Status, // TODO
                     Title = form.Title,
                     Description = form.Description,
                     IsRequiredForVisitKind = false, // TODO
-                    IncludeInPacketSubmission = false, // TODO
+                    IncludeInPacketSubmission = form.IsIncluded.HasValue ? form.IsIncluded.Value : false, // TODO
+                    ReasonNotIncluded = form.ReasonCode,
                     BIRTHMO = fields.BIRTHMO,
-                    BIRTHYR = fields.BIRTHYR
+                    BIRTHYR = fields.BIRTHYR,
+                    SEX = fields.SEX,
+                    MARISTAT = fields.MARISTAT,
+                    LIVSITUA = fields.LIVSITUA,
+                    INDEPEND = fields.INDEPEND,
+                    RESIDENC = fields.RESIDENC,
+                    IVP = new A1_IVP()
+                    {
+                        REASON = fields.REASON,
+                        REFERSC = fields.REFERSC,
+                        LEARNED = fields.LEARNED,
+                        PRESTAT = fields.PRESTAT,
+                        PRESPART = fields.PRESPART,
+                        SOURCENW = fields.SOURCENW,
+                        HISPANIC = fields.HISPANIC,
+                        HISPOR = fields.HISPOR,
+                        HISPORX = fields.HISPORX,
+                        RACE = fields.RACE,
+                        RACEX = fields.RACEX,
+                        RACESEC = fields.RACESEC,
+                        RACESECX = fields.RACESECX,
+                        RACETER = fields.RACETER,
+                        RACETERX = fields.RACETERX,
+                        PRIMLANG = fields.PRIMLANG,
+                        PRIMLANX = fields.PRIMLANX,
+                        EDUC = fields.EDUC,
+                        ZIP = fields.ZIP,
+                        HANDED = fields.HANDED
+                    }
                 };
             }
 

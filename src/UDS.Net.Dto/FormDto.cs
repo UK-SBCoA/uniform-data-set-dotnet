@@ -12,7 +12,13 @@ namespace UDS.Net.Dto
 
         public string Kind { get; set; }
 
-        public string Status { get; set; } = "";
+        public string Status { get; set; }
+
+        public string Language { get; set; }
+
+        public bool? IsIncluded { get; set; }
+
+        public string ReasonCode { get; set; }
     }
 }
 

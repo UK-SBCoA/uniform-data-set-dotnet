@@ -19,14 +19,7 @@ namespace UDS.Net.API.Client
 
         public async Task<VisitDto> GetWithForm(int id, string formId)
         {
-            // NOTE The response contains the correctly serialized derived form object
             var response = await GetRequest($"{_BasePath}/{id}/Forms/{formId}");
-            Console.WriteLine(response);
-            // Newtonsoft:
-            // VisitDto dto = JsonConvert.DeserializeObject<VisitDto>(response);
-
-            // Defining the JsonNamingPolicy makes the deserializer correctly work
-
 
             VisitDto? dto = JsonSerializer.Deserialize<VisitDto>(response, options);
 

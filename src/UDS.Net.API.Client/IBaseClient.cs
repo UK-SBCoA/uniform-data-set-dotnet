@@ -6,7 +6,7 @@ using UDS.Net.Dto;
 
 namespace UDS.Net.API.Client
 {
-	public interface IBaseClient<T>
+    public interface IBaseClient<T>
     {
         Task<IEnumerable<T>> Get();
         Task<int> Count();

@@ -37,9 +37,7 @@ namespace UDS.Net.API.Controllers
         [HttpGet("{id}")]
         public async Task<ParticipationDto> Get(int id)
         {
-            var dto = await _context.Participations.Where(p => p.Id == id).Select(p => p.ToDto()).FirstOrDefaultAsync();
-        
-            return dto;
+            return await _context.Participations.Where(p => p.Id == id).Select(p => p.ToDto()).FirstOrDefaultAsync();
         }
 
         [HttpPost]
@@ -54,6 +52,7 @@ namespace UDS.Net.API.Controllers
                 DeletedBy = dto.DeletedBy,
                 LegacyId = dto.LegacyId
             };
+
             _context.Participations.Add(participation);
             await _context.SaveChangesAsync();
         }
@@ -82,6 +81,9 @@ namespace UDS.Net.API.Controllers
         public async Task Delete(int id)
         {
             var participation = await _context.Participations.FindAsync(id);
+
+            if (participation == null)
+                return;
 
             _context.Participations.Remove(participation);
 

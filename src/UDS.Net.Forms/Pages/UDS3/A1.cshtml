@@ -2,7 +2,8 @@
 @model UDS.Net.Forms.Pages.UDS3.A1Model
 @{
     Layout = "_LayoutForm";
-    ViewData["Title"] = "Participant 100 Visit 1";
+    if (Model != null && Model.Visit != null && Model.A1 != null)
+        ViewData["Title"] = $"Participant {Model.Visit.ParticipationId} Visit {Model.Visit.Number} {Model.Visit.Kind} {Model.A1.Status}";
 }
 
 <form method="post" class="space-y-8 divide-y divide-gray-200">
@@ -17,6 +18,15 @@
             @if (Model.Visit != null && Model.Visit.Kind == "IVP")
             {
                 <span>@Model.Visit.Kind</span>
+
+                @foreach (KeyValuePair<int, string> reason in Model.A1.IVP.ParticipationReasons)
+                {
+                    <div class="form-check">
+                        <input type="radio" asp-for="A1.IVP.REASON" id="ParticipationReasons[@reason.Key]" value="@reason.Key" />
+                        <label for="ParticipationReasons[@reason.Key]"> <span>@reason.Key</span> @reason.Value</label>
+                    </div>
+                }
+
                 <label asp-for="A1.IVP.REASON" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Primary reason for coming to ADC</label>
                 <div class="mt-1 sm:col-span-2 sm:mt-0">
                     <input asp-for="A1.IVP.REASON" class="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm" />

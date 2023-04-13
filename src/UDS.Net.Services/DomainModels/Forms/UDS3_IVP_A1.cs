@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 using UDS.Net.Dto;
 
@@ -6,6 +7,7 @@ namespace UDS.Net.Services.DomainModels.Forms
 {
     public class UDS3_IVP_A1 : IFormFields
     {
+
         public int? REASON { get; set; }
         public int? REFERSC { get; set; }
         public int? LEARNED { get; set; }
@@ -45,8 +47,9 @@ namespace UDS.Net.Services.DomainModels.Forms
         }
         public UDS3_IVP_A1()
         {
+
         }
-        public UDS3_IVP_A1(FormDto dto)
+        public UDS3_IVP_A1(FormDto dto) : this()
         {
             if (dto is A1Dto)
             {

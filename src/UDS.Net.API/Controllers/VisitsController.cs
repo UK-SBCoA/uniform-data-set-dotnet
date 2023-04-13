@@ -54,42 +54,34 @@ namespace UDS.Net.API.Controllers
         {
             if (!String.IsNullOrWhiteSpace(formKind))
             {
-
                 var visit = await _context.Visits
                     .Where(v => v.Id == id)
                     .FirstOrDefaultAsync();
 
-                //var form = await _context.Forms
-                //    .Where(f => f.VisitId == id && f.Kind == formKind)
-                //    .FirstOrDefaultAsync();
+                if (visit == null)
+                    throw new Exception("Must include a form id.");
 
-                //visit.Forms.Add(form);
 
-                if (visit != null)
+                if (formKind == "A1")
                 {
-                    if (formKind == "A1")
-                    {
-                        var a1 = await _context.A1s
-                            .Where(a => a.VisitId == id)
-                            .FirstOrDefaultAsync();
+                    var a1 = await _context.A1s
+                        .Where(a => a.VisitId == id)
+                        .FirstOrDefaultAsync();
 
-                        if (a1 != null)
-                            visit.A1 = a1;
-                    }
-                    else if (formKind == "A2")
-                    {
-                        var a2 = await _context.A2s
-                            .Where(a => a.VisitId == id)
-                            .FirstOrDefaultAsync();
+                    if (a1 != null)
+                        visit.A1 = a1;
+                }
+                else if (formKind == "A2")
+                {
+                    var a2 = await _context.A2s
+                        .Where(a => a.VisitId == id)
+                        .FirstOrDefaultAsync();
 
-                        if (a2 != null)
-                            visit.A2 = a2;
-                    }
+                    if (a2 != null)
+                        visit.A2 = a2;
                 }
 
-                var dto = visit.ToDto(formKind);
-
-                return dto;
+                return visit.ToDto(formKind);
             }
             throw new Exception("Must include a form id.");
         }
@@ -135,6 +127,9 @@ namespace UDS.Net.API.Controllers
         public async Task Delete(int id)
         {
             var visit = await _context.Visits.FindAsync(id);
+
+            if (visit == null)
+                return;
 
             _context.Visits.Remove(visit);
 

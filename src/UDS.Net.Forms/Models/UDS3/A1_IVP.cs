@@ -9,6 +9,9 @@ namespace UDS.Net.Forms.Models.UDS3
     /// </summary>
     public class A1_IVP : FormModel
     {
+        public Dictionary<int, string> ParticipationReasons { get; } = new Dictionary<int, string>();
+        public Dictionary<int, string> ReferralSource { get; } = new Dictionary<int, string>();
+
         [Display(Name = "Primary reason for coming to ADC")]
         [Range(1, 9)]
         public int? REASON { get; set; }
@@ -32,9 +35,6 @@ namespace UDS.Net.Forms.Models.UDS3
         [Display(Name = "ADC enrollment type:")]
         [Range(1, 2)]
         public int? SOURCENW { get; set; }
-
-
-
 
         [Display(Name = "Does the participant report being of Hispanic/Latino ethnicity (i.e., having origins from a mainly Spanish-speaking Latin American country), regardless of race?")]
         [Range(0, 9)]
@@ -86,12 +86,26 @@ namespace UDS.Net.Forms.Models.UDS3
         public int? EDUC { get; set; }
 
         [Display(Name = "ZIP Code (first three digits) of participant’s primary residence")]
-        [Range(006, 999)]
-        public int? ZIP { get; set; }
+        //[Range(006, 999)]
+        public string ZIP { get; set; } = string.Empty;
 
         [Display(Name = "Is the participant left- or right-handed (for example, which hand would s/ he normally use to write or throw a ball)?")]
         [Range(1, 9)]
         public int? HANDED { get; set; }
+
+        public A1_IVP()
+        {
+
+            // REASON
+            ParticipationReasons.Add(1, "To participate in a research study");
+            ParticipationReasons.Add(2, "To have clinical evaluation");
+            ParticipationReasons.Add(3, "Both (to participate in a reasearch study and to have a clinical evaluation)");
+            ParticipationReasons.Add(5, "Unknown");
+            // REFERSC
+            ReferralSource.Add(1, "Self-referral");
+            ReferralSource.Add(2, "Non-professional contact (spouse/partner, relative, friend, coworker, etc.)");
+            ReferralSource.Add(3, "ADC participant referral");
+        }
     }
 }
 
