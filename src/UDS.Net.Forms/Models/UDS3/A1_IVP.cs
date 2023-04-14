@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace UDS.Net.Forms.Models.UDS3
 {
@@ -13,11 +14,25 @@ namespace UDS.Net.Forms.Models.UDS3
         {
             { 1, "To participate in a research study" },
             { 2, "To have clinical evaluation" },
-            { 3, "Both (to participate in a reasearch study and to have a clinical evaluation)" },
-            { 4, "Unknown" }
+            { 4, "Both (to participate in a reasearch study and to have a clinical evaluation)" },
+            { 9, "Unknown" }
         };
 
-        public Dictionary<int, string> ReferralSource { get; } = new Dictionary<int, string>();
+        public Dictionary<int, string> ReferralSource { get; } = new Dictionary<int, string>
+        {
+            // REFERSC
+            { 1, "Self-referral" },
+            { 2, "Non-professional contact (spouse/partner, relative, friend, coworker, etc.)" },
+            { 3, "ADC participant referral" }
+        };
+
+        public List<SelectListItem> ParticipationReasonsListItems { get; } = new List<SelectListItem>
+        {
+            new SelectListItem("To participate in a research study", "1"),
+            new SelectListItem("To have clinical evaluation", "2"),
+            new SelectListItem("Both (to participate in a research study and to have clinical evaluation", "4"),
+            new SelectListItem("Unknown", "9")
+        };
 
         [Display(Name = "Primary reason for coming to ADC")]
         [Range(1, 9)]
@@ -102,10 +117,6 @@ namespace UDS.Net.Forms.Models.UDS3
 
         public A1_IVP()
         {
-            // REFERSC
-            ReferralSource.Add(1, "Self-referral");
-            ReferralSource.Add(2, "Non-professional contact (spouse/partner, relative, friend, coworker, etc.)");
-            ReferralSource.Add(3, "ADC participant referral");
         }
     }
 }
