@@ -9,7 +9,14 @@ namespace UDS.Net.Forms.Models.UDS3
     /// </summary>
     public class A1_IVP : FormModel
     {
-        public Dictionary<int, string> ParticipationReasons { get; } = new Dictionary<int, string>();
+        public Dictionary<int, string> ParticipationReasons { get; } = new Dictionary<int, string>
+        {
+            { 1, "To participate in a research study" },
+            { 2, "To have clinical evaluation" },
+            { 3, "Both (to participate in a reasearch study and to have a clinical evaluation)" },
+            { 4, "Unknown" }
+        };
+
         public Dictionary<int, string> ReferralSource { get; } = new Dictionary<int, string>();
 
         [Display(Name = "Primary reason for coming to ADC")]
@@ -95,12 +102,6 @@ namespace UDS.Net.Forms.Models.UDS3
 
         public A1_IVP()
         {
-
-            // REASON
-            ParticipationReasons.Add(1, "To participate in a research study");
-            ParticipationReasons.Add(2, "To have clinical evaluation");
-            ParticipationReasons.Add(3, "Both (to participate in a reasearch study and to have a clinical evaluation)");
-            ParticipationReasons.Add(5, "Unknown");
             // REFERSC
             ReferralSource.Add(1, "Self-referral");
             ReferralSource.Add(2, "Non-professional contact (spouse/partner, relative, friend, coworker, etc.)");

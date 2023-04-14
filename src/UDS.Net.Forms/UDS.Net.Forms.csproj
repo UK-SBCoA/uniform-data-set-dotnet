@@ -39,8 +39,14 @@
     <Folder Include="wwwroot\lib\tailwindcss\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="Models\PageModels\" />
+    <Folder Include="Pages\Shared\DisplayTemplates\" />
+    <Folder Include="Pages\Shared\EditorTemplates\" />
+    <Folder Include="TagHelpers\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Models\PageModels\" />
+    <None Remove="Pages\Shared\DisplayTemplates\" />
+    <None Remove="Pages\Shared\EditorTemplates\" />
+    <None Remove="TagHelpers\" />
   </ItemGroup>
 </Project>

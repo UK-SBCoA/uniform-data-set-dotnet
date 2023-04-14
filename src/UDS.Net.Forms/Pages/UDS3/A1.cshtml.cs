@@ -14,7 +14,7 @@ namespace UDS.Net.Forms.Pages.UDS3
 {
     public class A1Model : FormPageModel
     {
-        [BindProperty, Required]
+        [BindProperty]
         public A1 A1 { get; set; } = default!;
 
         public A1Model(IVisitService visitService) : base(visitService)
