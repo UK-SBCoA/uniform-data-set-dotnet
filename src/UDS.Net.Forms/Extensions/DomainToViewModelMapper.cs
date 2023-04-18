@@ -63,7 +63,8 @@ namespace UDS.Net.Forms.Extensions
             {
                 VisitId = form.VisitId,
                 Version = form.Version,
-                Status = "",
+                Kind = form.Kind,
+                Status = form.Status,
                 Title = form.Title,
                 Description = form.Description,
                 IsRequiredForVisitKind = false,
@@ -79,6 +80,7 @@ namespace UDS.Net.Forms.Extensions
                     VisitId = form.VisitId,
                     Version = form.Version,
                     Status = form.Status, // TODO
+                    Kind = form.Kind,
                     Title = form.Title,
                     Description = form.Description,
                     IsRequiredForVisitKind = false, // TODO
@@ -98,19 +100,31 @@ namespace UDS.Net.Forms.Extensions
                         LEARNED = fields.LEARNED,
                         PRESTAT = fields.PRESTAT,
                         PRESPART = fields.PRESPART,
-                        SOURCENW = fields.SOURCENW,
+                        SOURCENW = fields.SOURCENW
+                    },
+                    EthnicGroup = new A1_EthnicGroup
+                    {
                         HISPANIC = fields.HISPANIC,
                         HISPOR = fields.HISPOR,
-                        HISPORX = fields.HISPORX,
+                        HISPORX = fields.HISPORX
+                    },
+                    RacialGroup = new A1_RacialGroup
+                    {
                         RACE = fields.RACE,
                         RACEX = fields.RACEX,
                         RACESEC = fields.RACESEC,
                         RACESECX = fields.RACESECX,
                         RACETER = fields.RACETER,
-                        RACETERX = fields.RACETERX,
+                        RACETERX = fields.RACETERX
+                    },
+                    LangEdu = new A1_LangEdu
+                    {
                         PRIMLANG = fields.PRIMLANG,
                         PRIMLANX = fields.PRIMLANX,
                         EDUC = fields.EDUC,
+                    },
+                    Zip = new A1_Zip
+                    {
                         ZIP = fields.ZIP,
                         HANDED = fields.HANDED
                     }

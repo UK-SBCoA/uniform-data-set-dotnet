@@ -27,6 +27,15 @@ namespace UDS.Net.Services.DomainModels
 
         public IFormFields Fields { get; set; }
 
+        public Form(Visit visit, string kind)
+        {
+            // TODO This is used in VisitService to initialize a new form when one doesn't exist, but should
+            VisitId = visit.Id;
+            Visit = visit;
+            Kind = kind;
+            Status = "NotStarted";
+        }
+
         public Form(Visit visit, int id, string title, string kind, string status, string language, bool? isIncluded, string reasonCode, IFormFields fields)
         {
             Id = id;

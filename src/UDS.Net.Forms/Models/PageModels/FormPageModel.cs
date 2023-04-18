@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UDS.Net.Forms.Extensions;
 using UDS.Net.Forms.Models;
+using UDS.Net.Forms.Pages.UDS3;
 using UDS.Net.Services;
 
 namespace UDS.Net.Forms.Models.PageModels
@@ -28,12 +29,19 @@ namespace UDS.Net.Forms.Models.PageModels
             if (id == null)
                 return NotFound();
 
-            var visit = await _visitService.GetByIdWithForm("", id.Value, "A1"); // TODO dynamic formId
+            string formKind = "";
+            if (this is A1Model)
+            {
+                formKind = "A1";
+                var nameOf = nameof(A1Model);
+                var another = this.GetType();
+            }
+            var visit = await _visitService.GetByIdWithForm("", id.Value, formKind);
 
             if (visit == null)
                 return NotFound();
 
-            var form = visit.Forms.Where(f => f.Kind.Contains("A1")).FirstOrDefault(); // TODO dynamic formId
+            var form = visit.Forms.Where(f => f.Kind.Contains(formKind)).FirstOrDefault();
 
             _formModel = form.ToVM(); // this will have the subclass
             Visit = visit.ToVM();

@@ -41,6 +41,14 @@
                 </div>
             </div>
 
+            @if (Model.Visit != null && Model.Visit.Kind == "IVP")
+            {
+                @Html.EditorFor(m => m.A1.EthnicGroup)
+                @Html.EditorFor(m => m.A1.RacialGroup)
+                @Html.EditorFor(m => m.A1.LangEdu)
+            }
+
+
             <div class="col-span-full">
                 <label asp-for="@Model.A1.MARISTAT">@Html.DisplayNameFor(m => m.A1.MARISTAT)</label>
                 <div class="mt-2">
@@ -54,6 +62,25 @@
                     <input asp-for="@Model.A1.LIVSITUA" />
                 </div>
             </div>
+
+            <div class="col-span-full">
+                <label asp-for="@Model.A1.LIVSITUA">@Html.DisplayNameFor(m => m.A1.LIVSITUA)</label>
+                <div class="mt-1">
+                    <input asp-for="@Model.A1.INDEPEND" />
+                </div>
+            </div>
+
+            <div class="col-span-full">
+                <label asp-for="@Model.A1.LIVSITUA">@Html.DisplayNameFor(m => m.A1.LIVSITUA)</label>
+                <div class="mt-1">
+                    <input asp-for="@Model.A1.RESIDENC" />
+                </div>
+            </div>
+
+            @if (Model.Visit != null && Model.Visit.Kind == "IVP")
+            {
+                @Html.EditorFor(m => m.A1.Zip)
+            }
         </div>
     </div>
 

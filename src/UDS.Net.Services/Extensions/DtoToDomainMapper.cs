@@ -50,6 +50,19 @@ namespace UDS.Net.Services.Extensions
                     return new Form(visit, dto.Id, "", dto.Kind, dto.Status, dto.Language, dto.IsIncluded, dto.ReasonCode, new UDS3_IVP_A1()); // TODO map to generic form
                 }
             }
+            else if (visit.Kind == "FVP")
+            {
+                if (dto is A1Dto)
+                {
+                    return new Form(visit, dto.Id, "A1", dto.Kind, dto.Status, dto.Language, dto.IsIncluded, dto.ReasonCode, new UDS3_IVP_A1(dto));
+                }
+            }
+            else if (visit.Kind == "TIP")
+            {
+            }
+            else if (visit.Kind == "TFP")
+            {
+            }
 
             throw new Exception("Form cannot be converted.");
         }

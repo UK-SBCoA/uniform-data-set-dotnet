@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace UDS.Net.Forms.TagHelpers
 {
+    /// <summary>
+    /// More info on tag helpers: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/authoring?view=aspnetcore-7.0
+    /// </summary>
+    [HtmlTargetElement("radio-button-group", Attributes = "id,for,items")]
     public class RadioButtonGroupTagHelper : TagHelper
     {
-
-        public IEnumerable<SelectListItem> Items { get; set; }
+        public IEnumerable<RadioListItem> Items { get; set; }
 
         public ModelExpression For { get; set; }
 
@@ -22,13 +25,16 @@ namespace UDS.Net.Forms.TagHelpers
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var items = Items ?? Enumerable.Empty<SelectListItem>();
+            var items = Items ?? Enumerable.Empty<RadioListItem>();
 
             if (String.IsNullOrWhiteSpace(Id))
             {
                 Random random = new Random();
                 Id = $"RadioButtonGroup{random.Next(1, 100)}";
             }
+
+            output.TagName = "fieldset"; // overwrites custom tag
+            output.Attributes.SetAttribute("class", "mt-4 space-y-4");
 
             if (For == null)
             {
@@ -46,9 +52,9 @@ namespace UDS.Net.Forms.TagHelpers
             output.PostContent.AppendHtml(radiosWithName);
         }
 
-        private IHtmlContent GenerateRadioInputs(IEnumerable<SelectListItem> items, string name)
+        private IHtmlContent GenerateRadioInputs(IEnumerable<RadioListItem> items, string name)
         {
-            if (!(items is IList<SelectListItem> itemsList))
+            if (!(items is IList<RadioListItem> itemsList))
             {
                 itemsList = items.ToList();
             }
@@ -58,10 +64,6 @@ namespace UDS.Net.Forms.TagHelpers
                 return HtmlString.Empty;
 
             var radioButtonListBuilder = new HtmlContentBuilder(count);
-
-            var fieldset = new TagBuilder("fieldset");
-            fieldset.Attributes["class"] = "mt-4 space-y-4";
-            fieldset.InnerHtml.AppendLine();
 
             // add radio inputs inside of fieldset
             for (var i = 0; i < itemsList.Count; i++)
@@ -82,18 +84,20 @@ namespace UDS.Net.Forms.TagHelpers
 
                 outerDiv.InnerHtml.AppendLine(innerDiv);
 
-                fieldset.InnerHtml.AppendLine(outerDiv);
+                radioButtonListBuilder.AppendLine(outerDiv);
             }
-
-            radioButtonListBuilder.AppendLine(fieldset);
 
             return radioButtonListBuilder;
         }
 
-        private TagBuilder GenerateRadioInput(SelectListItem item, int index, string name)
+        private TagBuilder GenerateRadioInput(RadioListItem item, int index, string name)
         {
             var selected = false;
-            var modelValue = For.Model.ToString();
+            var modelValue = "";
+
+            if (For != null && For.Model != null)
+                modelValue = For.Model.ToString();
+
             if (item.Value == modelValue)
                 selected = true;
 
@@ -119,7 +123,7 @@ namespace UDS.Net.Forms.TagHelpers
             return tagBuilder;
         }
 
-        private TagBuilder GenerateLabel(SelectListItem item, int index)
+        private TagBuilder GenerateLabel(RadioListItem item, int index)
         {
             var tagBuilder = new TagBuilder("label");
             tagBuilder.Attributes["for"] = $"{Id}[{index}]";

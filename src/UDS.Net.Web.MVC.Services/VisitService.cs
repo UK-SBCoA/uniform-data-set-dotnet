@@ -53,6 +53,11 @@ namespace UDS.Net.Web.MVC.Services
             if (visitDto != null)
             {
                 var visit = visitDto.ToDomain();
+                // if the visit doesn't have the form, but should have then initialize
+                if (!visit.Forms.Where(f => f.Kind == formId).Any())
+                {
+                    visit.Forms.Add(new Form(visit, formId));
+                }
 
                 return visit;
             }

@@ -19,19 +19,36 @@
             </div>
         </fieldset>*@
 
-    <radio-button-group id="ParticipationReasonsTest" for="REASON" items="Model.ParticipationReasonsListItems"></radio-button-group>
+    <radio-button-group id="ParticipationReasons" for="REASON" items="Model.ParticipationReasonsListItems"></radio-button-group>
 </div>
 
 <div class="col-span-6 sm:col-span-4">
-    <label asp-for="REFERSC" class="block text-sm font-medium text-gray-700"></label>
-    <div class="mt-1">
-        <input asp-for="REFERSC" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
-    </div>
+    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.REFERSC)</label>
+    <p class="text-sm text-gray-500">REFERSC</p>
+    <p class="text-sm text-gray-500">(If answer is 1 or 2, CONTINUE TO QUESTION 2b; otherwise, SKIP TO QUESTION 3.)</p>
+    <radio-button-group id="ReferralSources" for="REFERSC" items="Model.ReferralSourcesListItems"></radio-button-group>
 </div>
 
 <div class="col-span-6 sm:col-span-4">
-    <label asp-for="@Model.HISPORX">@Html.DisplayNameFor(m => m.HISPORX)</label>
-    <div class="mt-1 sm:col-span-2 sm:mt-0">
-        <input asp-for="@Model.HISPORX" />
-    </div>
+    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.LEARNED)</label>
+    <p class="text-sm text-gray-500">LEARNED</p>
+    <radio-button-group id="SecondaryReferralSources" for="LEARNED" items="Model.SecondaryReferralSourcesListItems"></radio-button-group>
+</div>
+
+<div class="col-span-6 sm:col-span-4">
+    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.PRESTAT)</label>
+    <p class="text-sm text-gray-500">PRESTAT</p>
+    <radio-button-group id="DiseaseStatuses" for="PRESTAT" items="Model.DiseaseStatusesListItems"></radio-button-group>
+</div>
+
+<div class="col-span-6 sm:col-span-4">
+    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.PRESPART)</label>
+    <p class="text-sm text-gray-500">PRESPART</p>
+    <radio-button-group id="PresumedParticipation" for="PRESPART" items="Model.ParticipationsListItems"></radio-button-group>
+</div>
+
+<div class="col-span-6 sm:col-span-4">
+    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.SOURCENW)</label>
+    <p class="text-sm text-gray-500">SOURCENW</p>
+    <radio-button-group id="EnrollmentTypes" for="SOURCENW" items="Model.EnrollmentTypesListItems"></radio-button-group>
 </div>

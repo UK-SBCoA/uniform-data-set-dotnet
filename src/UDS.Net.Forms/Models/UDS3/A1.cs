@@ -7,6 +7,11 @@ namespace UDS.Net.Forms.Models.UDS3
     public class A1 : FormModel
     {
         public A1_IVP IVP { get; set; } = default!;
+        public A1_EthnicGroup EthnicGroup { get; set; } = default!;
+        public A1_RacialGroup RacialGroup { get; set; } = default!;
+        public A1_LangEdu LangEdu { get; set; } = default!;
+        public A1_Zip Zip { get; set; } = default!;
+
         public A1_FVP FVP { get; set; } = default!;
         public A1_TIP TIP { get; set; } = default!;
         public A1_TFP TFP { get; set; } = default!;

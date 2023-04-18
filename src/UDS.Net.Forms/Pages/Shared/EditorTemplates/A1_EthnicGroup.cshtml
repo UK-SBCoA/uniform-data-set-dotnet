@@ -1,0 +1,15 @@
+﻿@model A1_EthnicGroup
+
+<div class="col-span-6 sm:col-span-4">
+    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.HISPANIC)</label>
+    <p class="text-sm text-gray-500">HISPANIC</p>
+    <p class="text-sm text-gray-500">(If answer is 1 or 2, CONTINUE TO QUESTION 2b; otherwise, SKIP TO QUESTION 3.)</p>
+    <radio-button-group id="ReferralSources" for="HISPANIC" items="Model.HispanicLatinoListItems"></radio-button-group>
+</div>
+
+<div class="col-span-6 sm:col-span-4">
+    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.HISPOR)</label>
+    <p class="text-sm text-gray-500">HISPOR</p>
+    <p class="text-sm text-gray-500">(If answer is 1 or 2, CONTINUE TO QUESTION 2b; otherwise, SKIP TO QUESTION 3.)</p>
+    <radio-button-group id="ReferralSources" for="HISPOR" items="Model.OriginsListItems"></radio-button-group>
+</div>

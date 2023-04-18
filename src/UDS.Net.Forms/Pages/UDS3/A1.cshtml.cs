@@ -29,19 +29,20 @@ namespace UDS.Net.Forms.Pages.UDS3
             {
                 if (_formModel != null)
                 {
-                    if (Visit.Kind == "IVP")
-                    {
-                        A1 = (A1)_formModel;
-                    }
-                    else if (Visit.Kind == "FVP")
-                    {
-                    }
-                    else if (Visit.Kind == "TIP")
-                    {
-                    }
-                    else if (Visit.Kind == "TFP")
-                    {
-                    }
+                    A1 = (A1)_formModel;
+                    //if (Visit.Kind == "IVP")
+                    //{
+                    //}
+                    //else if (Visit.Kind == "FVP")
+                    //{
+
+                    //}
+                    //else if (Visit.Kind == "TIP")
+                    //{
+                    //}
+                    //else if (Visit.Kind == "TFP")
+                    //{
+                    //}
                 }
                 else
                 {

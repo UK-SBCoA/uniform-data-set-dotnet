@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using UDS.Net.Forms.TagHelpers;
 
 namespace UDS.Net.Forms.Models.UDS3
 {
@@ -10,28 +11,53 @@ namespace UDS.Net.Forms.Models.UDS3
     /// </summary>
     public class A1_IVP : FormModel
     {
-        public Dictionary<int, string> ParticipationReasons { get; } = new Dictionary<int, string>
+        public List<RadioListItem> ParticipationReasonsListItems { get; } = new List<RadioListItem>
         {
-            { 1, "To participate in a research study" },
-            { 2, "To have clinical evaluation" },
-            { 4, "Both (to participate in a reasearch study and to have a clinical evaluation)" },
-            { 9, "Unknown" }
+            new RadioListItem("To participate in a research study", "1"),
+            new RadioListItem("To have clinical evaluation", "2"),
+            new RadioListItem("Both (to participate in a research study and to have clinical evaluation", "4"),
+            new RadioListItem("Unknown", "9")
         };
 
-        public Dictionary<int, string> ReferralSource { get; } = new Dictionary<int, string>
+        public List<RadioListItem> ReferralSourcesListItems { get; } = new List<RadioListItem>
         {
-            // REFERSC
-            { 1, "Self-referral" },
-            { 2, "Non-professional contact (spouse/partner, relative, friend, coworker, etc.)" },
-            { 3, "ADC participant referral" }
+            new RadioListItem("Self-referral", "1", "LEARNED"),
+            new RadioListItem("Non-professional contact (spouse/partner, relative, friend, coworker, etc.)", "2", "LEARNED"),
+            new RadioListItem("ADC participant referral", "3"),
+            new RadioListItem("ADC clinician, staff, or investigator referral", "4"),
+            new RadioListItem("Nurse, doctor, or other health care provider", "5"),
+            new RadioListItem("Other research study clinician/staff/investigator (non-ADC; e.g., ADNI, Women's Health Initiative)", "6"),
+            new RadioListItem("Other", "8"),
+            new RadioListItem("Unknown", "9")
         };
 
-        public List<SelectListItem> ParticipationReasonsListItems { get; } = new List<SelectListItem>
+        public List<RadioListItem> SecondaryReferralSourcesListItems { get; } = new List<RadioListItem>
         {
-            new SelectListItem("To participate in a research study", "1"),
-            new SelectListItem("To have clinical evaluation", "2"),
-            new SelectListItem("Both (to participate in a research study and to have clinical evaluation", "4"),
-            new SelectListItem("Unknown", "9")
+            new RadioListItem("ADC advertisement (e.g., website, mailing, newspaper ad, community presentation)", "1"),
+            new RadioListItem("News article or TV program mentioning the ADC study", "2"),
+            new RadioListItem("Conference or community event (e.g., community memory walk)", "3"),
+            new RadioListItem("Another organization's media appeal or website", "4"),
+            new RadioListItem("Other", "8"),
+            new RadioListItem("Unknown", "9")
+        };
+
+        public List<RadioListItem> DiseaseStatusesListItems { get; } = new List<RadioListItem>
+        {
+            new RadioListItem("Case, patient, or proband", "1"),
+            new RadioListItem("Control or normal", "2"),
+            new RadioListItem("No presumed disease status", "3")
+        };
+
+        public List<RadioListItem> ParticipationsListItems { get; } = new List<RadioListItem>
+        {
+            new RadioListItem("Initial evaluation only", "1"),
+            new RadioListItem("Longitudinal follow-up planned", "2")
+        };
+
+        public List<RadioListItem> EnrollmentTypesListItems { get; } = new List<RadioListItem>
+        {
+            new RadioListItem("Primarily ADC-funded (Clinical Core, Satellite Core, or other ADC Core or project)", "1"),
+            new RadioListItem("Participant is supported primarily by a non-ADC study (e.g., R01, including non-ADC grants supporting FTLD Module participation)", "2")
         };
 
         [Display(Name = "Primary reason for coming to ADC")]
@@ -54,70 +80,10 @@ namespace UDS.Net.Forms.Models.UDS3
         [Range(1, 2)]
         public int? PRESPART { get; set; }
 
-        [Display(Name = "ADC enrollment type:")]
+        [Display(Name = "ADC enrollment type")]
         [Range(1, 2)]
         public int? SOURCENW { get; set; }
 
-        [Display(Name = "Does the participant report being of Hispanic/Latino ethnicity (i.e., having origins from a mainly Spanish-speaking Latin American country), regardless of race?")]
-        [Range(0, 9)]
-        public int? HISPANIC { get; set; }
-
-        [Display(Name = "If yes, what are the participant's reported origins?")]
-        [Range(1, 99)]
-        public int? HISPOR { get; set; }
-
-        [Display(Name = "Other (specify)")]
-        [Column("HISPORX")]
-        [StringLength(60)]
-        public string HISPORX { get; set; } = string.Empty;
-
-        [Display(Name = "What does the participant report as his or her race?")]
-        [Range(1, 99)]
-        public int? RACE { get; set; }
-
-        [Display(Name = "Other (specify)")]
-        [StringLength(60)]
-        public string RACEX { get; set; } = string.Empty;
-
-        [Display(Name = "What additional race does participant report?")]
-        [Range(1, 99)]
-        public int? RACESEC { get; set; }
-
-        [Display(Name = "Other (specify)")]
-        [StringLength(60)]
-        public string RACESECX { get; set; } = string.Empty;
-
-        [Display(Name = "What additional race, beyond those reported in Questions 9 and 10, does participant report?")]
-        [Range(1, 99)]
-        public int? RACETER { get; set; }
-
-        [Display(Name = "Other (specify)")]
-        [StringLength(60)]
-        public string? RACETERX { get; set; }
-
-        [Display(Name = "Participant’s primary language")]
-        [Range(1, 9)]
-        public int? PRIMLANG { get; set; }
-
-        [Display(Name = "Other (specify)")]
-        [StringLength(60)]
-        public string PRIMLANX { get; set; } = string.Empty;
-
-        [Display(Name = "Participant’s years of education, use the codes below to report the level achieved; if an attempted level is not completed, enter the number of years completed")]
-        [Range(0, 99)]
-        public int? EDUC { get; set; }
-
-        [Display(Name = "ZIP Code (first three digits) of participant’s primary residence")]
-        //[Range(006, 999)]
-        public string ZIP { get; set; } = string.Empty;
-
-        [Display(Name = "Is the participant left- or right-handed (for example, which hand would s/ he normally use to write or throw a ball)?")]
-        [Range(1, 9)]
-        public int? HANDED { get; set; }
-
-        public A1_IVP()
-        {
-        }
     }
 }
 
