@@ -42,6 +42,7 @@ namespace UDS.Net.API.Controllers
         {
             // TODO include form summaries
             var dto = await _context.Visits
+                .Include(v => v.FormStatuses).OrderBy(f => f.Kind)
                 .Where(v => v.Id == id)
                 .Select(v => v.ToDto())
                 .FirstOrDefaultAsync();

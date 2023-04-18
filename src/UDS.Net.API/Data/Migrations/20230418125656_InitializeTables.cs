@@ -1476,12 +1476,14 @@ namespace UDS.Net.API.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_A2s_VisitId",
                 table: "tbl_A2s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_A3s_VisitId",
                 table: "tbl_A3s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_A4Ds_VisitId",
@@ -1491,67 +1493,80 @@ namespace UDS.Net.API.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_A4Gs_VisitId",
                 table: "tbl_A4Gs",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_A5s_VisitId",
                 table: "tbl_A5s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_B1s_VisitId",
                 table: "tbl_B1s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_B4s_VisitId",
                 table: "tbl_B4s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_B5s_VisitId",
                 table: "tbl_B5s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_B6s_VisitId",
                 table: "tbl_B6s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_B7s_VisitId",
                 table: "tbl_B7s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_B8s_VisitId",
                 table: "tbl_B8s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_B9s_VisitId",
                 table: "tbl_B9s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_C1s_VisitId",
                 table: "tbl_C1s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_C2s_VisitId",
                 table: "tbl_C2s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_D1s_VisitId",
                 table: "tbl_D1s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_D2s_VisitId",
                 table: "tbl_D2s",
-                column: "VisitId");
+                column: "VisitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_M1s_ParticipationId",

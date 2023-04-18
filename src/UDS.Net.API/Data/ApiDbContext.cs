@@ -34,7 +34,7 @@ namespace UDS.Net.API.Data
 
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
         {
-   
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -50,7 +50,8 @@ namespace UDS.Net.API.Data
 
             /* SQL Views */
 
-            modelBuilder.Entity<FormStatus>().ToView("vm_FormStatuses");
+            modelBuilder.Entity<FormStatus>().ToView("vw_FormStatuses")
+                .HasKey(f => new { f.VisitId, f.Kind });
 
 
         }

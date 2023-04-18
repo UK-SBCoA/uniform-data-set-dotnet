@@ -12,8 +12,8 @@ using UDS.Net.API.Data;
 namespace UDS.Net.API.Data.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20230331012550_InitializeTables")]
-    partial class InitializeTables
+    [Migration("20230418132404_AddSQLViewsForFormStatuses")]
+    partial class AddSQLViewsForFormStatuses
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -276,7 +276,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_A2s");
                 });
@@ -419,7 +420,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_A3s");
                 });
@@ -531,7 +533,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_A4Gs");
                 });
@@ -792,7 +795,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_A5s");
                 });
@@ -877,7 +881,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_B1s");
                 });
@@ -956,7 +961,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_B4s");
                 });
@@ -1087,7 +1093,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_B5s");
                 });
@@ -1190,7 +1197,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_B6s");
                 });
@@ -1272,7 +1280,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_B7s");
                 });
@@ -1453,7 +1462,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_B8s");
                 });
@@ -1683,7 +1693,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_B9s");
                 });
@@ -1878,7 +1889,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_C1s");
                 });
@@ -2142,7 +2154,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_C2s");
                 });
@@ -2592,7 +2605,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_D1s");
                 });
@@ -2747,7 +2761,8 @@ namespace UDS.Net.API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VisitId");
+                    b.HasIndex("VisitId")
+                        .IsUnique();
 
                     b.ToTable("tbl_D2s");
                 });
@@ -3113,8 +3128,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.A2", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("A2")
+                        .HasForeignKey("UDS.Net.API.Entities.A2", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -3124,8 +3139,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.A3", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("A3")
+                        .HasForeignKey("UDS.Net.API.Entities.A3", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4441,8 +4456,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.A4G", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("A4G")
+                        .HasForeignKey("UDS.Net.API.Entities.A4G", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4452,8 +4467,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.A5", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("A5")
+                        .HasForeignKey("UDS.Net.API.Entities.A5", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4463,8 +4478,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.B1", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("B1")
+                        .HasForeignKey("UDS.Net.API.Entities.B1", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4474,8 +4489,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.B4", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("B4")
+                        .HasForeignKey("UDS.Net.API.Entities.B4", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4485,8 +4500,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.B5", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("B5")
+                        .HasForeignKey("UDS.Net.API.Entities.B5", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4496,8 +4511,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.B6", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("B6")
+                        .HasForeignKey("UDS.Net.API.Entities.B6", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4507,8 +4522,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.B7", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("B7")
+                        .HasForeignKey("UDS.Net.API.Entities.B7", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4518,8 +4533,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.B8", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("B8")
+                        .HasForeignKey("UDS.Net.API.Entities.B8", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4529,8 +4544,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.B9", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("B9")
+                        .HasForeignKey("UDS.Net.API.Entities.B9", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4540,8 +4555,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.C1", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("C1")
+                        .HasForeignKey("UDS.Net.API.Entities.C1", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4551,8 +4566,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.C2", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("C2")
+                        .HasForeignKey("UDS.Net.API.Entities.C2", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4562,8 +4577,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.D1", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("D1")
+                        .HasForeignKey("UDS.Net.API.Entities.D1", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4573,8 +4588,8 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.D2", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Visit", "Visit")
-                        .WithMany()
-                        .HasForeignKey("VisitId")
+                        .WithOne("D2")
+                        .HasForeignKey("UDS.Net.API.Entities.D2", "VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -4595,7 +4610,7 @@ namespace UDS.Net.API.Data.Migrations
             modelBuilder.Entity("UDS.Net.API.Entities.M1", b =>
                 {
                     b.HasOne("UDS.Net.API.Entities.Participation", "Participation")
-                        .WithMany()
+                        .WithMany("M1s")
                         .HasForeignKey("ParticipationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -4627,6 +4642,8 @@ namespace UDS.Net.API.Data.Migrations
 
             modelBuilder.Entity("UDS.Net.API.Entities.Participation", b =>
                 {
+                    b.Navigation("M1s");
+
                     b.Navigation("Visits");
                 });
 
@@ -4635,7 +4652,52 @@ namespace UDS.Net.API.Data.Migrations
                     b.Navigation("A1")
                         .IsRequired();
 
+                    b.Navigation("A2")
+                        .IsRequired();
+
+                    b.Navigation("A3")
+                        .IsRequired();
+
                     b.Navigation("A4Ds");
+
+                    b.Navigation("A4G")
+                        .IsRequired();
+
+                    b.Navigation("A5")
+                        .IsRequired();
+
+                    b.Navigation("B1")
+                        .IsRequired();
+
+                    b.Navigation("B4")
+                        .IsRequired();
+
+                    b.Navigation("B5")
+                        .IsRequired();
+
+                    b.Navigation("B6")
+                        .IsRequired();
+
+                    b.Navigation("B7")
+                        .IsRequired();
+
+                    b.Navigation("B8")
+                        .IsRequired();
+
+                    b.Navigation("B9")
+                        .IsRequired();
+
+                    b.Navigation("C1")
+                        .IsRequired();
+
+                    b.Navigation("C2")
+                        .IsRequired();
+
+                    b.Navigation("D1")
+                        .IsRequired();
+
+                    b.Navigation("D2")
+                        .IsRequired();
 
                     b.Navigation("FormStatuses");
 

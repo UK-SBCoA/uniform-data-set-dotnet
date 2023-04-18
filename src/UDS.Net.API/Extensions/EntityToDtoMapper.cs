@@ -29,7 +29,32 @@ namespace UDS.Net.API.Extensions
 
         public static VisitDto ToDto(this Visit visit)
         {
-            return ConvertVisitToDto(visit);
+            var dto = ConvertVisitToDto(visit);
+
+            if (visit.FormStatuses != null)
+            {
+                // since we aren't returning any specific details of any form, return the summary and status of all
+                foreach (var formStatus in visit.FormStatuses)
+                {
+                    dto.Forms.Add(new FormDto
+                    {
+                        Id = formStatus.Id,
+                        VisitId = formStatus.VisitId,
+                        Status = formStatus.Status,
+                        Kind = formStatus.Kind,
+                        IsDeleted = formStatus.IsDeleted,
+                        DeletedBy = formStatus.DeletedBy,
+                        CreatedBy = formStatus.CreatedBy,
+                        CreatedAt = formStatus.CreatedAt,
+                        IsIncluded = formStatus.IsIncluded,
+                        Language = formStatus.Language.HasValue ? formStatus.Language.Value.ToString() : "",
+                        ModifiedBy = formStatus.ModifiedBy,
+                        ReasonCode = formStatus.ReasonCode.HasValue ? formStatus.ReasonCode.Value.ToString() : ""
+                    });
+                }
+            }
+
+            return dto;
         }
 
         public static VisitDto ToDto(this Visit visit, string formKind)
@@ -41,10 +66,10 @@ namespace UDS.Net.API.Extensions
             {
                 FormDto formDto = new FormDto();
 
-                if (formKind == "A1")
+                if (formKind == "A1" && visit.A1 != null)
                     formDto = visit.A1.ToFullDto();
 
-                if (formKind == "A2")
+                if (formKind == "A2" && visit.A2 != null)
                     formDto = visit.A2.ToFullDto();
 
                 dto.Forms.Add(formDto);
