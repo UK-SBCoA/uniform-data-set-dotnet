@@ -27,8 +27,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddUDSApiClient(configuration.GetValue<string>("DownstreamApis:UDSNetApi:BaseUrl"));
 
-builder.Services.AddSingleton<IParticipationService, ParticipationService>();
 builder.Services.AddSingleton<IVisitService, VisitService>();
+builder.Services.AddSingleton<IParticipationService, ParticipationService>();
 
 ////*************************************************************************************************
 

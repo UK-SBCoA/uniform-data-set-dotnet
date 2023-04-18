@@ -13,10 +13,16 @@ namespace UDS.Net.API.Client
                 baseAddress += "/"; // you MUST place a slash at the end of the baseaddress
 
             // Register all clients
+            // TODO can be configured for retry and transient-fault-handling
             services.AddHttpClient<IVisitClient, VisitClient>(options =>
             {
-                options.BaseAddress = new Uri(baseAddress); 
-            }); // can be configured for retry and transient-fault-handling
+                options.BaseAddress = new Uri(baseAddress);
+            });
+
+            services.AddHttpClient<IParticipationClient, ParticipationClient>(options =>
+            {
+                options.BaseAddress = new Uri(baseAddress);
+            });
 
             // API client registered last
             services.AddSingleton<IApiClient, ApiClient>();
@@ -30,13 +36,15 @@ namespace UDS.Net.API.Client
     public class ApiClient : IApiClient
     {
         public IVisitClient VisitClient { get; }
+        public IParticipationClient ParticipationClient { get; }
 
-        public ApiClient(IVisitClient visitClient)
+        public ApiClient(IVisitClient visitClient, IParticipationClient participationClient)
         {
             VisitClient = visitClient;
+            ParticipationClient = participationClient;
         }
 
-        
+
     }
 }
 

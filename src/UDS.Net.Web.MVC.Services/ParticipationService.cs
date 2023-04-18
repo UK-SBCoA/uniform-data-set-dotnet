@@ -6,6 +6,7 @@ using UDS.Net.Services.Extensions;
 using UDS.Net.Services.DomainModels;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UDS.Net.Web.MVC.Services
 {
@@ -20,6 +21,7 @@ namespace UDS.Net.Web.MVC.Services
 
         public async Task<Participation> Add(string username, Participation entity)
         {
+            // TODO Add participation
             return new Participation
             {
                 Id = 1,
@@ -33,37 +35,35 @@ namespace UDS.Net.Web.MVC.Services
 
         public async Task<int> Count(string username)
         {
-            return 6;
+            return await _apiClient.ParticipationClient.Count();
         }
 
         public async Task<Participation> GetById(string username, int id)
         {
-            return new Participation
+            var participationDto = await _apiClient.ParticipationClient.Get(id);
+
+            if (participationDto != null)
             {
-                Id = 1,
-                LegacyId = "1",
-                Visits = new List<Visit>
-                {
-                    new Visit("UDS3", "IVP") { Id = 1, Number = 1 }
-                }
-            };
+                return participationDto.ToDomain();
+            }
+            throw new Exception("Participation not found.");
         }
 
         public async Task<IEnumerable<Participation>> List(string username, int pageSize = 10, int pageIndex = 1)
         {
-            return new List<Participation>()
+            var participationDtos = await _apiClient.ParticipationClient.Get();
+
+            if (participationDtos != null)
             {
-                new Participation{ Id = 1, LegacyId = "1", Visits = new List<Visit> { new Visit("UDS3", "IVP") { Id = 1, Number = 1} }},
-                new Participation{ Id = 2, LegacyId = "2", Visits = new List<Visit> { new Visit("UDS3", "IVP") { Id = 2, Number = 1 } }},
-                new Participation{ Id = 3, LegacyId = "3", Visits = new List<Visit> { new Visit("UDS3", "IVP") { Id = 3, Number = 1 } }},
-                new Participation{ Id = 4, LegacyId = "4", Visits = new List<Visit> { new Visit("UDS3", "IVP") { Id = 4, Number = 1 } }},
-                new Participation{ Id = 5, LegacyId = "5", Visits = new List<Visit> { new Visit("UDS3", "IVP") { Id = 5, Number = 1 } }},
-                new Participation{ Id = 6, LegacyId = "6", Visits = new List<Visit> { new Visit("UDS3", "IVP") { Id = 6, Number = 1 } }},
-            };
+                return participationDtos.Select(p => p.ToDomain()).ToList();
+            }
+
+            return new List<Participation>();
         }
 
         public async Task<Participation> Patch(string username, Participation entity)
         {
+            // TODO update participation
             return new Participation
             {
                 Id = 1,
@@ -81,6 +81,7 @@ namespace UDS.Net.Web.MVC.Services
 
         public async Task<Participation> Update(string username, Participation entity)
         {
+            // TODO update participation
             return new Participation
             {
                 Id = 1,

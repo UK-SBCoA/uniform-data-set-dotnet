@@ -34,7 +34,7 @@ namespace UDS.Net.API.Extensions
             if (visit.FormStatuses != null)
             {
                 // since we aren't returning any specific details of any form, return the summary and status of all
-                foreach (var formStatus in visit.FormStatuses)
+                foreach (var formStatus in visit.FormStatuses.OrderBy(f => f.Kind).ToList()) // TODO Instead of ordering alphabetically by kind, include a DisplayWeight property and make it configurable (maybe even grouping)
                 {
                     dto.Forms.Add(new FormDto
                     {
@@ -64,15 +64,51 @@ namespace UDS.Net.API.Extensions
             // Attach form based on kind
             if (!String.IsNullOrWhiteSpace(formKind))
             {
-                FormDto formDto = new FormDto();
+                foreach (var form in visit.FormStatuses)
+                {
+                    FormDto formDto = new FormDto();
 
-                if (formKind == "A1" && visit.A1 != null)
-                    formDto = visit.A1.ToFullDto();
+                    if (form.Kind == formKind)
+                    {
+                        if (formKind == "A1" && visit.A1 != null)
+                            formDto = visit.A1.ToFullDto();
 
-                if (formKind == "A2" && visit.A2 != null)
-                    formDto = visit.A2.ToFullDto();
+                        if (formKind == "A2" && visit.A2 != null)
+                            formDto = visit.A2.ToFullDto();
 
-                dto.Forms.Add(formDto);
+                        if (formKind == "A3" && visit.A3 != null)
+                            formDto = visit.A3.ToFullDto();
+
+                        if (formKind == "A4" && visit.A4G != null)
+                            formDto = visit.A4G.ToFullDto();
+
+                        if (formKind == "A5" && visit.A5 != null)
+                            formDto = visit.A5.ToFullDto();
+                    }
+                    else
+                    {
+                        formDto = new FormDto
+                        {
+                            Id = form.Id,
+                            VisitId = form.VisitId,
+                            Kind = form.Kind,
+                            Status = form.Status,
+                            CreatedAt = form.CreatedAt,
+                            CreatedBy = form.CreatedBy,
+                            ModifiedBy = form.ModifiedBy,
+                            DeletedBy = form.DeletedBy,
+                            IsDeleted = form.IsDeleted,
+                            IsIncluded = form.IsIncluded,
+                            Language = form.Language.HasValue ? form.Language.Value.ToString() : "",
+                            ReasonCode = form.ReasonCode.HasValue ? form.ReasonCode.Value.ToString() : ""
+                        };
+                    }
+                    dto.Forms.Add(formDto);
+                }
+
+
+
+
             }
 
             return dto;
@@ -148,9 +184,49 @@ namespace UDS.Net.API.Extensions
             };
         }
 
+        public static A3Dto ToFullDto(this A3 a3)
+        {
+            // TODO A3 mapping
+            return new A3Dto
+            {
+            };
+        }
+
+        public static A3FamilyMemberDto ToFullDto(this A3FamilyMember a3FamilyMember)
+        {
+            // TODO A3 mapping
+            return new A3FamilyMemberDto
+            {
+            };
+        }
+
+        public static A4GDto ToFullDto(this A4G a4G)
+        {
+            // TODO A4 mapping
+            return new A4GDto
+            {
+            };
+        }
+
+        public static A4DDto ToFullDto(this A4D a4D)
+        {
+            // TODO a4 mapping
+            return new A4DDto
+            {
+            };
+        }
+
+        public static A5Dto ToFullDto(this A5 a5)
+        {
+            // TODO a5 mapping
+            return new A5Dto
+            {
+            };
+        }
+
         public static ParticipationDto ToDto(this Participation participation)
         {
-            return new ParticipationDto()
+            var dto = new ParticipationDto()
             {
                 Id = participation.Id,
                 LegacyId = participation.LegacyId,
@@ -158,8 +234,11 @@ namespace UDS.Net.API.Extensions
                 CreatedBy = participation.CreatedBy,
                 ModifiedBy = participation.ModifiedBy,
                 DeletedBy = participation.DeletedBy,
-                IsDeleted = participation.IsDeleted
+                IsDeleted = participation.IsDeleted,
+                Visits = participation.Visits.Select(v => v.ToDto()).ToList()
             };
+
+            return dto;
         }
     }
 }

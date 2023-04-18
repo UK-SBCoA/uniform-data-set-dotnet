@@ -9,6 +9,27 @@ namespace UDS.Net.Services.Extensions
 {
     public static class DtoToDomainMapper
     {
+        public static Participation ToDomain(this ParticipationDto dto)
+        {
+            var participation = new Participation()
+            {
+                Id = dto.Id,
+                LegacyId = dto.LegacyId,
+                CreatedAt = dto.CreatedAt,
+                CreatedBy = dto.CreatedBy,
+                ModifiedBy = dto.ModifiedBy,
+                DeletedBy = dto.DeletedBy,
+                IsDeleted = dto.IsDeleted
+            };
+
+            if (dto.Visits != null)
+            {
+                participation.Visits = dto.Visits.Select(v => v.ToDomain()).ToList();
+            }
+
+            return participation;
+        }
+
         public static Visit ToDomain(this VisitDto dto)
         {
             var visit = new Visit(dto.Version, dto.Kind)
@@ -17,7 +38,12 @@ namespace UDS.Net.Services.Extensions
                 Number = dto.Number,
                 ParticipationId = dto.ParticipationId,
                 Version = dto.Version,
-                StartDateTime = dto.StartDateTime
+                StartDateTime = dto.StartDateTime,
+                CreatedAt = dto.CreatedAt,
+                CreatedBy = dto.CreatedBy,
+                ModifiedBy = dto.ModifiedBy,
+                DeletedBy = dto.DeletedBy,
+                IsDeleted = dto.IsDeleted
             };
 
             if (dto.Forms != null)

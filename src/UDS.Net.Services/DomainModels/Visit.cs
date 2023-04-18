@@ -21,6 +21,16 @@ namespace UDS.Net.Services.DomainModels
 
         public DateTime StartDateTime { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public string ModifiedBy { get; set; }
+
+        public string DeletedBy { get; set; }
+
+        public bool IsDeleted { get; set; }
+
         public Participation Participation { get; set; } = new Participation();
 
         public IList<Form> Forms { get; set; } = new List<Form>();

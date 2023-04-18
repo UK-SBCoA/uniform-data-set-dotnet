@@ -40,9 +40,8 @@ namespace UDS.Net.API.Controllers
         [HttpGet("{id}")]
         public async Task<VisitDto> Get(int id)
         {
-            // TODO include form summaries
             var dto = await _context.Visits
-                .Include(v => v.FormStatuses).OrderBy(f => f.Kind)
+                .Include(v => v.FormStatuses)
                 .Where(v => v.Id == id)
                 .Select(v => v.ToDto())
                 .FirstOrDefaultAsync();
@@ -56,13 +55,14 @@ namespace UDS.Net.API.Controllers
             if (!String.IsNullOrWhiteSpace(formKind))
             {
                 var visit = await _context.Visits
+                    .Include(v => v.FormStatuses)
                     .Where(v => v.Id == id)
                     .FirstOrDefaultAsync();
 
                 if (visit == null)
                     throw new Exception("Must include a form id.");
 
-
+                // get details for form requested
                 if (formKind == "A1")
                 {
                     var a1 = await _context.A1s
@@ -80,6 +80,18 @@ namespace UDS.Net.API.Controllers
 
                     if (a2 != null)
                         visit.A2 = a2;
+                }
+                else if (formKind == "A3")
+                {
+                    var a3 = await _context.A3s
+                        .Where(a => a.VisitId == id)
+                        .FirstOrDefaultAsync();
+
+                    if (a3 != null)
+                        visit.A3 = a3;
+                }
+                else if (formKind == "A4")
+                {
                 }
 
                 return visit.ToDto(formKind);

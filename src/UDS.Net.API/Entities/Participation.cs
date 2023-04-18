@@ -20,7 +20,7 @@ namespace UDS.Net.API.Entities
         /// </summary>
         public string LegacyId { get; set; } = default!;
 
-        public virtual IEnumerable<Visit> Visits { get; set; } = default!;
+        public virtual IEnumerable<Visit> Visits { get; set; } = new List<Visit>();
 
         public virtual IEnumerable<M1> M1s { get; set; } = new List<M1>();
     }

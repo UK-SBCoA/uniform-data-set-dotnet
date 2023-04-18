@@ -37,7 +37,11 @@ namespace UDS.Net.API.Controllers
         [HttpGet("{id}")]
         public async Task<ParticipationDto> Get(int id)
         {
-            return await _context.Participations.Where(p => p.Id == id).Select(p => p.ToDto()).FirstOrDefaultAsync();
+            return await _context.Participations
+                .Include(p => p.Visits)
+                .Where(p => p.Id == id)
+                .Select(p => p.ToDto())
+                .FirstOrDefaultAsync();
         }
 
         [HttpPost]

@@ -27,6 +27,7 @@ namespace UDS.Net.Web.MVC.Services
 
         public async Task<Visit> Add(string username, Visit entity)
         {
+            // TODO Add visit
             return new Visit("UDS3", "IVP") { Id = 1, Number = 1 };
         }
 
@@ -79,6 +80,7 @@ namespace UDS.Net.Web.MVC.Services
 
         public async Task<Visit> Patch(string username, Visit entity)
         {
+            // TODO update visit
             return new Visit("UDS3", "IVP") { Id = 1, Number = 1 };
         }
 
@@ -88,6 +90,7 @@ namespace UDS.Net.Web.MVC.Services
 
         public async Task<Visit> Update(string username, Visit entity)
         {
+            // TODO update visit
             return new Visit("UDS3", "IVP") { Id = 1, Number = 1 };
         }
     }
