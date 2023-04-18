@@ -92,6 +92,19 @@ namespace UDS.Net.API.Controllers
                 }
                 else if (formKind == "A4")
                 {
+                    var a4 = await _context.A4Gs
+                        .Where(a => a.VisitId == id)
+                        .FirstOrDefaultAsync();
+
+                    if (a4 != null)
+                        visit.A4G = a4;
+
+                    var a4details = await _context.A4Ds
+                        .Where(a => a.VisitId == id)
+                        .ToListAsync();
+
+                    if (a4details != null)
+                        visit.A4Ds = a4details;
                 }
 
                 return visit.ToDto(formKind);
