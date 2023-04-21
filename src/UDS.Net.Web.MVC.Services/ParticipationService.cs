@@ -21,16 +21,8 @@ namespace UDS.Net.Web.MVC.Services
 
         public async Task<Participation> Add(string username, Participation entity)
         {
+            return entity;
             // TODO Add participation
-            return new Participation
-            {
-                Id = 1,
-                LegacyId = "1",
-                Visits = new List<Visit>
-                {
-                    new Visit("UDS3", "IVP") { Id = 1, Number = 1 }
-                }
-            };
         }
 
         public async Task<int> Count(string username)
@@ -64,15 +56,7 @@ namespace UDS.Net.Web.MVC.Services
         public async Task<Participation> Patch(string username, Participation entity)
         {
             // TODO update participation
-            return new Participation
-            {
-                Id = 1,
-                LegacyId = "1",
-                Visits = new List<Visit>
-                {
-                    new Visit("UDS3", "IVP") { Id = 1, Number = 1 }
-                }
-            };
+            return entity;
         }
 
         public async Task Remove(string username, Participation entity)
@@ -82,15 +66,7 @@ namespace UDS.Net.Web.MVC.Services
         public async Task<Participation> Update(string username, Participation entity)
         {
             // TODO update participation
-            return new Participation
-            {
-                Id = 1,
-                LegacyId = "1",
-                Visits = new List<Visit>
-                {
-                    new Visit("UDS3", "IVP") { Id = 1, Number = 1 }
-                }
-            };
+            return entity;
         }
     }
 }

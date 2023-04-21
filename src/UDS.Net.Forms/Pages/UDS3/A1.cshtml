@@ -2,8 +2,6 @@
 @model UDS.Net.Forms.Pages.UDS3.A1Model
 @{
     Layout = "_LayoutForm";
-    if (Model != null && Model.Visit != null && Model.A1 != null)
-        ViewData["Title"] = $"Participant {Model.Visit.ParticipationId} Visit {Model.Visit.Number} {Model.Visit.Kind} {Model.A1.Status}";
 }
 
 <form method="post" class="space-y-8 divide-y divide-gray-200">
@@ -25,6 +23,7 @@
                 <div class="mt-2">
                     <input asp-for="@Model.A1.BIRTHMO" />
                 </div>
+                <p class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A1.BIRTHMO"></p>
             </div>
             <div class="sm:col-span-1">
                 <label asp-for="@Model.A1.BIRTHYR">@Html.DisplayNameFor(m => m.A1.BIRTHYR)</label>

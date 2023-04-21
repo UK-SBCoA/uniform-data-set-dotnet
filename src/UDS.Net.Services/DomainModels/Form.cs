@@ -23,34 +23,36 @@ namespace UDS.Net.Services.DomainModels
 
         public string ReasonCode { get; set; }
 
-        public Visit Visit { get; set; }
-
         public IFormFields Fields { get; set; }
-
-        public Form(Visit visit, string kind)
+        // TODO field versions so comparison can be made between existing data version and version that should be used
+        public Form(int visitId, string kind)
         {
             // TODO This is used in VisitService to initialize a new form when one doesn't exist, but should
-            VisitId = visit.Id;
-            Visit = visit;
+            VisitId = visitId;
+
             Kind = kind;
+
             Status = "NotStarted";
         }
 
-        public Form(Visit visit, int id, string title, string kind, string status, string language, bool? isIncluded, string reasonCode, IFormFields fields)
+        public Form(int visitId, int id, string title, string kind, string status, string language, bool? isIncluded, string reasonCode, IFormFields fields)
         {
             Id = id;
             Title = title;
-            VisitId = visit.Id;
-            Visit = visit;
+            VisitId = visitId;
+
             Kind = kind;
             Status = status;
             Language = language;
             IsIncluded = isIncluded;
             ReasonCode = reasonCode;
 
-            Fields = fields;
-            Version = fields.GetVersion();
-            Description = fields.GetDescription();
+            if (fields != null)
+            {
+                Fields = fields;
+                Version = fields.GetVersion();
+                Description = fields.GetDescription();
+            }
         }
 
     }

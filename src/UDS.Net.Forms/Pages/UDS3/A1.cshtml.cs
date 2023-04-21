@@ -77,12 +77,15 @@ namespace UDS.Net.Forms.Pages.UDS3
             return Page();
         }
 
-        public async Task<IActionResult> OnPost(int id)
+        public new async Task<IActionResult> OnPost(int id)
         {
             // if model is attempting to be completed, validation against domain form rules and visit rules
             // if not validates, return with errors
 
-            var boundProperty = A1;
+            if (ModelState.IsValid)
+            {
+                await base.OnPost(id); // checks for domain-level business rules validation
+            }
 
             return Page();
         }

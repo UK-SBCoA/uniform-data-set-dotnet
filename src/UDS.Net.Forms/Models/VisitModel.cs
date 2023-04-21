@@ -15,6 +15,12 @@ namespace UDS.Net.Forms.Models
 
         public DateTime StartDateTime { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
+        public string ModifiedBy { get; set; }
+        public string DeletedBy { get; set; }
+        public bool IsDeleted { get; set; }
+
         public virtual ParticipationModel Participation { get; set; } = default!;
 
         public virtual IList<FormModel> Forms { get; set; } = new List<FormModel>();

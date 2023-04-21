@@ -58,11 +58,11 @@ namespace UDS.Net.Forms.Tests.Services
         {
             return new List<Visit>()
             {
-                new Visit("UDS3", "IVP") { Id = 1, Number = 1 },
-                new Visit("UDS3", "FVP") { Id = 2, Number = 2 },
-                new Visit("UDS3", "FVP") { Id = 3, Number = 3 },
-                new Visit("UDS3", "FVP") { Id = 4, Number = 4 },
-                new Visit("UDS3", "FVP") { Id = 5, Number = 5 }
+                new Visit(1, 1, 1,"UDS3", "IVP", DateTime.Now, DateTime.Now, "email@uky.edu", "", "", false, null),
+                new Visit(1, 1, 1,"UDS3", "IVP", DateTime.Now, DateTime.Now, "email@uky.edu", "", "", false, null),
+                new Visit(1, 1, 1,"UDS3", "IVP", DateTime.Now, DateTime.Now, "email@uky.edu", "", "", false, null),
+                new Visit(1, 1, 1,"UDS3", "IVP", DateTime.Now, DateTime.Now, "email@uky.edu", "", "", false, null),
+                new Visit(1, 1, 1,"UDS3", "IVP", DateTime.Now, DateTime.Now, "email@uky.edu", "", "", false, null)
             };
         }
 

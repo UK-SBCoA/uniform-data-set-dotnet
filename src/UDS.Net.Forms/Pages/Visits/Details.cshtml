@@ -1,6 +1,7 @@
 ﻿@page "{id:int?}"
 @model UDS.Net.Forms.Pages.Visits.DetailsModel
 @{
+
     ViewData["Title"] = @Model.Visit.Kind + " Visit";
 }
 
@@ -10,22 +11,12 @@
 
     <div class="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
         <div class="py-6 lg:col-span-3">
-            <nav class="space-y-1">
 
-
-                @foreach (var form in Model.Visit.Forms)
-                {
-                    <!--// class="bg-teal-50 border-teal-500 text-teal-700 hover:bg-teal-50 hover:text-teal-700 group border-l-4 px-3 py-2 flex items-center text-sm font-medium" //-->
-                    <a asp-page="/UDS3/A1" asp-route-id="@Model.Visit.Id" asp-route-visitKind="@Model.Visit.Kind" class="border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 group border-l-4 px-3 py-2 flex items-center text-sm font-medium">
-                        <span class="text-teal-500 group-hover:text-teal-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6">@form.Kind</span>
-                        <span class="truncate">@form.Description</span>
-                    </a>
-
-                }
+            <partial name="_NavSidebarForms" model="@Model.Visit" />
 
 
 
-            </nav>
+
         </div>
         <div class="py-6 lg:col-span-3">
 

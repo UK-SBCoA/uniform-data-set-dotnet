@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDS.Net.Web.MVC.Services", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDS.Net.Dto.Tests", "UDS.Net.Dto.Tests\UDS.Net.Dto.Tests.csproj", "{2FD411C3-6747-46DB-B87B-4951B71B23D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDS.Net.Services.Test", "UDS.Net.Services.Test\UDS.Net.Services.Test.csproj", "{395296FB-4036-4FC9-A8DC-A50F96D35623}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{2FD411C3-6747-46DB-B87B-4951B71B23D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FD411C3-6747-46DB-B87B-4951B71B23D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FD411C3-6747-46DB-B87B-4951B71B23D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{395296FB-4036-4FC9-A8DC-A50F96D35623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{395296FB-4036-4FC9-A8DC-A50F96D35623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{395296FB-4036-4FC9-A8DC-A50F96D35623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{395296FB-4036-4FC9-A8DC-A50F96D35623}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

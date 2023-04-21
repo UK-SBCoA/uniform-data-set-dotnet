@@ -32,65 +32,50 @@ namespace UDS.Net.Services.Extensions
 
         public static Visit ToDomain(this VisitDto dto)
         {
-            var visit = new Visit(dto.Version, dto.Kind)
-            {
-                Id = dto.Id,
-                Number = dto.Number,
-                ParticipationId = dto.ParticipationId,
-                Version = dto.Version,
-                StartDateTime = dto.StartDateTime,
-                CreatedAt = dto.CreatedAt,
-                CreatedBy = dto.CreatedBy,
-                ModifiedBy = dto.ModifiedBy,
-                DeletedBy = dto.DeletedBy,
-                IsDeleted = dto.IsDeleted
-            };
+            IList<Form> existingForms = new List<Form>();
 
             if (dto.Forms != null)
             {
-                visit.Forms = dto.Forms.ToDomain(visit);
+                existingForms = dto.Forms.ToDomain(dto.Id);
             }
 
-            return visit;
+            return new Visit(dto.Id, dto.Number, dto.ParticipationId, dto.Version, dto.Kind, dto.StartDateTime, dto.CreatedAt, dto.CreatedBy, dto.ModifiedBy, dto.DeletedBy, dto.IsDeleted, existingForms);
         }
 
-        public static IList<Form> ToDomain(this List<FormDto> dto, Visit visit)
+        public static IList<Form> ToDomain(this List<FormDto> dto, int visitId)
         {
-            return dto.Select(f => f.ToDomain(visit)).ToList();
+            if (dto != null)
+                return dto.Select(f => f.ToDomain(visitId)).ToList();
+
+            return new List<Form>();
         }
 
-        public static Form ToDomain(this FormDto dto, Visit visit)
+        public static Form ToDomain(this FormDto dto, int visitId)
         {
-            if (visit.Kind == "IVP")
+            IFormFields formFields = null; // if the form is NOT of a specific type then there are no fields to include
+
+            if (dto is A1Dto)
             {
-                if (dto is A1Dto)
-                {
-                    return new Form(visit, dto.Id, "A1", dto.Kind, dto.Status, dto.Language, dto.IsIncluded, dto.ReasonCode, new UDS3_IVP_A1(dto));
-                }
-                else if (dto is A2Dto)
-                {
-                    return new Form(visit, dto.Id, "A2", dto.Kind, dto.Status, dto.Language, dto.IsIncluded, dto.ReasonCode, new UDS3_IVP_A1()); // TODO map to A2
-                }
-                else if (dto is FormDto)
-                {
-                    return new Form(visit, dto.Id, "", dto.Kind, dto.Status, dto.Language, dto.IsIncluded, dto.ReasonCode, new UDS3_IVP_A1()); // TODO map to generic form
-                }
+                formFields = new A1FormFields(dto);
             }
-            else if (visit.Kind == "FVP")
+            else if (dto is A2Dto)
             {
-                if (dto is A1Dto)
-                {
-                    return new Form(visit, dto.Id, "A1", dto.Kind, dto.Status, dto.Language, dto.IsIncluded, dto.ReasonCode, new UDS3_IVP_A1(dto));
-                }
+                formFields = new A2FormFields(dto);
             }
-            else if (visit.Kind == "TIP")
+            else if (dto is A3Dto)
             {
+                formFields = new A3FormFields(dto);
             }
-            else if (visit.Kind == "TFP")
+            else if (dto is A4GDto)
             {
+                formFields = new A4GFormFields(dto);
+            }
+            else if (dto is A5Dto)
+            {
+                formFields = new A5FormFields(dto);
             }
 
-            throw new Exception("Form cannot be converted.");
+            return new Form(visitId, dto.Id, dto.Kind, dto.Kind, dto.Status, dto.Language, dto.IsIncluded, dto.ReasonCode, formFields);
         }
 
     }

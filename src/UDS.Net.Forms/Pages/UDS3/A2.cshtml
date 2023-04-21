@@ -1,7 +1,29 @@
-﻿@page
+﻿@page "{id:int?}"
 @model UDS.Net.Forms.Pages.UDS3.A2Model
 @{
     Layout = "_LayoutForm";
 }
 
-A2
+<form method="post" class="space-y-8 divide-y divide-gray-200">
+    <h2 class="text-lg font-medium leading-6 text-gray-900">@Model.A2.Title @Model.A2.Description</h2>
+    <p class="mt-1 text-sm text-gray-500">INSTRUCTIONS: This form is to be completed by intake interviewer based on ADC scheduling records, participant interview, medical records, and proxy co-participant report (as needed). For additional clarification and examples, see <guidebook kind="IVP">UDS Coding Guidebook for In-person initial Visit Packet</guidebook>, Form A1. Check only <span class="underline">one</span> box per question.</p>
+
+    <div class="grid gap-x-6 gap-y-8 sm:grid sm:grid-cols-3 sm:items-start sm:pt-5">
+
+        <div class="sm:col-span-1">
+            <label asp-for="@Model.A2.INBIRMO">@Html.DisplayNameFor(m => m.A2.INBIRMO)</label>
+            <div class="mt-2">
+                <input asp-for="@Model.A2.INBIRMO" />
+            </div>
+            <p class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A2.INBIRMO"></p>
+        </div>
+        <div class="sm:col-span-1">
+            <label asp-for="@Model.A2.INBIRYR">@Html.DisplayNameFor(m => m.A2.INBIRYR)</label>
+            <div class="mt-2">
+                <input asp-for="@Model.A2.INBIRMO" />
+            </div>
+            <p class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A2.INBIRYR"></p>
+        </div>
+
+    </div>
+</form>

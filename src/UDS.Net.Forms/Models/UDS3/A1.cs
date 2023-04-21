@@ -43,6 +43,7 @@ namespace UDS.Net.Forms.Models.UDS3
         [Display(Name = "What is the participant’s primary type of residence?")]
         [Range(0, 9)]
         public int? RESIDENC { get; set; }
+
     }
 }
 

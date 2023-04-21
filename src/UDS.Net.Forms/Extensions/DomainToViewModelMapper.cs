@@ -71,9 +71,9 @@ namespace UDS.Net.Forms.Extensions
                 IncludeInPacketSubmission = false
             };
 
-            if (form.Fields is UDS3_IVP_A1)
+            if (form.Fields is A1FormFields)
             {
-                var fields = (UDS3_IVP_A1)form.Fields;
+                var fields = (A1FormFields)form.Fields;
 
                 return new A1()
                 {
@@ -129,6 +129,13 @@ namespace UDS.Net.Forms.Extensions
                         HANDED = fields.HANDED
                     }
                 };
+            }
+            else if (form.Fields is A2FormFields)
+            {
+                var fields = (A1FormFields)form.Fields;
+
+                // TODO convert to A2
+                return new A2();
             }
 
             return formModel;

@@ -27,8 +27,10 @@ namespace UDS.Net.Web.MVC.Services
 
         public async Task<Visit> Add(string username, Visit entity)
         {
-            // TODO Add visit
-            return new Visit("UDS3", "IVP") { Id = 1, Number = 1 };
+            // TODO Add visit using client
+            //entity.ToDto();
+            //_apiClient.VisitClient.Post()
+            return entity;
         }
 
         public async Task<int> Count(string username)
@@ -53,14 +55,7 @@ namespace UDS.Net.Web.MVC.Services
 
             if (visitDto != null)
             {
-                var visit = visitDto.ToDomain();
-                // if the visit doesn't have the form, but should have then initialize
-                if (!visit.Forms.Where(f => f.Kind == formId).Any())
-                {
-                    visit.Forms.Add(new Form(visit, formId));
-                }
-
-                return visit;
+                return visitDto.ToDomain(); // converting to domain object implements business rules for shown forms
             }
 
             throw new Exception("Visit with form not found");
@@ -81,7 +76,7 @@ namespace UDS.Net.Web.MVC.Services
         public async Task<Visit> Patch(string username, Visit entity)
         {
             // TODO update visit
-            return new Visit("UDS3", "IVP") { Id = 1, Number = 1 };
+            return entity;
         }
 
         public async Task Remove(string username, Visit entity)
@@ -91,7 +86,7 @@ namespace UDS.Net.Web.MVC.Services
         public async Task<Visit> Update(string username, Visit entity)
         {
             // TODO update visit
-            return new Visit("UDS3", "IVP") { Id = 1, Number = 1 };
+            return entity;
         }
     }
 }

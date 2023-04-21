@@ -29,6 +29,16 @@ namespace UDS.Net.Forms.Models
 
         public string ReasonNotIncluded { get; set; } = "";
 
+
+        public bool IsValid()
+        {
+            return true;
+        }
+
+        public void Validate()
+        {
+        }
+
     }
 }
 

@@ -5,18 +5,17 @@ using UDS.Net.Dto;
 
 namespace UDS.Net.Services.DomainModels.Forms
 {
-    public class UDS3_IVP_A1 : IFormFields
+    public class A1FormFields : IFormFields
     {
-
         public int? REASON { get; set; }
         public int? REFERSC { get; set; }
         public int? LEARNED { get; set; }
         public int? PRESTAT { get; set; }
         public int? PRESPART { get; set; }
         public int? SOURCENW { get; set; }
-        public int? BIRTHMO { get; set; }
-        public int? BIRTHYR { get; set; }
-        public int? SEX { get; set; }
+        public int? BIRTHMO { get; set; } // FVP
+        public int? BIRTHYR { get; set; } // FVP
+        public int? SEX { get; set; } // FVP
         public int? HISPANIC { get; set; }
         public int? HISPOR { get; set; }
         public string HISPORX { get; set; }
@@ -29,27 +28,25 @@ namespace UDS.Net.Services.DomainModels.Forms
         public int? PRIMLANG { get; set; }
         public string PRIMLANX { get; set; }
         public int? EDUC { get; set; }
-        public int? MARISTAT { get; set; }
+        public int? MARISTAT { get; set; } // FVP
         public int? LIVSITUA { get; set; }
-        public int? INDEPEND { get; set; }
-        public int? RESIDENC { get; set; }
-        public string ZIP { get; set; }
+        public int? INDEPEND { get; set; } // FVP
+        public int? RESIDENC { get; set; } // FVP
+        public string ZIP { get; set; } // FVP
         public int? HANDED { get; set; }
 
         public string GetDescription()
         {
-            return "Participant Demographics";
+            return "Participant demographics";
         }
 
         public string GetVersion()
         {
             return "3.0";
         }
-        public UDS3_IVP_A1()
-        {
 
-        }
-        public UDS3_IVP_A1(FormDto dto) : this()
+        public A1FormFields() { }
+        public A1FormFields(FormDto dto) : this()
         {
             if (dto is A1Dto)
             {
