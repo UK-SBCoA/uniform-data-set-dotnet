@@ -32,6 +32,7 @@
     <Content Remove="wwwroot\lib\" />
     <Content Remove="wwwroot\lib\tailwindcss\" />
     <Content Remove="wwwroot\css\" />
+    <Content Remove="wwwroot\lib\jquery-validation-unobtrusive\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\js\" />
@@ -42,6 +43,7 @@
     <Folder Include="Pages\Shared\DisplayTemplates\" />
     <Folder Include="Pages\Shared\EditorTemplates\" />
     <Folder Include="TagHelpers\" />
+    <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Models\PageModels\" />

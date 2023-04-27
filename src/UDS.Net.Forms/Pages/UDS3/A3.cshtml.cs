@@ -12,15 +12,14 @@ using UDS.Net.Services;
 
 namespace UDS.Net.Forms.Pages.UDS3
 {
-    public class A2Model : FormPageModel
+    public class A3Model : FormPageModel
     {
         [BindProperty]
-        public A2 A2 { get; set; } = default!;
+        public A3 A3 { get; set; } = default!;
 
-        public A2Model(IVisitService visitService) : base(visitService, "A2")
+        public A3Model(IVisitService visitService) : base(visitService, "A3")
         {
         }
-
 
         public async Task<IActionResult> OnGet(int? id)
         {
@@ -28,23 +27,19 @@ namespace UDS.Net.Forms.Pages.UDS3
 
             if (_formModel != null)
             {
-                A2 = (A2)_formModel; // class library should always handle new instances
+                A3 = (A3)_formModel; // class library should always handle new instances
             }
 
             return Page();
         }
 
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> OnPost(int id)
         {
-            // if model is attempting to be completed, validation against domain form rules and visit rules
-            // if not validates, return with errors
-
             if (ModelState.IsValid)
             {
                 await base.OnPost(id); // checks for domain-level business rules validation
             }
-
-            ModelState.AddModelError("A2.INSEX", "error message test");
 
             var visit = await _visitService.GetByIdWithForm("", id, _formKind);
 
@@ -54,6 +49,11 @@ namespace UDS.Net.Forms.Pages.UDS3
             Visit = visit.ToVM();
 
             return Page();
+        }
+
+        public JsonResult ValidateYear(int year)
+        {
+            return new JsonResult(true);
         }
     }
 }

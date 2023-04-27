@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UDS.Net.Forms.Extensions;
+using UDS.Net.Forms.Models;
 using UDS.Net.Forms.Models.PageModels;
 using UDS.Net.Forms.Models.UDS3;
 using UDS.Net.Services;
@@ -17,7 +19,7 @@ namespace UDS.Net.Forms.Pages.UDS3
         [BindProperty]
         public A1 A1 { get; set; } = default!;
 
-        public A1Model(IVisitService visitService) : base(visitService)
+        public A1Model(IVisitService visitService) : base(visitService, "A1")
         {
         }
 
@@ -25,60 +27,19 @@ namespace UDS.Net.Forms.Pages.UDS3
         {
             await base.OnGet(id);
 
-            if (Visit != null)
+            if (_formModel != null)
             {
-                if (_formModel != null)
-                {
-                    A1 = (A1)_formModel;
-                    //if (Visit.Kind == "IVP")
-                    //{
-                    //}
-                    //else if (Visit.Kind == "FVP")
-                    //{
-
-                    //}
-                    //else if (Visit.Kind == "TIP")
-                    //{
-                    //}
-                    //else if (Visit.Kind == "TFP")
-                    //{
-                    //}
-                }
-                else
-                {
-                    A1 = new A1()
-                    {
-                        VisitId = Visit.Id,
-                        Title = "A1",
-                        Status = "NotStarted"
-                    };
-                }
+                A1 = (A1)_formModel; // class library should always handle new instances
             }
-
-            //if (id == null)
-            //    return NotFound();
-
-            //var visit = await _visitService.GetByIdWithForm("", id.Value, "A1"); // TODO dynamic formId
-
-            //if (visit == null)
-            //    return NotFound();
-
-            //Visit = visit.ToVM();
-
-
-            // Determine visit kind
-            // Determine if visit already has form type for visit kind
-
-            // If yes, edit (if visit not completed) or display (if visit completed)
-            // If no, create
-
-
 
             return Page();
         }
 
-        public new async Task<IActionResult> OnPost(int id)
+        public async Task<IActionResult> OnPost(int id)
         {
+            var page = RouteData.Values["page"];
+            string formKind = page.ToString().Substring(page.ToString().LastIndexOf('/') + 1);
+
             // if model is attempting to be completed, validation against domain form rules and visit rules
             // if not validates, return with errors
 
@@ -86,6 +47,13 @@ namespace UDS.Net.Forms.Pages.UDS3
             {
                 await base.OnPost(id); // checks for domain-level business rules validation
             }
+
+            var visit = await _visitService.GetByIdWithForm("", id, formKind);
+
+            if (visit == null)
+                return NotFound();
+
+            Visit = visit.ToVM();
 
             return Page();
         }

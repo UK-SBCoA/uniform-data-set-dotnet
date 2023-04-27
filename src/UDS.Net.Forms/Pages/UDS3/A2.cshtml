@@ -5,25 +5,59 @@
 }
 
 <form method="post" class="space-y-8 divide-y divide-gray-200">
-    <h2 class="text-lg font-medium leading-6 text-gray-900">@Model.A2.Title @Model.A2.Description</h2>
-    <p class="mt-1 text-sm text-gray-500">INSTRUCTIONS: This form is to be completed by intake interviewer based on ADC scheduling records, participant interview, medical records, and proxy co-participant report (as needed). For additional clarification and examples, see <guidebook kind="IVP">UDS Coding Guidebook for In-person initial Visit Packet</guidebook>, Form A1. Check only <span class="underline">one</span> box per question.</p>
+    <div>
+        <h2 class="text-lg font-medium leading-6 text-gray-900">A2: Co-participant Demographics</h2>
+        <p class="mt-1 text-sm text-gray-500">INSTRUCTIONS: This form is to be completed by intake interviewer based on co-participant's report. For additional clarification and examples, see <guidebook kind="IVP">UDS Coding Guidebook for In-person initial Visit Packet</guidebook>, Form A2. Check only <span class="underline">one</span> box per question.</p>
 
-    <div class="grid gap-x-6 gap-y-8 sm:grid sm:grid-cols-3 sm:items-start sm:pt-5">
+        <div class="grid gap-x-6 gap-y-8 sm:grid sm:grid-cols-3 sm:items-start sm:pt-5">
 
-        <div class="sm:col-span-1">
-            <label asp-for="@Model.A2.INBIRMO">@Html.DisplayNameFor(m => m.A2.INBIRMO)</label>
-            <div class="mt-2">
-                <input asp-for="@Model.A2.INBIRMO" />
+            <div class="sm:col-span-1">
+                <label asp-for="A2.INBIRMO">@Html.DisplayNameFor(m => m.A2.INBIRMO)</label>
+                <div class="mt-2">
+                    <input asp-for="A2.INBIRMO" />
+                </div>
+                <span class="mt-2 text-sm text-red-600" asp-validation-for="A2.INBIRMO"></span>
             </div>
-            <p class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A2.INBIRMO"></p>
-        </div>
-        <div class="sm:col-span-1">
-            <label asp-for="@Model.A2.INBIRYR">@Html.DisplayNameFor(m => m.A2.INBIRYR)</label>
-            <div class="mt-2">
-                <input asp-for="@Model.A2.INBIRMO" />
+            <div class="sm:col-span-1">
+                <label asp-for="A2.INBIRYR">@Html.DisplayNameFor(m => m.A2.INBIRYR)</label>
+                <div class="mt-2">
+                    <input asp-for="A2.INBIRYR" />
+                </div>
+                <span class="mt-2 text-sm text-red-600" asp-validation-for="A2.INBIRYR"></span>
             </div>
-            <p class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A2.INBIRYR"></p>
+            <div class="col-span-full">
+                <label asp-for="A2.INSEX">@Html.DisplayNameFor(m => m.A2.INSEX)</label>
+                <div class="mt-2">
+                    <input asp-for="A2.INSEX" />
+                </div>
+                <span class="mt-2 text-sm text-red-600" asp-validation-for="A2.INSEX"></span>
+            </div>
+            <div class="col-span-6 sm:col-span-4">
+                <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.A2.INHISP)</label>
+                <p class="text-sm text-gray-500">HISPANIC</p>
+                <p class="text-sm text-gray-500">(If answer is 1 or 2, CONTINUE TO QUESTION 2b; otherwise, SKIP TO QUESTION 3.)</p>
+                <radio-button-group id="HispanicLatino" for="@Model.A2.INHISP" items="Model.A2.HispanicLatinoListItems"></radio-button-group>
+                <span class="mt-2 text-sm text-red-600" asp-validation-for="A2.INHISP"></span>
+            </div>
+            <div class="col-span-6 sm:col-span-4">
+                <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.A2.INHISPOR)</label>
+                <p class="text-sm text-gray-500">HISPANIC</p>
+                <p class="text-sm text-gray-500">(If answer is 1 or 2, CONTINUE TO QUESTION 2b; otherwise, SKIP TO QUESTION 3.)</p>
+                <radio-button-group id="Origins" for="@Model.A2.INHISPOR" items="Model.A2.OriginsListItems"></radio-button-group>
+            </div>
+            <div class="sm:col-span-1">
+                <label asp-for="@Model.A2.INHISPOX">@Html.DisplayNameFor(m => m.A2.INHISPOX)</label>
+                <div class="mt-2">
+                    <input asp-for="@Model.A2.INHISPOX" />
+                </div>
+                <p class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A2.INHISPOX"></p>
+            </div>
         </div>
-
+    </div>
+    <div class="divide-y divide-gray-200 pt-6">
+        <div>
+            <p asp-validation-summary="ModelOnly" class="mt-1 text-sm text-red-700"></p>
+        </div>
+        <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
     </div>
 </form>

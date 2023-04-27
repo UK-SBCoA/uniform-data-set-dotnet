@@ -132,10 +132,14 @@ namespace UDS.Net.Forms.Extensions
             }
             else if (form.Fields is A2FormFields)
             {
-                var fields = (A1FormFields)form.Fields;
+                var fields = (A2FormFields)form.Fields;
 
                 // TODO convert to A2
-                return new A2();
+                return new A2()
+                {
+                    INBIRMO = fields.INBIRMO,
+                    INBIRYR = fields.INBIRYR
+                };
             }
 
             return formModel;

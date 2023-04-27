@@ -17,46 +17,44 @@ namespace UDS.Net.Forms.Models.PageModels
         [BindProperty]
         public VisitModel Visit { get; set; } = default!;
 
-        private const string KIND = "A1";
-        protected FormModel _formModel;
         protected readonly IVisitService _visitService;
+        protected string _formKind { get; set; }
+        protected FormModel _formModel;
 
-        public FormPageModel(IVisitService visitService) : base()
+        public FormPageModel(IVisitService visitService, string formKind) : base()
         {
             _visitService = visitService;
+            _formKind = formKind;
         }
 
         protected async Task<IActionResult> OnGet(int? id)
         {
-            if (id == null)
+            if (id == null || _formKind == null)
                 return NotFound();
+
+            var visit = await _visitService.GetByIdWithForm("", id.Value, _formKind);
+
+            if (visit == null)
+                return NotFound();
+
+            Visit = visit.ToVM();
 
             if (Visit != null)
                 ViewData["Title"] = $"Participant {Visit.ParticipationId} Visit {Visit.Number} {Visit.Kind}";
 
-            if (this is A1Model)
-            {
-                // Is there a way to get the form kind without hard-coding?
-                var nameOf = nameof(A1Model);
-                var another = this.GetType();
-            }
-            var visit = await _visitService.GetByIdWithForm("", id.Value, KIND);
-            if (visit == null)
-                return NotFound();
-
-            var form = visit.Forms.Where(f => f.Kind.Contains(KIND)).FirstOrDefault();
+            var form = visit.Forms.Where(f => f.Kind.Contains(_formKind)).FirstOrDefault();
 
             _formModel = form.ToVM(); // this will have the subclass
-            Visit = visit.ToVM();
 
             return Page();
         }
 
+        [ValidateAntiForgeryToken]
         protected async Task<IActionResult> OnPost(int id)
         {
             var visit = Visit.ToEntity();
 
-            visit.TryValidate(KIND);
+            visit.TryValidate(_formKind);
 
             if (visit.IsValid())
             {
