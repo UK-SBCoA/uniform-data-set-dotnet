@@ -1,21 +1,37 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Mvc;
 using UDS.Net.Forms.DataAnnotations;
 
 namespace UDS.Net.Forms.Models.UDS3
 {
     public class A1 : FormModel
     {
-        public A1_IVP IVP { get; set; } = default!;
-        public A1_EthnicGroup EthnicGroup { get; set; } = default!;
-        public A1_RacialGroup RacialGroup { get; set; } = default!;
-        public A1_LangEdu LangEdu { get; set; } = default!;
-        public A1_Zip Zip { get; set; } = default!;
+        [Display(Name = "Primary reason for coming to ADC")]
+        [Range(1, 9)]
+        public int? REASON { get; set; }
 
-        public A1_FVP FVP { get; set; } = default!;
-        public A1_TIP TIP { get; set; } = default!;
-        public A1_TFP TFP { get; set; } = default!;
+        [Display(Name = "Principal referral source", Description = "If answer is 1 or 2, CONTINUE TO QUESTION 2b; otherwise, SKIP TO QUESTION 3.")]
+        [Range(1, 9)]
+        public int? REFERSC { get; set; }
+
+        [Display(Name = "If the referral source was self-referral or a non-professional contact, how did the referral source learn of the ADC?")]
+        [Range(1, 9)]
+        public int? LEARNED { get; set; }
+
+        [Display(Name = "Presumed disease status at enrollment")]
+        [Range(1, 3)]
+        public int? PRESTAT { get; set; }
+
+        [Display(Name = "Presumed participation")]
+        [Range(1, 2)]
+        public int? PRESPART { get; set; }
+
+        [Display(Name = "ADC enrollment type")]
+        [Range(1, 2)]
+        public int? SOURCENW { get; set; }
 
         [Display(Name = "Participant’s month of birth")]
         [BirthMonth]
@@ -44,6 +60,67 @@ namespace UDS.Net.Forms.Models.UDS3
         [Display(Name = "What is the participant’s primary type of residence?")]
         [Range(0, 9)]
         public int? RESIDENC { get; set; }
+
+        /* Ehtnic group */
+        [Display(Name = "Does the participant report being of Hispanic/Latino ethnicity (i.e., having origins from a mainly Spanish-speaking Latin American country), regardless of race?")]
+        [Range(0, 9)]
+        public int? HISPANIC { get; set; }
+
+        [Display(Name = "If yes, what are the participant's reported origins?")]
+        [Range(1, 99)]
+        public int? HISPOR { get; set; }
+
+        [Display(Name = "Other (specify)", Prompt = "Other origin")]
+        [StringLength(60)]
+        public string HISPORX { get; set; } = string.Empty;
+
+        /* Racial group */
+        [Display(Name = "What does the participant report as his or her race?")]
+        [Range(1, 99)]
+        public int? RACE { get; set; }
+
+        [Display(Name = "Other (specify)")]
+        [StringLength(60)]
+        public string RACEX { get; set; } = string.Empty;
+
+        [Display(Name = "What additional race does participant report?")]
+        [Range(1, 99)]
+        public int? RACESEC { get; set; }
+
+        [Display(Name = "Other (specify)")]
+        [StringLength(60)]
+        public string RACESECX { get; set; } = string.Empty;
+
+        [Display(Name = "What additional race, beyond those reported in Questions 9 and 10, does participant report?")]
+        [Range(1, 99)]
+        public int? RACETER { get; set; }
+
+        [Display(Name = "Other (specify)")]
+        [StringLength(60)]
+        public string? RACETERX { get; set; }
+
+        /* Language and Education */
+
+        [Display(Name = "Participant’s primary language")]
+        [Range(1, 9)]
+        public int? PRIMLANG { get; set; }
+
+        [Display(Name = "Other (specify)")]
+        [StringLength(60)]
+        public string PRIMLANX { get; set; } = string.Empty;
+
+        [Display(Name = "Participant’s years of education, use the codes below to report the level achieved; if an attempted level is not completed, enter the number of years completed")]
+        [Range(0, 99)]
+        public int? EDUC { get; set; }
+
+
+        [Display(Name = "ZIP Code (first three digits) of participant’s primary residence")]
+        //[Range(006, 999)]
+        public string ZIP { get; set; } = string.Empty;
+
+        [Display(Name = "Is the participant left- or right-handed (for example, which hand would s/ he normally use to write or throw a ball)?")]
+        [Range(1, 9)]
+        public int? HANDED { get; set; }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

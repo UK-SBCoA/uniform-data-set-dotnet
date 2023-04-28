@@ -14,7 +14,45 @@
 
             @if (Model.Visit != null && Model.Visit.Kind == "IVP")
             {
-                @Html.EditorFor(m => m.A1.IVP)
+                <div class="col-span-6 sm:col-span-4">
+                    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.A1.REASON)</label>
+                    <p class="text-sm text-gray-500">@(nameof(Model.A1.REASON))</p>
+                    <p class="text-sm text-gray-500" asp-description-for="@Model.A1.REASON"></p>
+                    <radio-button-group id="ParticipationReasons" for="@Model.A1.REASON" items="Model.ParticipationReasonsListItems"></radio-button-group>
+                    <span class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A1.BIRTHMO"></span>
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.A1.REFERSC)</label>
+                    <p class="text-sm text-gray-500">@(nameof(Model.A1.REFERSC))</p>
+                    <p class="text-sm text-gray-500" asp-description-for="@Model.A1.REFERSC"></p>
+                    <radio-button-group id="ReferralSources" for="@Model.A1.REFERSC" items="Model.ReferralSourcesListItems"></radio-button-group>
+                    <span class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A1.REFERSC"></span>
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.A1.LEARNED)</label>
+                    <p class="text-sm text-gray-500">LEARNED</p>
+                    <radio-button-group id="SecondaryReferralSources" for="@Model.A1.LEARNED" items="Model.SecondaryReferralSourcesListItems"></radio-button-group>
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.A1.PRESTAT)</label>
+                    <p class="text-sm text-gray-500">PRESTAT</p>
+                    <radio-button-group id="DiseaseStatuses" for="@Model.A1.PRESTAT" items="Model.DiseaseStatusesListItems"></radio-button-group>
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.A1.PRESPART)</label>
+                    <p class="text-sm text-gray-500">PRESPART</p>
+                    <radio-button-group id="PresumedParticipation" for="@Model.A1.PRESPART" items="Model.ParticipationsListItems"></radio-button-group>
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.A1.SOURCENW)</label>
+                    <p class="text-sm text-gray-500">SOURCENW</p>
+                    <radio-button-group id="EnrollmentTypes" for="@Model.A1.SOURCENW" items="Model.EnrollmentTypesListItems"></radio-button-group>
+                </div>
             }
 
             <div class="sm:col-span-1">
@@ -29,56 +67,71 @@
                 <div class="mt-2">
                     <input asp-for="@Model.A1.BIRTHYR" />
                 </div>
-                <p class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A1.BIRTHYR"></p>
+                <span class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A1.BIRTHYR"></span>
             </div>
 
             <div class="col-span-full">
                 <label asp-for="@Model.A1.SEX">@Html.DisplayNameFor(m => m.A1.SEX)</label>
-                <div class="mt-2">
-                    <input asp-for="@Model.A1.SEX" />
-                </div>
-                <p class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A1.SEX"></p>
+                <radio-button-group id="Sexes" for="@Model.A1.SEX" items="Model.SexListItems"></radio-button-group>
+                <span class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A1.SEX"></span>
             </div>
 
             @if (Model.Visit != null && Model.Visit.Kind == "IVP")
             {
-                @Html.EditorFor(m => m.A1.EthnicGroup)
-                @Html.EditorFor(m => m.A1.RacialGroup)
-                @Html.EditorFor(m => m.A1.LangEdu)
+                /* Ethnic group */
+                <div class="col-span-6 sm:col-span-4">
+                    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.A1.HISPANIC)</label>
+                    <p class="text-sm text-gray-500">@(nameof(Model.A1.HISPANIC))</p>
+                    <p class="text-sm text-gray-500"></p>
+                    <radio-button-group id="ReferralSources" for="@Model.A1.HISPANIC" items="Model.HispanicLatinoListItems"></radio-button-group>
+                    <span class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A1.HISPANIC"></span>
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.A1.HISPOR)</label>
+                    <p class="text-sm text-gray-500">@(nameof(Model.A1.HISPOR))</p>
+                    <p class="text-sm text-gray-500" asp-description-for="@Model.A1.HISPOR"></p>
+                    <radio-button-group id="Origins" for="@Model.A1.HISPOR" items="Model.OriginsListItems"></radio-button-group>
+                    <span class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A1.HISPOR"></span>
+                </div>
+
+                <div class="col-span-full">
+                    <label asp-for="@Model.A1.HISPORX">@Html.DisplayNameFor(m => m.A1.HISPORX)</label>
+                    <div class="mt-2">
+                        <input asp-for="@Model.A1.HISPORX" />
+                    </div>
+                    <span class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A1.HISPORX"></span>
+                </div>
+
+                /* Racial group */
+
+                /* Language and education */
             }
 
 
             <div class="col-span-full">
                 <label asp-for="@Model.A1.MARISTAT">@Html.DisplayNameFor(m => m.A1.MARISTAT)</label>
-                <div class="mt-2">
-                    <input asp-for="@Model.A1.MARISTAT" />
-                </div>
+                <radio-button-group id="MaritalStatuses" for="@Model.A1.MARISTAT" items="Model.MaritalStatusListItems"></radio-button-group>
             </div>
 
             <div class="col-span-full">
                 <label asp-for="@Model.A1.LIVSITUA">@Html.DisplayNameFor(m => m.A1.LIVSITUA)</label>
-                <div class="mt-1">
-                    <input asp-for="@Model.A1.LIVSITUA" />
-                </div>
+                <radio-button-group id="LivingSituations" for="@Model.A1.LIVSITUA" items="Model.LivingSituationListItems"></radio-button-group>
             </div>
 
             <div class="col-span-full">
-                <label asp-for="@Model.A1.LIVSITUA">@Html.DisplayNameFor(m => m.A1.LIVSITUA)</label>
-                <div class="mt-1">
-                    <input asp-for="@Model.A1.INDEPEND" />
-                </div>
+                <label asp-for="@Model.A1.INDEPEND">@Html.DisplayNameFor(m => m.A1.INDEPEND)</label>
+                <radio-button-group id="IndependenceLevels" for="@Model.A1.INDEPEND" items="Model.IndependenceLevelListItems"></radio-button-group>
             </div>
 
             <div class="col-span-full">
-                <label asp-for="@Model.A1.LIVSITUA">@Html.DisplayNameFor(m => m.A1.LIVSITUA)</label>
-                <div class="mt-1">
-                    <input asp-for="@Model.A1.RESIDENC" />
-                </div>
+                <label asp-for="@Model.A1.RESIDENC">@Html.DisplayNameFor(m => m.A1.RESIDENC)</label>
+                <radio-button-group id="ResidenceTypes" for="@Model.A1.RESIDENC" items="Model.ResidenceTypeListItems"></radio-button-group>
             </div>
 
             @if (Model.Visit != null && Model.Visit.Kind == "IVP")
             {
-                @Html.EditorFor(m => m.A1.Zip)
+                /* Zip and language */
             }
         </div>
     </div>
@@ -87,7 +140,7 @@
         <div>
             <p asp-validation-summary="ModelOnly" class="mt-1 text-sm text-red-700"></p>
         </div>
-        <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+        <partial name="_FormFooter" for="@Model.A1" />
     </div>
 </form>
 

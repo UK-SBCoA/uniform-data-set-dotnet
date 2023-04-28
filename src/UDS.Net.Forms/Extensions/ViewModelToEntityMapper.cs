@@ -35,15 +35,34 @@ namespace UDS.Net.Forms.Extensions
 
         public static Form ToEntity(this A1 vm)
         {
-            // TODO How to determine whether an IVP or RVP (is it important?)
             var fields = new A1FormFields
             {
-                REASON = vm.IVP.REASON,
-                REFERSC = vm.IVP.REFERSC,
-                LEARNED = vm.IVP.LEARNED,
-                PRESTAT = vm.IVP.PRESTAT,
-                PRESPART = vm.IVP.PRESPART,
-                SOURCENW = vm.IVP.SOURCENW
+                REASON = vm.REASON,
+                REFERSC = vm.REFERSC,
+                LEARNED = vm.LEARNED,
+                PRESTAT = vm.PRESTAT,
+                PRESPART = vm.PRESPART,
+                SOURCENW = vm.SOURCENW,
+                BIRTHMO = vm.BIRTHMO,
+                BIRTHYR = vm.BIRTHYR,
+                SEX = vm.SEX,
+                MARISTAT = vm.MARISTAT,
+                LIVSITUA = vm.LIVSITUA,
+                INDEPEND = vm.INDEPEND,
+                RESIDENC = vm.RESIDENC,
+                HISPANIC = vm.HISPANIC,
+                HISPOR = vm.HISPOR,
+                HISPORX = vm.HISPORX,
+                RACE = vm.RACE,
+                RACEX = vm.RACEX,
+                RACESEC = vm.RACESEC,
+                RACESECX = vm.RACESECX,
+                RACETER = vm.RACETER,
+                PRIMLANG = vm.PRIMLANG,
+                PRIMLANX = vm.PRIMLANX,
+                EDUC = vm.EDUC,
+                ZIP = vm.ZIP,
+                HANDED = vm.HANDED
             };
 
             return new Form(vm.VisitId, vm.Id, vm.Title, vm.Kind, vm.Status, vm.Language, vm.IncludeInPacketSubmission, vm.ReasonCodeNotIncluded.ToString(), fields);

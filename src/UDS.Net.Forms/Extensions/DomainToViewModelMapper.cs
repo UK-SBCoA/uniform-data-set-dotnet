@@ -93,52 +93,53 @@ namespace UDS.Net.Forms.Extensions
                     LIVSITUA = fields.LIVSITUA,
                     INDEPEND = fields.INDEPEND,
                     RESIDENC = fields.RESIDENC,
-                    IVP = new A1_IVP()
-                    {
-                        REASON = fields.REASON,
-                        REFERSC = fields.REFERSC,
-                        LEARNED = fields.LEARNED,
-                        PRESTAT = fields.PRESTAT,
-                        PRESPART = fields.PRESPART,
-                        SOURCENW = fields.SOURCENW
-                    },
-                    EthnicGroup = new A1_EthnicGroup
-                    {
-                        HISPANIC = fields.HISPANIC,
-                        HISPOR = fields.HISPOR,
-                        HISPORX = fields.HISPORX
-                    },
-                    RacialGroup = new A1_RacialGroup
-                    {
-                        RACE = fields.RACE,
-                        RACEX = fields.RACEX,
-                        RACESEC = fields.RACESEC,
-                        RACESECX = fields.RACESECX,
-                        RACETER = fields.RACETER,
-                        RACETERX = fields.RACETERX
-                    },
-                    LangEdu = new A1_LangEdu
-                    {
-                        PRIMLANG = fields.PRIMLANG,
-                        PRIMLANX = fields.PRIMLANX,
-                        EDUC = fields.EDUC,
-                    },
-                    Zip = new A1_Zip
-                    {
-                        ZIP = fields.ZIP,
-                        HANDED = fields.HANDED
-                    }
+                    REASON = fields.REASON,
+                    REFERSC = fields.REFERSC,
+                    LEARNED = fields.LEARNED,
+                    PRESTAT = fields.PRESTAT,
+                    PRESPART = fields.PRESPART,
+                    SOURCENW = fields.SOURCENW,
+                    HISPANIC = fields.HISPANIC,
+                    HISPOR = fields.HISPOR,
+                    HISPORX = fields.HISPORX,
+                    RACE = fields.RACE,
+                    RACEX = fields.RACEX,
+                    RACESEC = fields.RACESEC,
+                    RACESECX = fields.RACESECX,
+                    RACETER = fields.RACETER,
+                    RACETERX = fields.RACETERX,
+                    PRIMLANG = fields.PRIMLANG,
+                    PRIMLANX = fields.PRIMLANX,
+                    EDUC = fields.EDUC,
+                    ZIP = fields.ZIP,
+                    HANDED = fields.HANDED
                 };
             }
             else if (form.Fields is A2FormFields)
             {
                 var fields = (A2FormFields)form.Fields;
 
-                // TODO convert to A2
                 return new A2()
                 {
                     INBIRMO = fields.INBIRMO,
-                    INBIRYR = fields.INBIRYR
+                    INBIRYR = fields.INBIRYR,
+                    INSEX = fields.INSEX,
+                    INHISP = fields.INHISP,
+                    INHISPOR = fields.INHISPOR,
+                    INHISPOX = fields.INHISPOX,
+                    INRACE = fields.INRACE,
+                    INRACEX = fields.INRACEX,
+                    INRASEC = fields.INRASEC,
+                    INRASECX = fields.INRASECX,
+                    INRATER = fields.INRATER,
+                    INRATERX = fields.INRATERX,
+                    INEDUC = fields.INEDUC,
+                    INRELTO = fields.INRELTO,
+                    INKNOWN = fields.INKNOWN,
+                    INLIVWTH = fields.INLIVWTH,
+                    INVISITS = fields.INVISITS,
+                    INCALLS = fields.INCALLS,
+                    INRELY = fields.INRELY
                 };
             }
 

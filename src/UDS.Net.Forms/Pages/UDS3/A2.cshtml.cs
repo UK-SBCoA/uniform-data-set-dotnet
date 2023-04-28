@@ -35,6 +35,7 @@ namespace UDS.Net.Forms.Pages.UDS3
             return Page();
         }
 
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> OnPost(int id)
         {
             // server validation for form fields

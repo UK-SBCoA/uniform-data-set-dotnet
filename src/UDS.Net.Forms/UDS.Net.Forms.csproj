@@ -45,6 +45,7 @@
     <Folder Include="TagHelpers\" />
     <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
     <Folder Include="DataAnnotations\" />
+    <Folder Include="HtmlHelpers\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Models\PageModels\" />
@@ -52,5 +53,6 @@
     <None Remove="Pages\Shared\EditorTemplates\" />
     <None Remove="TagHelpers\" />
     <None Remove="DataAnnotations\" />
+    <None Remove="HtmlHelpers\" />
   </ItemGroup>
 </Project>
