@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace UDS.Net.Forms.Models
@@ -29,16 +30,10 @@ namespace UDS.Net.Forms.Models
 
         public string ReasonNotIncluded { get; set; } = "";
 
-
-        public bool IsValid()
+        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            return true;
+            throw new Exception("Cannot validate without full object.");
         }
-
-        public void Validate()
-        {
-        }
-
     }
 }
 

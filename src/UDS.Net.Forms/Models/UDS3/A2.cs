@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
+using UDS.Net.Forms.DataAnnotations;
 using UDS.Net.Forms.TagHelpers;
 
 namespace UDS.Net.Forms.Models.UDS3
@@ -40,11 +41,11 @@ namespace UDS.Net.Forms.Models.UDS3
         };
 
         [Display(Name = "Co-participant's birth month")]
-        [Range(1, 99, ErrorMessage = "Birth month must be within 1 and 99")]
+        [BirthMonth(AllowUnknown = true)]
         public int? INBIRMO { get; set; }
 
         [Display(Name = "Co-participant's birth year")]
-        [Range(1900, 9999, ErrorMessage = "Birth year must be within 1900 and 9999")]
+        [BirthYear(Minimum = 1850, AllowUnknown = true)]
         public int? INBIRYR { get; set; }
 
         [Display(Name = "Co-participant's sex")]
@@ -103,6 +104,49 @@ namespace UDS.Net.Forms.Models.UDS3
 
         [Display(Name = "Is there a question about the co-participant's reliability?")]
         public int? INRELY { get; set; }
+
+        /// <summary>
+        /// This is in an iterator and called multiple times
+        /// </summary>
+        /// <param name="validationContext"></param>
+        /// <returns>Iterator</returns>
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            //if (Status != "Complete")
+            //{
+            //    yield break; // do not attempt server validation unless the form is attempting to be completed
+            //}
+
+
+            // This is for validation of properties interacting together
+
+            //if (INBIRYR.HasValue)
+            //{
+            //    if (INBIRYR != 9999)
+            //    {
+            //        if (INBIRYR < 1850 || INBIRYR > (DateTime.Now.Year - 15))
+            //        {
+            //            yield return new ValidationResult(
+            //                $"Birth year must be within 1850 and {DateTime.Now.Year - 15}",
+            //                new[] { nameof(INBIRYR) });
+            //        }
+            //    }
+            //}
+            //if (INBIRMO.HasValue)
+            //{
+            //    if (INBIRMO != 99)
+            //    {
+            //        if (INBIRMO < 1 || INBIRMO > 12)
+            //        {
+            //            yield return new ValidationResult(
+            //                $"Birth month must be within 1 and 12",
+            //                new[] { nameof(INBIRMO) });
+            //        }
+            //    }
+            //}
+
+            yield break;
+        }
     }
 }
 

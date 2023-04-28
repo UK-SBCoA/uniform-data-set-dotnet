@@ -33,6 +33,16 @@ namespace UDS.Net.Services.DomainModels
 
         public bool IsDeleted { get; set; }
 
+        // Read more https://github.com/dotnet/aspnetcore/blob/6d30638626ff0f471f431ae2247ce95480e418ef/src/Mvc/Mvc.Abstractions/src/ModelBinding/ModelStateDictionary.cs#L616
+        public bool IsValid
+        {
+            get
+            {
+                return GetValidity("", 0);
+            }
+
+        }
+
         public Participation Participation { get; set; } = new Participation();
 
         public IList<Form> Forms { get; set; } = new List<Form>();
@@ -78,6 +88,17 @@ namespace UDS.Net.Services.DomainModels
             }
         }
 
+        private bool GetValidity(string node, int currentDepth)
+        {
+            // TODO check each property if it has been validated or if it's unvalidated
+            // then if unvalidated, check if it is invalid
+            return true;
+        }
+
+        public int ErrorCount { get; private set; }
+
+        public int Count { get; private set; }
+
         public Visit(int id, int number, int participationId, string version, string kind, DateTime startDateTime, DateTime createdAt, string createdBy, string modifiedBy, string deletedBy, bool isDeleted, IList<Form> existingForms)
         {
             Id = id;
@@ -103,20 +124,14 @@ namespace UDS.Net.Services.DomainModels
 
         public bool TryValidate(string formKind)
         {
-            // TODO validate child form as well
+            // TODO validate the visit against any rules that might have changed due to form fields changing
             GetModelErrors();
             return true;
         }
 
-        public bool IsValid()
+        public IEnumerable<VisitValidationResult> GetModelErrors()
         {
-            // TODO look up ModelState and review how validity is determined
-            return true;
-        }
-
-        public Dictionary<string, string> GetModelErrors()
-        {
-            return new Dictionary<string, string>();
+            yield break;
         }
     }
 }

@@ -37,8 +37,16 @@ namespace UDS.Net.Forms.Pages.UDS3
 
         public async Task<IActionResult> OnPost(int id)
         {
-            var page = RouteData.Values["page"];
-            string formKind = page.ToString().Substring(page.ToString().LastIndexOf('/') + 1);
+            /*
+             * ValidationContext describes any member on which validation is performed. It also enables
+             * custom validation to be added through any service that implements the IServiceProvider
+             * interface.
+             */
+            foreach (var result in A1.Validate(new ValidationContext(A1, null, null)))
+            {
+                var memberName = result.MemberNames.FirstOrDefault();
+                ModelState.AddModelError($"A1.{memberName}", result.ErrorMessage);
+            }
 
             // if model is attempting to be completed, validation against domain form rules and visit rules
             // if not validates, return with errors
@@ -48,7 +56,7 @@ namespace UDS.Net.Forms.Pages.UDS3
                 await base.OnPost(id); // checks for domain-level business rules validation
             }
 
-            var visit = await _visitService.GetByIdWithForm("", id, formKind);
+            var visit = await _visitService.GetByIdWithForm("", id, _formKind);
 
             if (visit == null)
                 return NotFound();

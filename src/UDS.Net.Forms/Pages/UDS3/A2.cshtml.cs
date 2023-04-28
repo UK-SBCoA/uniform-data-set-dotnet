@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -36,15 +37,18 @@ namespace UDS.Net.Forms.Pages.UDS3
 
         public async Task<IActionResult> OnPost(int id)
         {
-            // if model is attempting to be completed, validation against domain form rules and visit rules
-            // if not validates, return with errors
-
-            if (ModelState.IsValid)
+            // server validation for form fields
+            foreach (var result in A2.Validate(new ValidationContext(A2, null, null)))
             {
-                await base.OnPost(id); // checks for domain-level business rules validation
+                var memberName = result.MemberNames.FirstOrDefault();
+                ModelState.AddModelError($"A2.{memberName}", result.ErrorMessage);
             }
 
-            ModelState.AddModelError("A2.INSEX", "error message test");
+            // annotations as well in view model
+            if (ModelState.IsValid)
+            {
+                await base.OnPost(id);
+            }
 
             var visit = await _visitService.GetByIdWithForm("", id, _formKind);
 

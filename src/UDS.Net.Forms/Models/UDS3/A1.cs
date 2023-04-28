@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using UDS.Net.Forms.DataAnnotations;
 
 namespace UDS.Net.Forms.Models.UDS3
 {
@@ -17,11 +18,11 @@ namespace UDS.Net.Forms.Models.UDS3
         public A1_TFP TFP { get; set; } = default!;
 
         [Display(Name = "Participant’s month of birth")]
-        [Range(1, 12)]
+        [BirthMonth]
         public int? BIRTHMO { get; set; }
 
         [Display(Name = "Participant’s year of birth")]
-        [Range(1875, 2006)]
+        [BirthYear]
         public int? BIRTHYR { get; set; }
 
         [Display(Name = "Participant’s sex")]
@@ -44,6 +45,10 @@ namespace UDS.Net.Forms.Models.UDS3
         [Range(0, 9)]
         public int? RESIDENC { get; set; }
 
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
     }
 }
 

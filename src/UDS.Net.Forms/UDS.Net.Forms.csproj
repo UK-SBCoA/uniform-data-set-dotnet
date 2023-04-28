@@ -44,11 +44,13 @@
     <Folder Include="Pages\Shared\EditorTemplates\" />
     <Folder Include="TagHelpers\" />
     <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
+    <Folder Include="DataAnnotations\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Models\PageModels\" />
     <None Remove="Pages\Shared\DisplayTemplates\" />
     <None Remove="Pages\Shared\EditorTemplates\" />
     <None Remove="TagHelpers\" />
+    <None Remove="DataAnnotations\" />
   </ItemGroup>
 </Project>

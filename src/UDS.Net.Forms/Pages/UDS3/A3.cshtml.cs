@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,12 @@ namespace UDS.Net.Forms.Pages.UDS3
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> OnPost(int id)
         {
+            foreach (var result in A3.Validate(new ValidationContext(A3, null, null)))
+            {
+                var memberName = result.MemberNames.FirstOrDefault();
+                ModelState.AddModelError($"A3.{memberName}", result.ErrorMessage);
+            }
+
             if (ModelState.IsValid)
             {
                 await base.OnPost(id); // checks for domain-level business rules validation

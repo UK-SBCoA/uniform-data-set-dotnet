@@ -54,9 +54,10 @@ namespace UDS.Net.Forms.Models.PageModels
         {
             var visit = Visit.ToEntity();
 
+            // check rules for the visit
             visit.TryValidate(_formKind);
 
-            if (visit.IsValid())
+            if (visit.IsValid)
             {
                 if (id == 0)
                 {
@@ -74,7 +75,7 @@ namespace UDS.Net.Forms.Models.PageModels
                 var errors = visit.GetModelErrors();
                 foreach (var error in errors)
                 {
-                    ModelState.AddModelError(error.Key, error.Value); // TODO each key must be the same as what is used in the model
+                    ModelState.AddModelError(error.MemberName, error.ErrorMessage); // TODO how can the full name be resolved?
                 }
             }
 
