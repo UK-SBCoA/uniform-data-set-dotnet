@@ -47,8 +47,10 @@ namespace UDS.Net.Forms.TagHelpers
             // get full name from for model property
             var expression = For.Name;
             var prefix = ViewContext.ViewData.TemplateInfo.HtmlFieldPrefix;
+            if (!String.IsNullOrWhiteSpace(prefix))
+                prefix = prefix + ".";
 
-            var radiosWithName = GenerateRadioInputs(items, prefix + "." + expression);
+            var radiosWithName = GenerateRadioInputs(items, expression);
             output.PostContent.AppendHtml(radiosWithName);
         }
 
@@ -119,7 +121,10 @@ namespace UDS.Net.Forms.TagHelpers
             {
                 tagBuilder.Attributes["disabled"] = "disabled";
             }
-
+            if (item.IfSelectedAffects != null && item.IfSelectedAffects.Count > 0)
+            {
+                // TODO render data attributes
+            }
             return tagBuilder;
         }
 
