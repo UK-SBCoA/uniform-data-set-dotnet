@@ -21,9 +21,6 @@ namespace UDS.Net.Forms.TagHelpers
             output.Attributes.Add("class", css);
 
             base.Process(context, output);
-
-            var attributes = output.Attributes;
-
         }
     }
 }
