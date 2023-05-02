@@ -105,6 +105,18 @@ namespace UDS.Net.Forms.Pages.UDS3
             new RadioListItem("Female", "2")
         };
 
+        public List<RadioListItem> PrimaryLanguage { get; } = new List<RadioListItem>
+        {
+            new RadioListItem("English", "1"),
+            new RadioListItem("Spanish", "2"),
+            new RadioListItem("Mandarin", "3"),
+            new RadioListItem("Cantonese", "4"),
+            new RadioListItem("Russian", "5"),
+            new RadioListItem("Japanese", "6"),
+            new RadioListItem("Other (specify)", "8"),
+            new RadioListItem("Unknown", "9"),
+        };
+
         public List<RadioListItem> MaritalStatusListItems { get; } = new List<RadioListItem>
         {
             new RadioListItem("Married", "1"),
@@ -143,6 +155,14 @@ namespace UDS.Net.Forms.Pages.UDS3
             new RadioListItem("Assisted living, adult family home, or boarding home", "3"),
             new RadioListItem("Skilled nursing facility, nursing home, hospital, or hospice", "4"),
             new RadioListItem("Unknown", "9")
+        };
+
+        public List<RadioListItem> HandednessListItems { get; } = new List<RadioListItem>
+        {
+            new RadioListItem("Left-handed", "1"),
+            new RadioListItem("Right-handed", "2"),
+            new RadioListItem("Ambidextrous", "3"),
+            new RadioListItem("Unknown", "9"),
         };
 
         public A1Model(IVisitService visitService) : base(visitService, "A1")

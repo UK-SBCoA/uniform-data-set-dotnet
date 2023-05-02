@@ -22,13 +22,13 @@ namespace UDS.Net.Forms.Models
 
         public bool IsRequiredForVisitKind { get; set; }
 
-        public string Language { get; set; } = "";
+        public string? Language { get; set; }
 
         public bool IncludeInPacketSubmission { get; set; }
 
         public int? ReasonCodeNotIncluded { get; set; }
 
-        public string ReasonNotIncluded { get; set; } = "";
+        public string? ReasonNotIncluded { get; set; }
 
         public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

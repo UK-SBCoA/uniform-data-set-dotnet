@@ -17,6 +17,18 @@ namespace UDS.Net.Forms.Models.PageModels
         [BindProperty]
         public VisitModel Visit { get; set; } = default!;
 
+        public string PageTitle
+        {
+            get
+            {
+                if (_formModel != null)
+                {
+                    return $"Participant {Visit.ParticipationId} Visit {Visit.Number} {Visit.Kind}";
+                }
+                return "";
+            }
+        }
+
         protected readonly IVisitService _visitService;
         protected string _formKind { get; set; }
         protected FormModel _formModel;
@@ -38,9 +50,6 @@ namespace UDS.Net.Forms.Models.PageModels
                 return NotFound();
 
             Visit = visit.ToVM();
-
-            if (Visit != null)
-                ViewData["Title"] = $"Participant {Visit.ParticipationId} Visit {Visit.Number} {Visit.Kind}";
 
             var form = visit.Forms.Where(f => f.Kind.Contains(_formKind)).FirstOrDefault();
 

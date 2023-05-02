@@ -1,5 +1,7 @@
-﻿@{
+﻿@model UDS.Net.Forms.Models.PageModels.FormPageModel
+@{
     Layout = "_Layout";
+    ViewData["Title"] = Model.PageTitle;
 }
 
 <div class="">
@@ -18,7 +20,25 @@
 
 
         <main class="divide-y divide-gray-200 lg:col-span-9 px-5 py-6">
-            @RenderBody()
+
+            <form method="post">
+                <input asp-for="Visit.Id" type="hidden" />
+                <input asp-for="Visit.ParticipationId" type="hidden" />
+                <input asp-for="Visit.Number" type="hidden" />
+                <input asp-for="Visit.Kind" type="hidden" />
+                <input asp-for="Visit.Version" type="hidden" />
+                <input asp-for="Visit.StartDateTime" type="hidden" />
+                <input asp-for="Visit.CreatedAt" type="hidden" />
+                <input asp-for="Visit.CreatedBy" type="hidden" />
+                <input asp-for="Visit.ModifiedBy" type="hidden" />
+                <input asp-for="Visit.DeletedBy" type="hidden" />
+                <input asp-for="Visit.IsDeleted" type="hidden" />
+
+                <div class="counterreset space-y-12 sm:space-y-16">
+
+                    @RenderBody()
+                </div>
+            </form>
         </main>
 
     </div>

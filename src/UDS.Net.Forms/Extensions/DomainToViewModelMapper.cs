@@ -38,9 +38,14 @@ namespace UDS.Net.Forms.Extensions
                 Id = visit.Id,
                 ParticipationId = visit.ParticipationId,
                 Number = visit.Number,
-                Version = visit.Version,
                 Kind = visit.Kind,
+                Version = visit.Version,
                 StartDateTime = visit.StartDateTime,
+                CreatedAt = visit.CreatedAt,
+                CreatedBy = visit.CreatedBy,
+                ModifiedBy = visit.ModifiedBy,
+                DeletedBy = visit.DeletedBy,
+                IsDeleted = visit.IsDeleted,
                 Forms = visit.Forms.ToVM()
             };
         }

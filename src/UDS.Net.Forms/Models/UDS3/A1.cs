@@ -71,32 +71,32 @@ namespace UDS.Net.Forms.Models.UDS3
         public int? HISPOR { get; set; }
 
         [Display(Name = "Other (specify)", Prompt = "Other origin")]
-        [StringLength(60)]
-        public string HISPORX { get; set; } = string.Empty;
+        [MaxLength(60)]
+        public string? HISPORX { get; set; }
 
         /* Racial group */
         [Display(Name = "What does the participant report as his or her race?")]
         [Range(1, 99)]
         public int? RACE { get; set; }
 
-        [Display(Name = "Other (specify)")]
-        [StringLength(60)]
-        public string RACEX { get; set; } = string.Empty;
+        [Display(Name = "Other (specify)", Prompt = "Other race")]
+        [MaxLength(60)]
+        public string? RACEX { get; set; }
 
         [Display(Name = "What additional race does participant report?")]
         [Range(1, 99)]
         public int? RACESEC { get; set; }
 
-        [Display(Name = "Other (specify)")]
-        [StringLength(60)]
-        public string RACESECX { get; set; } = string.Empty;
+        [Display(Name = "Other (specify)", Prompt = "Other additional race")]
+        [MaxLength(60)]
+        public string? RACESECX { get; set; }
 
         [Display(Name = "What additional race, beyond those reported in Questions 9 and 10, does participant report?")]
         [Range(1, 99)]
         public int? RACETER { get; set; }
 
-        [Display(Name = "Other (specify)")]
-        [StringLength(60)]
+        [Display(Name = "Other (specify)", Prompt = "Other additional race")]
+        [MaxLength(60)]
         public string? RACETERX { get; set; }
 
         /* Language and Education */
@@ -105,18 +105,17 @@ namespace UDS.Net.Forms.Models.UDS3
         [Range(1, 9)]
         public int? PRIMLANG { get; set; }
 
-        [Display(Name = "Other (specify)")]
-        [StringLength(60)]
-        public string PRIMLANX { get; set; } = string.Empty;
+        [Display(Name = "Other (specify)", Prompt = "Other primary language")]
+        [MaxLength(60)]
+        public string? PRIMLANX { get; set; }
 
-        [Display(Name = "Participant’s years of education, use the codes below to report the level achieved; if an attempted level is not completed, enter the number of years completed")]
+        [Display(Name = "Participant’s years of education - use the codes to report the level achieved; if an attempted level is not completed, enter the number of years completed", Description = "12 = high school or GED, 16 = bachelor’s degree, 18 = master’s degree, 20 = doctorate, 99 = unknown")]
         [Range(0, 99)]
         public int? EDUC { get; set; }
 
-
         [Display(Name = "ZIP Code (first three digits) of participant’s primary residence")]
-        //[Range(006, 999)]
-        public string ZIP { get; set; } = string.Empty;
+        [StringLength(3)]
+        public string? ZIP { get; set; }
 
         [Display(Name = "Is the participant left- or right-handed (for example, which hand would s/ he normally use to write or throw a ball)?")]
         [Range(1, 9)]
