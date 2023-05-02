@@ -32,6 +32,19 @@ namespace UDS.Net.Forms.TagHelpers
             output.Attributes.SetAttribute("href", url);
             output.Attributes.SetAttribute("target", "_blank");
             output.Attributes.SetAttribute("class", "font-medium text-indigo-700 underline hover:text-indigo-600");
+
+            string packetKindDisplay = "UDS Coding Guidebook for Visit Packet";
+
+            if (Kind == "IVP")
+                packetKindDisplay = "UDS Coding Guidebook for In-person Initial Visit Packet";
+            else if (Kind == "FVP")
+                packetKindDisplay = "UDS Coding Guidebook for Follow-up Visit Packet";
+            else if (Kind == "TIP")
+                packetKindDisplay = "UDS Coding Guidebook for Telephone Initial Visit Packet";
+            else if (Kind == "TFP")
+                packetKindDisplay = "UDS Coding Guidebook for Telephone Follow-up Visit Packet";
+
+            output.Content.Append($"UDS Coding Guidebook for {packetKindDisplay}");
         }
     }
 }
