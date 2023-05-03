@@ -85,8 +85,13 @@ namespace UDS.Net.Web.MVC.Services
 
         public async Task<Visit> Update(string username, Visit entity)
         {
-            // TODO update visit
-            return entity;
+            var dto = entity.ToDto();
+
+            await _apiClient.VisitClient.Put(entity.Id, dto);
+
+            var updatedDto = await _apiClient.VisitClient.Get(entity.Id);
+
+            return updatedDto.ToDomain();
         }
     }
 }

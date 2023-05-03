@@ -81,11 +81,29 @@ namespace UDS.Net.API.Client
             throw new HttpRequestException($"Invalid status code in the HttpResponseMessage: {response.StatusCode}.");
         }
 
+        protected async Task<string> PutRequest(string url, string jsonObject)
+        {
+            await PrepareAuthenticatedClient();
+
+            var content = new StringContent(jsonObject, System.Text.Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PutAsync(url, content);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK || response.StatusCode == System.Net.HttpStatusCode.Created)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+
+                return responseContent;
+            }
+
+            throw new HttpRequestException($"Invalid status code in the HttpResponseMessage: {response.StatusCode}.");
+        }
+
         public async Task<IEnumerable<T>> Get()
         {
             string response = await GetRequest(_BasePath);
 
-            List<T> values = JsonSerializer.Deserialize<List<T>>(response, options); //Newtonsoft JsonConvert.DeserializeObject<List<T>>(response);
+            List<T> values = JsonSerializer.Deserialize<List<T>>(response, options);
 
             return values;
         }
@@ -94,7 +112,7 @@ namespace UDS.Net.API.Client
         {
             string response = await GetRequest($"{_BasePath}/Count");
 
-            int count = JsonSerializer.Deserialize<int>(response, options);//JsonConvert.DeserializeObject<int>(response);
+            int count = JsonSerializer.Deserialize<int>(response, options);
 
             return count;
         }
@@ -103,23 +121,25 @@ namespace UDS.Net.API.Client
         {
             string response = await GetRequest($"{_BasePath}/{id}");
 
-            T value = JsonSerializer.Deserialize<T>(response, options);// JsonConvert.DeserializeObject<T>(response);
+            T value = JsonSerializer.Deserialize<T>(response, options);
 
             return value;
         }
 
         public async Task Post(T dto)
         {
-            var json = JsonSerializer.Serialize(dto);//JsonConvert.SerializeObject(dto);
+            var json = JsonSerializer.Serialize(dto);
 
             string response = await PostRequest(_BasePath, json);
 
             /// TODO how to handle failures?
         }
 
-        public Task Put(int id, T dto)
+        public async Task Put(int id, T dto)
         {
-            throw new NotImplementedException();
+            var json = JsonSerializer.Serialize(dto);
+
+            string response = await PutRequest($"{_BasePath}/{id}", json);
         }
 
         public Task Delete(int id)
