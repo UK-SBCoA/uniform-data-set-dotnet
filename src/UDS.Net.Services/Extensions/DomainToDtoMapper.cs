@@ -7,7 +7,7 @@ using UDS.Net.Services.DomainModels.Forms;
 
 namespace UDS.Net.Services.Extensions
 {
-    public static class DomaintToDtoMapper
+    public static class DomainToDtoMapper
     {
         public static VisitDto ToDto(this Visit visit)
         {
@@ -47,6 +47,11 @@ namespace UDS.Net.Services.Extensions
                     Language = form.Language,
                     IsIncluded = form.IsIncluded,
                     ReasonCode = form.ReasonCode,
+                    CreatedAt = form.CreatedAt,
+                    CreatedBy = form.CreatedBy,
+                    ModifiedBy = form.ModifiedBy,
+                    DeletedBy = form.DeletedBy,
+                    IsDeleted = form.IsDeleted,
                     REASON = fields.REASON,
                     REFERSC = fields.REFERSC,
                     LEARNED = fields.LEARNED,
@@ -85,7 +90,12 @@ namespace UDS.Net.Services.Extensions
                 Status = form.Status,
                 Language = form.Language,
                 IsIncluded = form.IsIncluded,
-                ReasonCode = form.ReasonCode
+                ReasonCode = form.ReasonCode,
+                CreatedAt = form.CreatedAt,
+                CreatedBy = form.CreatedBy,
+                ModifiedBy = form.ModifiedBy,
+                DeletedBy = form.DeletedBy,
+                IsDeleted = form.IsDeleted
             };
         }
     }

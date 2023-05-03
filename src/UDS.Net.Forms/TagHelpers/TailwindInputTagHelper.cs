@@ -18,7 +18,13 @@ namespace UDS.Net.Forms.TagHelpers
         // block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            output.Attributes.Add("class", css);
+            if (output.Attributes.Where(a => a.Name == "type").Any())
+            {
+                var inputType = output.Attributes.Where(a => a.Name == "type").FirstOrDefault();
+
+                if (inputType != null && inputType.Value.ToString() != "hidden")
+                    output.Attributes.Add("class", css);
+            }
 
             base.Process(context, output);
         }

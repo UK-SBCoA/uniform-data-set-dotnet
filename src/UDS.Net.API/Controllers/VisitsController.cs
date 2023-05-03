@@ -123,8 +123,6 @@ namespace UDS.Net.API.Controllers
             return false;
         }
 
-
-
         [HttpGet]
         public async Task<IEnumerable<VisitDto>> Get()
         {
@@ -238,7 +236,11 @@ namespace UDS.Net.API.Controllers
                         {
                             A1Dto a1Dto = (A1Dto)formDto;
 
+                            //var existingA1 = await _context.A1s.FindAsync(a1Dto.Id);
+
                             this.Update(visit.A1, a1Dto);
+
+                            //_context.A1s.Update(existingA1);
                         }
                     }
 
@@ -246,6 +248,8 @@ namespace UDS.Net.API.Controllers
 
                 _context.Visits.Update(visit);
                 await _context.SaveChangesAsync();
+
+                return;
             }
 
         }

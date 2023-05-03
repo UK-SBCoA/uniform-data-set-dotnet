@@ -75,7 +75,7 @@ namespace UDS.Net.Services.Extensions
                 formFields = new A5FormFields(dto);
             }
 
-            return new Form(visitId, dto.Id, dto.Kind, dto.Kind, dto.Status, dto.Language, dto.IsIncluded, dto.ReasonCode, formFields);
+            return new Form(visitId, dto.Id, dto.Kind, dto.Kind, dto.Status, dto.Language, dto.IsIncluded, dto.ReasonCode, dto.CreatedAt, dto.CreatedBy, dto.ModifiedBy, dto.DeletedBy, dto.IsDeleted, formFields);
         }
 
     }

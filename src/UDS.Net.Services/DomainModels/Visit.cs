@@ -77,11 +77,11 @@ namespace UDS.Net.Services.DomainModels
                     {
                         var existing = existingForms.Where(f => f.Kind == formKind).FirstOrDefault();
 
-                        Forms.Add(new Form(Id, existing.Id, existing.Title, existing.Kind, existing.Status, existing.Language, existing.IsIncluded, existing.ReasonCode, existing.Fields));
+                        Forms.Add(new Form(Id, existing.Id, existing.Title, existing.Kind, existing.Status, existing.Language, existing.IsIncluded, existing.ReasonCode, existing.CreatedAt, existing.CreatedBy, existing.ModifiedBy, existing.DeletedBy, existing.IsDeleted, existing.Fields));
                     }
                     else
                     {
-                        Forms.Add(new Form(Id, formKind));
+                        Forms.Add(new Form(Id, formKind, CreatedBy));
                     }
                 }
 

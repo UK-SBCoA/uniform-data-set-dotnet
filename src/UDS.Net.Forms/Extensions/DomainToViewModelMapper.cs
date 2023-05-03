@@ -66,6 +66,7 @@ namespace UDS.Net.Forms.Extensions
         {
             var formModel = new FormModel()
             {
+                Id = form.Id,
                 VisitId = form.VisitId,
                 Version = form.Version,
                 Kind = form.Kind,
@@ -73,7 +74,12 @@ namespace UDS.Net.Forms.Extensions
                 Title = form.Title,
                 Description = form.Description,
                 IsRequiredForVisitKind = false,
-                IncludeInPacketSubmission = false
+                IncludeInPacketSubmission = false,
+                CreatedAt = form.CreatedAt,
+                CreatedBy = form.CreatedBy,
+                ModifiedBy = form.ModifiedBy,
+                DeletedBy = form.DeletedBy,
+                IsDeleted = form.IsDeleted
             };
 
             if (form.Fields is A1FormFields)
@@ -82,6 +88,7 @@ namespace UDS.Net.Forms.Extensions
 
                 return new A1()
                 {
+                    Id = form.Id,
                     VisitId = form.VisitId,
                     Version = form.Version,
                     Status = form.Status, // TODO
@@ -91,6 +98,11 @@ namespace UDS.Net.Forms.Extensions
                     IsRequiredForVisitKind = false, // TODO
                     IncludeInPacketSubmission = form.IsIncluded.HasValue ? form.IsIncluded.Value : false, // TODO
                     ReasonNotIncluded = form.ReasonCode,
+                    CreatedAt = form.CreatedAt,
+                    CreatedBy = form.CreatedBy,
+                    ModifiedBy = form.ModifiedBy,
+                    DeletedBy = form.DeletedBy,
+                    IsDeleted = form.IsDeleted,
                     BIRTHMO = fields.BIRTHMO,
                     BIRTHYR = fields.BIRTHYR,
                     SEX = fields.SEX,
@@ -126,6 +138,21 @@ namespace UDS.Net.Forms.Extensions
 
                 return new A2()
                 {
+                    Id = form.Id,
+                    VisitId = form.VisitId,
+                    Version = form.Version,
+                    Status = form.Status, // TODO
+                    Kind = form.Kind,
+                    Title = form.Title,
+                    Description = form.Description,
+                    IsRequiredForVisitKind = false, // TODO
+                    IncludeInPacketSubmission = form.IsIncluded.HasValue ? form.IsIncluded.Value : false, // TODO
+                    ReasonNotIncluded = form.ReasonCode,
+                    CreatedAt = form.CreatedAt,
+                    CreatedBy = form.CreatedBy,
+                    ModifiedBy = form.ModifiedBy,
+                    DeletedBy = form.DeletedBy,
+                    IsDeleted = form.IsDeleted,
                     INBIRMO = fields.INBIRMO,
                     INBIRYR = fields.INBIRYR,
                     INSEX = fields.INSEX,

@@ -61,7 +61,6 @@ $.validator.addMethod('birthyear', function (value, element, params) {
 
 $.validator.unobtrusive.adapters.add('birthyear', ['allowunknown', 'maximum', 'minimum'], function (options) {
     var element = $(options.form).find('input[data-val-birthyear]')[0];
-    //console.log(element);
 
     var minimum = parseInt(options.params['minimum']);
     var maximum = parseInt(options.params['maximum']);

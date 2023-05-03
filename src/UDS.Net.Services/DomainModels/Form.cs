@@ -23,9 +23,20 @@ namespace UDS.Net.Services.DomainModels
 
         public string ReasonCode { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public string ModifiedBy { get; set; }
+
+        public string DeletedBy { get; set; }
+
+        public bool IsDeleted { get; set; }
+
         public IFormFields Fields { get; set; }
+
         // TODO field versions so comparison can be made between existing data version and version that should be used
-        public Form(int visitId, string kind)
+        public Form(int visitId, string kind, string createdBy)
         {
             // TODO This is used in VisitService to initialize a new form when one doesn't exist, but should
             VisitId = visitId;
@@ -33,9 +44,13 @@ namespace UDS.Net.Services.DomainModels
             Kind = kind;
 
             Status = "NotStarted";
+
+            CreatedBy = createdBy;
+
+            CreatedAt = DateTime.Now;
         }
 
-        public Form(int visitId, int id, string title, string kind, string status, string language, bool? isIncluded, string reasonCode, IFormFields fields)
+        public Form(int visitId, int id, string title, string kind, string status, string language, bool? isIncluded, string reasonCode, DateTime createdAt, string createdBy, string modifiedBy, string deletedBy, bool isDeleted, IFormFields fields)
         {
             Id = id;
             Title = title;
@@ -46,6 +61,12 @@ namespace UDS.Net.Services.DomainModels
             Language = language;
             IsIncluded = isIncluded;
             ReasonCode = reasonCode;
+
+            CreatedAt = createdAt;
+            CreatedBy = createdBy;
+            ModifiedBy = modifiedBy;
+            DeletedBy = deletedBy;
+            IsDeleted = isDeleted;
 
             if (fields != null)
             {

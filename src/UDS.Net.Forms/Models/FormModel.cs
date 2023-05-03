@@ -30,6 +30,16 @@ namespace UDS.Net.Forms.Models
 
         public string? ReasonNotIncluded { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
+        public string CreatedBy { get; set; } = "";
+
+        public string? ModifiedBy { get; set; }
+
+        public string? DeletedBy { get; set; }
+
+        public bool IsDeleted { get; set; }
+
         public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             throw new Exception("Cannot validate without full object.");
