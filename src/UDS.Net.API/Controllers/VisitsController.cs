@@ -85,44 +85,6 @@ namespace UDS.Net.API.Controllers
             return null;
         }
 
-        private bool Update(A1 entity, A1Dto dto)
-        {
-            if (entity.Id == dto.Id)
-            {
-                entity.CreatedAt = dto.CreatedAt;
-                entity.CreatedBy = dto.CreatedBy;
-                entity.ModifiedBy = dto.ModifiedBy;
-                entity.DeletedBy = dto.DeletedBy;
-                entity.IsDeleted = dto.IsDeleted;
-                entity.REASON = dto.REASON;
-                entity.REFERSC = dto.REFERSC;
-                entity.LEARNED = dto.LEARNED;
-                entity.PRESTAT = dto.PRESTAT;
-                entity.PRESPART = dto.PRESPART;
-                entity.SOURCENW = dto.SOURCENW;
-                entity.BIRTHMO = dto.BIRTHMO;
-                entity.BIRTHYR = dto.BIRTHYR;
-                entity.SEX = dto.SEX;
-                entity.HISPANIC = dto.HISPANIC;
-                entity.HISPOR = dto.HISPOR;
-                entity.HISPORX = dto.HISPORX;
-                entity.RACE = dto.RACE;
-                entity.RACEX = dto.RACEX;
-                entity.RACESEC = dto.RACESEC;
-                entity.RACESECX = dto.RACESECX;
-                entity.PRIMLANG = dto.PRIMLANG;
-                entity.EDUC = dto.EDUC;
-                entity.MARISTAT = dto.MARISTAT;
-                entity.LIVSITUA = dto.LIVSITUA;
-                entity.INDEPEND = dto.INDEPEND;
-                entity.RESIDENC = dto.RESIDENC;
-                entity.ZIP = dto.ZIP;
-                entity.HANDED = dto.HANDED;
-                return true;
-            }
-            return false;
-        }
-
         [HttpGet]
         public async Task<IEnumerable<VisitDto>> Get()
         {
@@ -228,22 +190,30 @@ namespace UDS.Net.API.Controllers
 
                 if (!String.IsNullOrEmpty(formKind))
                 {
-                    if (formKind == "A1")
+                    var formDto = dto.Forms.Where(f => f.Kind == formKind).FirstOrDefault();
+
+                    if (formDto is A1Dto)
                     {
-                        var formDto = dto.Forms.Where(f => f.Kind == "A1").FirstOrDefault();
-
-                        if (formDto is A1Dto)
-                        {
-                            A1Dto a1Dto = (A1Dto)formDto;
-
-                            //var existingA1 = await _context.A1s.FindAsync(a1Dto.Id);
-
-                            this.Update(visit.A1, a1Dto);
-
-                            //_context.A1s.Update(existingA1);
-                        }
+                        visit.A1.Update((A1Dto)formDto);
                     }
-
+                    else if (formDto is A2Dto)
+                    {
+                        visit.A2.Update((A2Dto)formDto);
+                    }
+                    else if (formDto is A3Dto)
+                    {
+                        visit.A3.Update((A3Dto)formDto);
+                    }
+                    else if (formDto is A4GDto)
+                    {
+                        visit.A4G.Update((A4GDto)formDto);
+                    }
+                    else if (formDto is A5Dto)
+                    {
+                        visit.A5.Update((A5Dto)formDto);
+                    }
+                    // If it isn't strongly typed, should we allow updates to the form?
+                    // for example, with statuses and such
                 }
 
                 _context.Visits.Update(visit);
