@@ -36,7 +36,7 @@ namespace UDS.Net.Web.MVC.Services
 
             if (participationDto != null)
             {
-                return participationDto.ToDomain();
+                return participationDto.ToDomain(username);
             }
             throw new Exception("Participation not found.");
         }
@@ -47,7 +47,7 @@ namespace UDS.Net.Web.MVC.Services
 
             if (participationDtos != null)
             {
-                return participationDtos.Select(p => p.ToDomain()).ToList();
+                return participationDtos.Select(p => p.ToDomain(username)).ToList();
             }
 
             return new List<Participation>();

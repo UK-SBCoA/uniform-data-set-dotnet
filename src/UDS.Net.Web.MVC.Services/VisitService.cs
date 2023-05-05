@@ -44,7 +44,7 @@ namespace UDS.Net.Web.MVC.Services
 
             if (visitDto != null)
             {
-                return visitDto.ToDomain();
+                return visitDto.ToDomain(username);
             }
             throw new Exception("Visit not found");
         }
@@ -55,7 +55,7 @@ namespace UDS.Net.Web.MVC.Services
 
             if (visitDto != null)
             {
-                return visitDto.ToDomain(); // converting to domain object implements business rules for shown forms
+                return visitDto.ToDomain(username); // converting to domain object implements business rules for shown forms
             }
 
             throw new Exception("Visit with form not found");
@@ -67,7 +67,7 @@ namespace UDS.Net.Web.MVC.Services
 
             if (visitDtos != null)
             {
-                return visitDtos.Select(d => d.ToDomain()).ToList();
+                return visitDtos.Select(d => d.ToDomain(username)).ToList();
             }
 
             return new List<Visit>();
@@ -91,7 +91,7 @@ namespace UDS.Net.Web.MVC.Services
 
             var updatedDto = await _apiClient.VisitClient.Get(entity.Id);
 
-            return updatedDto.ToDomain();
+            return updatedDto.ToDomain(username);
         }
     }
 }

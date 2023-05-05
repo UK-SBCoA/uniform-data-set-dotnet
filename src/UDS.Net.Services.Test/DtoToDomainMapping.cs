@@ -66,7 +66,7 @@ public class DtoToDomainMapping
             }
         };
 
-        var visit = visitDto.ToDomain();
+        var visit = visitDto.ToDomain(EMAIL);
 
         var a1 = visit.Forms.Where(f => f.Kind == "A1").FirstOrDefault();
 
