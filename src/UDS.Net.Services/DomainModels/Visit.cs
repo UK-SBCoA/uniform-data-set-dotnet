@@ -51,40 +51,42 @@ namespace UDS.Net.Services.DomainModels
         {
             if (version == "UDS3")
             {
-                Dictionary<string, string[]> UDS3 = new Dictionary<string, string[]>
+                Dictionary<string, FormContract[]> UDS3 = new Dictionary<string, FormContract[]>
                 {
-                    { "IVP", new string[] { "A1", "A2", "A3", "A4", "A5" } },
-                    { "FVP", new string[] { "A1", "A2", "A3", "A4", "A5" } },
-                    { "TIP", new string[] { "T1", "A1", "A2", "A3", "A4", "A5" } },
-                    { "TVP" , new string[] { "T1", "A1", "A2", "A3", "A4", "A5" } }
+                    { "IVP", new FormContract[] { new FormContract("A1", true), new FormContract("A2", false), new FormContract("A3", false), new FormContract("A4", false), new FormContract("A5", false) } },
+                    { "FVP", new FormContract[] { new FormContract("A1", true), new FormContract("A2", false), new FormContract("A3", false), new FormContract("A4", false), new FormContract("A5", false) } },
+                    { "TIP", new FormContract[] { new FormContract("A1", true), new FormContract("A2", true), new FormContract("A3", false), new FormContract("A4", false), new FormContract("A5", false) } },
+                    { "TVP", new FormContract[] { new FormContract("A1", true), new FormContract("A2", true), new FormContract("A3", false), new FormContract("A4", false), new FormContract("A5", false) } }
                 };
 
-                Dictionary<string, string[]> UDS4 = new Dictionary<string, string[]>
+                var formDefinitions = UDS3.Where(u => u.Key == kind).FirstOrDefault();
+
+                foreach (var formContract in formDefinitions.Value)
+                {
+                    bool hasExisting = existingForms.Where(f => f.Kind == formContract.Abbreviation).Any();
+
+                    if (hasExisting)
+                    {
+                        var existing = existingForms.Where(f => f.Kind == formContract.Abbreviation).FirstOrDefault();
+
+                        Forms.Add(new Form(Id, existing.Id, existing.Title, existing.Kind, formContract.IsRequredForVisitKind, existing.Status, existing.Language, existing.IsIncluded, existing.ReasonCode, existing.CreatedAt, existing.CreatedBy, existing.ModifiedBy, existing.DeletedBy, existing.IsDeleted, existing.Fields));
+                    }
+                    else
+                    {
+                        Forms.Add(new Form(Id, formContract.Abbreviation, formContract.IsRequredForVisitKind, CreatedBy));
+                    }
+                }
+
+            }
+            else if (version == "UDS4")
+            {
+                Dictionary<string, string[]> UDS4 = new Dictionary<string, string[]> // TODO use form contract
                 {
                     { "IVP", new string[] { "A1", "A2", "A3", "A4", "A5D2" } },
                     { "FVP", new string[] { "A1", "A2", "A3", "A4", "A5D2" } },
                     { "TIP", new string[] { "T1", "A1", "A2", "A3", "A4", "A5" } },
                     { "TVP" , new string[] { "T1", "A1", "A2", "A3", "A4", "A5" } }
                 };
-
-                var formDefinitions = UDS3.Where(u => u.Key == kind).FirstOrDefault();
-
-                foreach (var formKind in formDefinitions.Value)
-                {
-                    bool hasExisting = existingForms.Where(f => f.Kind == formKind).Any();
-
-                    if (hasExisting)
-                    {
-                        var existing = existingForms.Where(f => f.Kind == formKind).FirstOrDefault();
-
-                        Forms.Add(new Form(Id, existing.Id, existing.Title, existing.Kind, existing.Status, existing.Language, existing.IsIncluded, existing.ReasonCode, existing.CreatedAt, existing.CreatedBy, existing.ModifiedBy, existing.DeletedBy, existing.IsDeleted, existing.Fields));
-                    }
-                    else
-                    {
-                        Forms.Add(new Form(Id, formKind, CreatedBy));
-                    }
-                }
-
             }
         }
 

@@ -34,7 +34,7 @@ namespace UDS.Net.Forms.TagHelpers
             }
 
             output.TagName = "fieldset"; // overwrites custom tag
-            output.Attributes.SetAttribute("class", "mt-4 space-y-4");
+            output.Attributes.SetAttribute("class", "mt-4 space-y-2");
 
             if (For == null)
             {

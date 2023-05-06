@@ -9,31 +9,42 @@
     <h2 class="text-lg font-medium leading-6 text-gray-900">A2: Co-participant Demographics</h2>
     <p class="mt-1 text-sm text-gray-500">INSTRUCTIONS: This form is to be completed by intake interviewer based on co-participant's report. For additional clarification and examples, see <guidebook kind="@Model.Visit.Kind"></guidebook>, Form A2. Check only <span class="underline">one</span> box per question.</p>
 </div>
-
 <div>
-    <div class="grid gap-x-6 gap-y-8 sm:grid sm:grid-cols-3 sm:items-start sm:pt-5">
+    <div class="mt-10 space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0">
 
-        <div class="sm:col-span-1">
-            <label asp-for="A2.INBIRMO">@Html.DisplayNameFor(m => m.A2.INBIRMO)</label>
-            <div class="mt-2">
+        <div class="@rowCSS">
+            <label class="text-base font-semibold text-gray-900"><span class="counter"></span> Co-participant's month and year of birth</label>
+            <div>
+                <label asp-for="A2.INBIRMO">Month</label>
                 <input asp-for="A2.INBIRMO" />
+                <span class="mt-2 text-sm text-red-600" asp-validation-for="A2.INBIRMO"></span>
             </div>
-            <span class="mt-2 text-sm text-red-600" asp-validation-for="A2.INBIRMO"></span>
-        </div>
-        <div class="sm:col-span-1">
-            <label asp-for="A2.INBIRYR">@Html.DisplayNameFor(m => m.A2.INBIRYR)</label>
-            <div class="mt-2">
+            <div>
+                <label asp-for="A2.INBIRYR">Year</label>
                 <input asp-for="A2.INBIRYR" />
+                <span class="mt-2 text-sm text-red-600" asp-validation-for="A2.INBIRYR"></span>
             </div>
-            <span class="mt-2 text-sm text-red-600" asp-validation-for="A2.INBIRYR"></span>
         </div>
-        <div class="col-span-full">
-            <label asp-for="A2.INSEX">@Html.DisplayNameFor(m => m.A2.INSEX)</label>
-            <div class="mt-2">
-                <input asp-for="A2.INSEX" />
+        <div class="@rowCSS">
+            <label asp-for="A2.INSEX"><span class="counter"></span> @Html.DisplayNameFor(m => m.A2.INSEX)</label>
+            <div class="mt-4 sm:col-span-2 sm:mt-0">
+                <p class="text-sm text-gray-500" asp-description-for="@Model.A2.INSEX"></p>
+                <radio-button-group id="A2_SEX" for="@Model.A2.INSEX" items="Model.SexListItems"></radio-button-group>
+                <span class="mt-2 text-sm text-red-600" asp-validation-for="A2.INSEX"></span>
             </div>
-            <span class="mt-2 text-sm text-red-600" asp-validation-for="A2.INSEX"></span>
         </div>
+
+        @if (Model.Visit != null && Model.Visit.Kind == "FVP")
+        {
+            <div class="@rowCSS">
+                <label asp-for="A2.NEWINF"><span class="counter"></span> @Html.DisplayNameFor(m => m.A2.NEWINF)</label>
+                <div class="mt-4 sm:col-span-2 sm:mt-0">
+                    <p class="text-sm text-gray-500" asp-description-for="@Model.A2.NEWINF"></p>
+                    <input asp-for="A2.NEWINF" />
+                    <span class="mt-2 text-sm text-red-600" asp-validation-for="A2.NEWINF"></span>
+                </div>
+            </div>
+        }
         <div class="col-span-6 sm:col-span-4">
             <label class="text-base font-semibold text-gray-900"><span class="counter"></span><span class="counter invisible"></span> @Html.DisplayNameFor(model => model.A2.INHISP)</label>
             <p class="text-sm text-gray-500">HISPANIC</p>

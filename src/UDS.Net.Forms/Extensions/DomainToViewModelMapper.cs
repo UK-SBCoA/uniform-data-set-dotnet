@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.NetworkInformation;
 using UDS.Net.Forms.Models;
 using UDS.Net.Forms.Models.UDS3;
 using UDS.Net.Services.DomainModels;
@@ -8,6 +9,24 @@ namespace UDS.Net.Forms.Extensions
 {
     public static class DomainToViewModelMapper
     {
+        private static void SetBaseProperties(Form form, FormModel vm)
+        {
+            vm.VisitId = form.VisitId;
+            vm.Version = form.Version;
+            vm.Status = form.Status; // TODO
+            vm.Kind = form.Kind;
+            vm.Title = form.Title;
+            vm.Description = form.Description;
+            vm.IsRequiredForVisitKind = form.IsRequiredForVisitKind;
+            vm.IncludeInPacketSubmission = form.IsIncluded.HasValue ? form.IsIncluded.Value : false;
+            vm.ReasonNotIncluded = form.ReasonCode;
+            vm.CreatedAt = form.CreatedAt;
+            vm.CreatedBy = form.CreatedBy;
+            vm.ModifiedBy = form.ModifiedBy;
+            vm.DeletedBy = form.DeletedBy;
+            vm.IsDeleted = form.IsDeleted;
+        }
+
         public static ParticipationModel ToVM(this Participation participation)
         {
             return new ParticipationModel()
@@ -86,23 +105,9 @@ namespace UDS.Net.Forms.Extensions
             {
                 var fields = (A1FormFields)form.Fields;
 
-                return new A1()
+                var vm = new A1()
                 {
                     Id = form.Id,
-                    VisitId = form.VisitId,
-                    Version = form.Version,
-                    Status = form.Status, // TODO
-                    Kind = form.Kind,
-                    Title = form.Title,
-                    Description = form.Description,
-                    IsRequiredForVisitKind = false, // TODO
-                    IncludeInPacketSubmission = form.IsIncluded.HasValue ? form.IsIncluded.Value : false, // TODO
-                    ReasonNotIncluded = form.ReasonCode,
-                    CreatedAt = form.CreatedAt,
-                    CreatedBy = form.CreatedBy,
-                    ModifiedBy = form.ModifiedBy,
-                    DeletedBy = form.DeletedBy,
-                    IsDeleted = form.IsDeleted,
                     BIRTHMO = fields.BIRTHMO,
                     BIRTHYR = fields.BIRTHYR,
                     SEX = fields.SEX,
@@ -131,28 +136,18 @@ namespace UDS.Net.Forms.Extensions
                     ZIP = fields.ZIP,
                     HANDED = fields.HANDED
                 };
+
+                SetBaseProperties(form, vm);
+
+                return vm;
             }
             else if (form.Fields is A2FormFields)
             {
                 var fields = (A2FormFields)form.Fields;
 
-                return new A2()
+                var vm = new A2()
                 {
                     Id = form.Id,
-                    VisitId = form.VisitId,
-                    Version = form.Version,
-                    Status = form.Status, // TODO
-                    Kind = form.Kind,
-                    Title = form.Title,
-                    Description = form.Description,
-                    IsRequiredForVisitKind = false, // TODO
-                    IncludeInPacketSubmission = form.IsIncluded.HasValue ? form.IsIncluded.Value : false, // TODO
-                    ReasonNotIncluded = form.ReasonCode,
-                    CreatedAt = form.CreatedAt,
-                    CreatedBy = form.CreatedBy,
-                    ModifiedBy = form.ModifiedBy,
-                    DeletedBy = form.DeletedBy,
-                    IsDeleted = form.IsDeleted,
                     INBIRMO = fields.INBIRMO,
                     INBIRYR = fields.INBIRYR,
                     INSEX = fields.INSEX,
@@ -173,6 +168,10 @@ namespace UDS.Net.Forms.Extensions
                     INCALLS = fields.INCALLS,
                     INRELY = fields.INRELY
                 };
+
+                SetBaseProperties(form, vm);
+
+                return vm;
             }
 
             return formModel;

@@ -21,6 +21,9 @@ namespace UDS.Net.Forms.Models.UDS3
         [Display(Name = "Co-participant's sex")]
         public int? INSEX { get; set; }
 
+        [Display(Name = "Is this a new co-participant - i.e., one who was not a co-participant at any past UDS visit?")]
+        public int? NEWINF { get; set; }
+
         [Display(Name = "Does the co-participant report being of Hispanic/Latino ethnicity  (i.e., having origins from a mainly Spanish-speaking Latin American country), regardless of race?")]
         public int? INHISP { get; set; }
 
@@ -77,7 +80,12 @@ namespace UDS.Net.Forms.Models.UDS3
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            yield break;
+            if (Status == "Complete" && IsRequiredForVisitKind && IncludeInPacketSubmission == false)
+            {
+                yield return new ValidationResult(
+                    $"Form is required for visit and is not optional",
+                    new[] { nameof(IncludeInPacketSubmission) });
+            }
         }
     }
 }

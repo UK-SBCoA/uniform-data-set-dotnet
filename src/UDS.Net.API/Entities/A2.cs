@@ -16,6 +16,7 @@ namespace UDS.Net.API.Entities
         public int? INBIRMO { get; set; }
         public int? INBIRYR { get; set; }
         public int? INSEX { get; set; }
+        public int? NEWINF { get; set; }
         public int? INHISP { get; set; }
         public int? INHISPOR { get; set; }
         [MaxLength(60)]

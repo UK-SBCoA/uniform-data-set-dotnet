@@ -64,6 +64,7 @@ namespace UDS.Net.API.Extensions
                 entity.RESIDENC = dto.RESIDENC;
                 entity.ZIP = dto.ZIP;
                 entity.HANDED = dto.HANDED;
+
                 return true;
             }
             return false;
@@ -74,6 +75,27 @@ namespace UDS.Net.API.Extensions
             if (entity.Id == dto.Id)
             {
                 SetBaseProperties(entity, dto);
+
+                entity.INBIRMO = dto.INBIRMO;
+                entity.INBIRYR = dto.INBIRYR;
+                entity.INSEX = dto.INSEX;
+                entity.INHISP = dto.INHISP;
+                entity.INHISPOR = dto.INHISPOR;
+                entity.INHISPOX = dto.INHISPOX;
+                entity.INRACE = dto.INRACE;
+                entity.INRACEX = dto.INRACEX;
+                entity.INRASEC = dto.INRASEC;
+                entity.INRASECX = dto.INRASECX;
+                entity.INRATER = dto.INRATER;
+                entity.INRATERX = dto.INRATERX;
+                entity.INEDUC = dto.INEDUC;
+                entity.INRELTO = dto.INRELTO;
+                entity.INKNOWN = dto.INKNOWN;
+                entity.INLIVWTH = dto.INLIVWTH;
+                entity.INVISITS = dto.INVISITS;
+                entity.INCALLS = dto.INCALLS;
+                entity.INRELY = dto.INRELY;
+
                 return true;
             }
             return false;

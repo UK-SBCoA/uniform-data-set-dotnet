@@ -96,7 +96,7 @@
             <label asp-for="@Model.A1.SEX"><span class="counter"></span> @Html.DisplayNameFor(m => m.A1.SEX)</label>
             <div class="mt-4 sm:col-span-2 sm:mt-0">
                 <p class="text-sm text-gray-500" asp-description-for="@Model.A1.SEX"></p>
-                <radio-button-group id="Sexes" for="@Model.A1.SEX" items="Model.SexListItems"></radio-button-group>
+                <radio-button-group id="A1_SEX" for="@Model.A1.SEX" items="Model.SexListItems"></radio-button-group>
                 <span class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A1.SEX"></span>
             </div>
         </div>

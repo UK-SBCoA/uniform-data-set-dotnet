@@ -19,6 +19,12 @@ namespace UDS.Net.Forms.Pages.UDS3
         [BindProperty]
         public A2 A2 { get; set; } = default!;
 
+        public List<RadioListItem> SexListItems { get; } = new List<RadioListItem>
+        {
+            new RadioListItem("Male", "1"),
+            new RadioListItem("Female", "2")
+        };
+
         public List<RadioListItem> HispanicLatinoListItems { get; } = new List<RadioListItem>
         {
             new RadioListItem("No  (If No, SKIP TO QUESTION 5)", "1"),
@@ -38,7 +44,7 @@ namespace UDS.Net.Forms.Pages.UDS3
             new RadioListItem("Unknown","99")
         };
 
-        public List<RadioListItem> RacialGroupListItems { get; set; } = new List<RadioListItem>
+        public List<RadioListItem> RacialGroupListItems { get; } = new List<RadioListItem>
         {
             new RadioListItem("White", "1"),
             new RadioListItem("Black or African American", "2"),
@@ -47,6 +53,26 @@ namespace UDS.Net.Forms.Pages.UDS3
             new RadioListItem("Asian", "5"),
             new RadioListItem("Other (specify)", "50"),
             new RadioListItem("Unknown", "99")
+        };
+
+        public List<RadioListItem> RelationshipTypeListItems { get; } = new List<RadioListItem>
+        {
+            new RadioListItem("Spouse, partner, or companion (include ex-spouse, ex-partner, fiancé, boyfriend, girlfriend)", "1"),
+            new RadioListItem("Child (by blood or through marriage or adoption)", "2"),
+            new RadioListItem("Sibling (by blood or through marriage or adoption)", "3"),
+            new RadioListItem("Other relative (by blood or through marriage or adoption)", "4"),
+            new RadioListItem("Friend, neighbor, or someone known through family, friends, work, or community (e.g., church)", "5"),
+            new RadioListItem("Paid caregiver, health care provider, or clinician", "6"),
+        };
+
+        public List<RadioListItem> ContactFrequencyListItems { get; } = new List<RadioListItem>
+        {
+            new RadioListItem("Daily", "1"),
+            new RadioListItem("At least 3 times per week", "2"),
+            new RadioListItem("Weekly", "3"),
+            new RadioListItem("At least three times per month", "4"),
+            new RadioListItem("Monthly", "5"),
+            new RadioListItem("Less than once a month", "6"),
         };
 
         public A2Model(IVisitService visitService) : base(visitService, "A2")

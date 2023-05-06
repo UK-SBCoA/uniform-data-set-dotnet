@@ -5,7 +5,8 @@ namespace UDS.Net.Services.Enums
     {
         NotStarted,
         InProgress,
-        Complete
+        Complete,
+        NotIncluded
     }
 }
 

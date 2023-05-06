@@ -79,7 +79,23 @@ namespace UDS.Net.Forms.Extensions
             {
                 INBIRMO = vm.INBIRMO,
                 INBIRYR = vm.INBIRYR,
-                INSEX = vm.INSEX
+                INSEX = vm.INSEX,
+                INHISP = vm.INHISP,
+                INHISPOR = vm.INHISPOR,
+                INHISPOX = vm.INHISPOX,
+                INRACE = vm.INRACE,
+                INRACEX = vm.INRACEX,
+                INRASEC = vm.INRASEC,
+                INRASECX = vm.INRASECX,
+                INRATER = vm.INRATER,
+                INRATERX = vm.INRATERX,
+                INEDUC = vm.INEDUC,
+                INRELTO = vm.INRELTO,
+                INKNOWN = vm.INKNOWN,
+                INLIVWTH = vm.INLIVWTH,
+                INVISITS = vm.INVISITS,
+                INCALLS = vm.INCALLS,
+                INRELY = vm.INRELY
             };
 
             return new Form(vm.VisitId, vm.Id, vm.Title, vm.Kind, vm.Status, vm.Language, vm.IncludeInPacketSubmission, vm.ReasonCodeNotIncluded.ToString(), vm.CreatedAt, vm.CreatedBy, vm.ModifiedBy, vm.DeletedBy, vm.IsDeleted, fields);
