@@ -109,7 +109,7 @@
                 <label class="text-base font-semibold text-gray-900"><span class="counter"></span> @Html.DisplayNameFor(model => model.A1.HISPANIC)</label>
                 <div class="mt-4 sm:col-span-2 sm:mt-0">
                     <p class="text-sm text-gray-500" asp-description-for="A1.HISPANIC"></p>
-                    <radio-button-group id="EthnicGroups" for="@Model.A1.HISPANIC" items="Model.HispanicLatinoListItems"></radio-button-group>
+                    <radio-button-group id="A1_HISPANIC" for="@Model.A1.HISPANIC" items="Model.HispanicLatinoListItems"></radio-button-group>
                     <span class="mt-2 text-sm text-red-600" asp-validation-for="@Model.A1.HISPANIC"></span>
                 </div>
             </div>

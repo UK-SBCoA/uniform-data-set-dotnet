@@ -27,9 +27,9 @@ namespace UDS.Net.Forms.Pages.UDS3
 
         public List<RadioListItem> HispanicLatinoListItems { get; } = new List<RadioListItem>
         {
-            new RadioListItem("No  (If No, SKIP TO QUESTION 5)", "1"),
+            new RadioListItem("No  (If No, SKIP TO QUESTION below)", "1"),
             new RadioListItem("Yes", "2"),
-            new RadioListItem("Unknown (If Unknown, SKIP TO QUESTION 5)", "9")
+            new RadioListItem("Unknown (If Unknown, SKIP TO QUESTION below)", "9")
         };
 
         public List<RadioListItem> OriginsListItems { get; } = new List<RadioListItem>
@@ -44,7 +44,7 @@ namespace UDS.Net.Forms.Pages.UDS3
             new RadioListItem("Unknown","99")
         };
 
-        public List<RadioListItem> RacialGroupListItems { get; } = new List<RadioListItem>
+        public List<RadioListItem> RacialGroupsListItems { get; } = new List<RadioListItem>
         {
             new RadioListItem("White", "1"),
             new RadioListItem("Black or African American", "2"),
@@ -55,7 +55,7 @@ namespace UDS.Net.Forms.Pages.UDS3
             new RadioListItem("Unknown", "99")
         };
 
-        public List<RadioListItem> RelationshipTypeListItems { get; } = new List<RadioListItem>
+        public List<RadioListItem> RelationshipTypesListItems { get; } = new List<RadioListItem>
         {
             new RadioListItem("Spouse, partner, or companion (include ex-spouse, ex-partner, fiancé, boyfriend, girlfriend)", "1"),
             new RadioListItem("Child (by blood or through marriage or adoption)", "2"),
@@ -63,6 +63,12 @@ namespace UDS.Net.Forms.Pages.UDS3
             new RadioListItem("Other relative (by blood or through marriage or adoption)", "4"),
             new RadioListItem("Friend, neighbor, or someone known through family, friends, work, or community (e.g., church)", "5"),
             new RadioListItem("Paid caregiver, health care provider, or clinician", "6"),
+        };
+
+        public List<RadioListItem> LivingSituationListItems { get; } = new List<RadioListItem>
+        {
+            new RadioListItem("No", "0"),
+            new RadioListItem("Yes (If Yes, SKIP TO QUESTION 10)", "1")
         };
 
         public List<RadioListItem> ContactFrequencyListItems { get; } = new List<RadioListItem>
@@ -73,6 +79,12 @@ namespace UDS.Net.Forms.Pages.UDS3
             new RadioListItem("At least three times per month", "4"),
             new RadioListItem("Monthly", "5"),
             new RadioListItem("Less than once a month", "6"),
+        };
+
+        public List<RadioListItem> ReliabilityListItems { get; } = new List<RadioListItem>
+        {
+            new RadioListItem("No", "0"),
+            new RadioListItem("Yes", "1")
         };
 
         public A2Model(IVisitService visitService) : base(visitService, "A2")
