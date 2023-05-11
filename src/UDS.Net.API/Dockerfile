@@ -1,19 +1,23 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 as build-env
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-WORKDIR /src
-
-COPY src/UDS.Net.API/UDS.Net.API.csproj UDS.Net.API/
-COPY src/UDS.Net.Dto/UDS.Net.Dto.csproj UDS.Net.Dto/
-RUN dotnet restore "UDS.Net.API/UDS.Net.API.csproj"
-
-COPY src .
-RUN dotnet publish "UDS.Net.API/UDS.Net.API.csproj" -c Release -o /publish/api
-
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
-
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-COPY --from=build-env /publish/api .
-
 EXPOSE 80
 
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY ["UDS.Net.API/UDS.Net.API.csproj", "UDS.Net.API/"]
+COPY ["UDS.Net.Dto/UDS.Net.Dto.csproj", "UDS.Net.Dto/"]
+COPY ["UDS.Net.API.Client/UDS.Net.API.Client.csproj", "UDS.Net.API.Client/"]
+RUN dotnet restore "UDS.Net.API/UDS.Net.API.csproj"
+COPY . .
+WORKDIR "/src/UDS.Net.API"
+RUN dotnet build "UDS.Net.API.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "UDS.Net.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "UDS.Net.API.dll"]

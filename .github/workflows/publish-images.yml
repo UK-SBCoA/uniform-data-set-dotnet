@@ -1,0 +1,59 @@
+# From: https://docs.github.com/en/actions/publishing-packages/publishing-docker-images
+
+# Workflow is triggered to run when stable and pre-releases publish
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release
+
+# The Docker login-action, metadata-action,a dn build-push-action are
+# following the GitHub recommendation of pinning actions to a commit SHA.
+
+# Matrix strategy is used for each image in the code https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
+name: Create and publish Docker images
+
+on:
+  release:
+    types: [published]
+
+env:
+  REGISTRY: ghcr.io
+  REPO_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dockerfile: ./src/UDS.Net.API/Dockerfile
+            image: ${{ env.REGISTRY }}/${{ env.REPO_NAME }}/api
+          - dockerfile: ./src/UDS.Net.Web.MVC/Dockerfile
+            image: ${{ env.REGISTRY }}/${{ env.REPO_NAME }}/app
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: ${{ matrix.image }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          context: .
+          file: ${{ matrix.dockerfile }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

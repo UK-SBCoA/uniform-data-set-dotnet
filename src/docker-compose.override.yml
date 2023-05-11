@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  uds.net.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=server=db,1433;user id=sa;password=${MSSQLSAPASSWORD:?provide password for database};database=UDS_API;TrustServerCertificate=True
+    ports:
+      - "4800:80"
+    depends_on:
+      - db
+
+  uds.net.web.mvc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__AuthServiceConnection=server=db,1433;user id=sa;password=${MSSQLSAPASSWORD:?provide password for database};database=UDS_APP;TrustServerCertificate=True
+    ports:
+      - "4810:80"
+    depends_on:
+      - db
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: ${MSSQLSAPASSWORD:?provide password for database}
+      ACCEPT_EULA: Y
+    ports:
+      - "1187:1433"

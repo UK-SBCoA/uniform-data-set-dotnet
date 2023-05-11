@@ -47,13 +47,13 @@ if (builder.Environment.IsDevelopment())
     mvcBuilder.AddRazorRuntimeCompilation(); // this can't be configured in startup assembly for RCL runtime compilation, it must be here. The fix is available soon in .NET 7 https://github.com/dotnet/aspnetcore/issues/38465
 
     // Is also required for runtime compilation of Razor Class Library UDS.Net.Forms
-    builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
-    {
-        var libraryPath = Path.GetFullPath(
-            Path.Combine(builder.Environment.ContentRootPath, "..", "UDS.Net.Forms"));
+    //builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
+    //{
+    //    var libraryPath = Path.GetFullPath(
+    //        Path.Combine(builder.Environment.ContentRootPath, "..", "UDS.Net.Forms"));
 
-        options.FileProviders.Add(new PhysicalFileProvider(libraryPath));
-    });
+    //    options.FileProviders.Add(new PhysicalFileProvider(libraryPath));
+    //});
 
 }
 
