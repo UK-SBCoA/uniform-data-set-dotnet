@@ -20,6 +20,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UDS.Net.Services\UDS.Net.Services.csproj" />
-    <ProjectReference Include="..\UDS.Net.Dto\UDS.Net.Dto.csproj" />
   </ItemGroup>
 </Project>

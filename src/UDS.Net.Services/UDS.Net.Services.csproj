@@ -12,6 +12,6 @@
 		<RepositoryUrl>https://github.com/UK-SBCoA/uniform-data-set-dotnet</RepositoryUrl>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\UDS.Net.Dto\UDS.Net.Dto.csproj" />
+	  <PackageReference Include="UDS.Net.Dto" Version="1.0.0" />
 	</ItemGroup>
 </Project>
