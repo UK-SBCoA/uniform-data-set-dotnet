@@ -1,12 +1,15 @@
 # UDS for .NET
 
-This repository includes all necessary tools to electronically collect data for UDS including
+This repository includes all necessary tools to electronically collect data for UDS within Docker images hosted in GitHub.
 
-* UDS instruments as HTML forms (additionally, packaged with Nuget)
-* QC rules
-* Data persistence
-* Development container
-* Production container
+You'll need to authenticate to GitHub's container registry following the instructions [here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic).
+
+Then you'll be able to clone this repository and run 'docker compose up'.
+
+If you are interested in modifying the source code for each image, you can find it in these repositories:
+
+* [UK-SBCoA/uniform-data-set-dotnet-api](https://github.com/UK-SBCoA/uniform-data-set-dotnet-api)
+* [UK-SBCoA/uniform-data-set-dotnet-web](https://github.com/UK-SBCoA/uniform-data-set-dotnet-web)
 
 This software is intended for use by [National Institute on Aging (NIA) Alzheimer's Disease Research Centers](https://www.nia.nih.gov/research/dn/national-alzheimers-coordinating-center-nacc) (ADRCs) to collect data for submission to the National Alzheimer's Coordinating Center ([NACC](https://naccdata.org/)) database. This data set is called UDS (Uniform Data Set). All ADRC's submit this data to contribute to the NIA's Alzheimer's Disease Longitudinal Study.
 
