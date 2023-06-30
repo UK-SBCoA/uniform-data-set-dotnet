@@ -1,6 +1,8 @@
 # UDS for .NET
 
-This software is intended for use by [National Institute on Aging (NIA) Alzheimer's Disease Research Centers](https://www.nia.nih.gov/research/dn/national-alzheimers-coordinating-center-nacc) (ADRCs) to collect data for submission to the National Alzheimer's Coordinating Center ([NACC](https://naccdata.org/)) database. This data set is called UDS (Uniform Data Set). All ADRC's submit this data to contribute to the NIA's Alzheimer's Disease Longitudinal Study.
+This software is intended for use by [National Institute on Aging (NIA) Alzheimer's Disease Research Centers](https://www.nia.nih.gov/research/dn/national-alzheimers-coordinating-center-nacc) (ADRCs) to collect data for submission to the National Alzheimer's Coordinating Center ([NACC](https://naccdata.org/)) database. 
+
+The data set collected is called UDS (Uniform Data Set). All ADRC's submit this data to contribute to the NIA's Alzheimer's Disease Longitudinal Study.
 
 ## Get started quickly
 This repository includes a running example of all necessary images to electronically collect data for UDS. While you could possibly use these images out-of-the-box, you should implement security best practices within your hosting environment, and potentially modify the code and build your own images to support your preferred authentication scheme. See below for links to the source code for the images.
@@ -22,6 +24,6 @@ If you are interested in contributing or modifying the images for yourself, you 
 
 
 ## License
-The forms included in these images are copyrighted. Detailed copyright statements and usage restrictions are available on each form and on the [NACC website](https://naccdata.org/data-collection/guidelines-copyright). Non-ADRC researchers who wish to use the forms in this repository should [complete and return a permission request](https://files.alz.washington.edu/nacc-permission-form.pdf).
+The forms included in these images are copyrighted. Detailed copyright statements and usage restrictions are available on each form and on [NACC](https://naccdata.org/data-collection/guidelines-copyright). Non-ADRC researchers who wish to use the forms in this repository should [complete and return a permission request](https://files.alz.washington.edu/nacc-permission-form.pdf).
 
 Code in this repository is Copyright (c) University of Kentucky Sanders-Brown Center on Aging. All rights reserved. Licensed under the [BSD 2-Clause "Simplified" License](LICENSE).
