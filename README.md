@@ -15,8 +15,11 @@ This repository includes a running example of all necessary images to electronic
 ## Contributing and image source code
 If you are interested in contributing or modifying the images for yourself, you can find the source code in these repositories:
 
-* [UK-SBCoA/uniform-data-set-dotnet-api](https://github.com/UK-SBCoA/uniform-data-set-dotnet-api)
-* [UK-SBCoA/uniform-data-set-dotnet-web](https://github.com/UK-SBCoA/uniform-data-set-dotnet-web)
+| System component  | Source code repository | |
+| ------------- | ------------- | ----- |
+| Web application  | [UK-SBCoA/uniform-data-set-dotnet-web](https://github.com/UK-SBCoA/uniform-data-set-dotnet-web)  | [![Docker image build](https://github.com/UK-SBCoA/uniform-data-set-dotnet-web/actions/workflows/container-release.yml/badge.svg?branch=release)](https://github.com/orgs/UK-SBCoA/packages/container/package/uniform-data-set-dotnet-web) |
+| Web api  | [UK-SBCoA/uniform-data-set-dotnet-api](https://github.com/UK-SBCoA/uniform-data-set-dotnet-api)  | [![Docker image build](https://github.com/UK-SBCoA/uniform-data-set-dotnet-api/actions/workflows/container-release.yml/badge.svg?branch=release)](https://github.com/orgs/UK-SBCoA/packages/container/package/uniform-data-set-dotnet-api) |
+
 
 ## License
 The forms included in these images are copyrighted. Detailed copyright statements and usage restrictions are available on each form and on the [NACC website](https://naccdata.org/data-collection/guidelines-copyright). Non-ADRC researchers who wish to use the forms in this repository should [complete and return a permission request](https://files.alz.washington.edu/nacc-permission-form.pdf).
