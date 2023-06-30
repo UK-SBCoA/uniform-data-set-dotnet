@@ -9,8 +9,8 @@ This repository includes a running example of all necessary images to electronic
 1. You'll need to authenticate to GitHub's container registry following the instructions [here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic).
 2. Install Docker and clone this repository.
 3. Create an .env file in the same directory as docker-compose. Include a variable for a SQL sa password `MSSQLSAPASSWORD=PasswordThatFollowsMSSQLRules1`.
-4. Run `docker compose up` and the images will be pulled from GitHub with the app, api, and ms sql images.
-5. App will be exposed on https://localhost:4811, api will be exposed on https://localhost:4801/swagger, and sql server on port 1188. If these ports are already in use, then you'll need to create your own docker-compose configuration.
+4. Run `docker compose up` and the images will be pulled from GitHub with the app, API, and MSSQL images.
+5. App will be exposed on [https://localhost:4811](https://localhost:4811), API will be exposed on [https://localhost:4801](https://localhost:4801/swagger), and sql server on port 1188. If these ports are already in use, then you'll need to create your own docker-compose configuration.
 
 ## Contributing and image source code
 If you are interested in contributing or modifying the images for yourself, you can find the source code in these repositories:
@@ -18,7 +18,7 @@ If you are interested in contributing or modifying the images for yourself, you 
 | System component  | Source code repository | |
 | ------------- | ------------- | ----- |
 | Web application  | [UK-SBCoA/uniform-data-set-dotnet-web](https://github.com/UK-SBCoA/uniform-data-set-dotnet-web)  | [![Docker image build](https://github.com/UK-SBCoA/uniform-data-set-dotnet-web/actions/workflows/container-release.yml/badge.svg?branch=release)](https://github.com/orgs/UK-SBCoA/packages/container/package/uniform-data-set-dotnet-web) |
-| Web api  | [UK-SBCoA/uniform-data-set-dotnet-api](https://github.com/UK-SBCoA/uniform-data-set-dotnet-api)  | [![Docker image build](https://github.com/UK-SBCoA/uniform-data-set-dotnet-api/actions/workflows/container-release.yml/badge.svg?branch=release)](https://github.com/orgs/UK-SBCoA/packages/container/package/uniform-data-set-dotnet-api) |
+| Web API  | [UK-SBCoA/uniform-data-set-dotnet-api](https://github.com/UK-SBCoA/uniform-data-set-dotnet-api)  | [![Docker image build](https://github.com/UK-SBCoA/uniform-data-set-dotnet-api/actions/workflows/container-release.yml/badge.svg?branch=release)](https://github.com/orgs/UK-SBCoA/packages/container/package/uniform-data-set-dotnet-api) |
 
 
 ## License
